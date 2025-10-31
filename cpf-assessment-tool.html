@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPF Energy Assessment Tool | Energy Trust of Oregon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004c99;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --border: #dee2e6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .privacy-banner {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 15px 20px;
+            margin: 20px 30px;
+            border-radius: 4px;
+        }
+
+        .privacy-banner h3 {
+            color: #856404;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .privacy-banner p {
+            color: #856404;
+            font-size: 0.95em;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+            background: var(--light);
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            right: 30px;
+            height: 2px;
+            background: var(--border);
+            z-index: 0;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--border);
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active .progress-step-circle {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .progress-step.completed .progress-step-circle {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .progress-step-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .progress-step.active .progress-step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group label .required {
+            color: var(--danger);
+            margin-left: 4px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: var(--light);
+            border-color: var(--primary);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-item:hover {
+            background: var(--light);
+            border-color: var(--primary);
+        }
+
+        .radio-item input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .radio-item input[type="radio"]:checked + label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,102,204,0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-color: var(--success);
+            color: #155724;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-color: var(--warning);
+            color: #856404;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-color: var(--danger);
+            color: #721c24;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .equipment-card {
+            border-left: 4px solid var(--primary);
+        }
+
+        .equipment-card.recommended {
+            background: #f0f9ff;
+            border-left-color: var(--success);
+        }
+
+        .equipment-card.no-cost {
+            background: #fff9e6;
+            border-left-color: var(--warning);
+        }
+
+        .incentive-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .incentive-badge.standard {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .incentive-badge.cpf {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .incentive-badge.no-cost {
+            background: #fff9c4;
+            color: #f57f17;
+        }
+
+        .incentive-badge.certa {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            font-weight: bold;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-table th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .summary-table tr:hover {
+            background: var(--light);
+        }
+
+        .total-row {
+            font-weight: 600;
+            font-size: 1.1em;
+            background: var(--light) !important;
+        }
+
+        .total-row td {
+            border-top: 2px solid var(--dark);
+            padding-top: 15px;
+        }
+
+        .savings-highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .savings-highlight h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .savings-highlight p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .info-box h4 {
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .eligibility-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .eligibility-status.eligible {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .eligibility-status.not-eligible {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .eligibility-status.check-required {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #8ab4f8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .progress-bar,
+            .btn,
+            header {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 CPF Energy Assessment Tool</h1>
+            <p>Community Partner Funding Program | Energy Trust of Oregon</p>
+        </header>
+
+        <div class="privacy-banner">
+            <h3>🔒 Privacy Protected</h3>
+            <p><strong>Your data never leaves your device.</strong> This tool runs entirely in your browser. No personal information is transmitted, stored, or shared. You can save or print your results at any time.</p>
+            <button class="btn btn-secondary" onclick="loadSampleData()" style="margin-top: 10px;">📋 Load Sample Data (for testing)</button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <div class="progress-step-circle">1</div>
+                <div class="progress-step-label">Property Info</div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="progress-step-circle">2</div>
+                <div class="progress-step-label">Eligibility</div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="progress-step-circle">3</div>
+                <div class="progress-step-label">Assessment</div>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="progress-step-circle">4</div>
+                <div class="progress-step-label">Recommendations</div>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="progress-step-circle">5</div>
+                <div class="progress-step-label">Summary</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Section 1: Property Information -->
+            <div class="section active" data-section="1">
+                <h2>Property Information</h2>
+                <p>Let's start with some basic information about your property.</p>
+
+                <div class="form-group">
+                    <label>Property Type <span class="required">*</span></label>
+                    <select id="propertyType" required>
+                        <option value="">Select property type</option>
+                        <option value="single-family">Detached Single-Family Home</option>
+                        <option value="manufactured">Manufactured Home</option>
+                        <option value="duplex">Duplex</option>
+                        <option value="triplex">Triplex</option>
+                        <option value="fourplex">Fourplex</option>
+                        <option value="townhome">Townhome</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>State <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="state" id="stateOR" value="OR" required>
+                            <label for="stateOR">Oregon</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="state" id="stateWA" value="WA">
+                            <label for="stateWA">Washington</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Year Built</label>
+                        <input type="number" id="yearBuilt" min="1800" max="2025" placeholder="e.g., 1985">
+                    </div>
+                    <div class="form-group">
+                        <label>Square Footage</label>
+                        <input type="number" id="sqft" min="0" placeholder="e.g., 1500">
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Stories</label>
+                        <select id="stories">
+                            <option value="">Select</option>
+                            <option value="1">1 Story</option>
+                            <option value="1.5">1.5 Stories</option>
+                            <option value="2">2 Stories</option>
+                            <option value="3+">3+ Stories</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Foundation Type</label>
+                    <select id="foundation">
+                        <option value="">Select foundation type</option>
+                        <option value="crawlspace">Crawlspace</option>
+                        <option value="crawlspace-vapor">Crawlspace with Vapor Barrier</option>
+                        <option value="basement">Basement</option>
+                        <option value="slab">Slab on Grade</option>
+                        <option value="garage-basement">Garage/Basement Combo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Electric Provider <span class="required">*</span></label>
+                    <select id="electricProvider" required>
+                        <option value="">Select electric provider</option>
+                        <option value="PGE">Portland General Electric (PGE)</option>
+                        <option value="Pacific Power">Pacific Power</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Gas Provider (if applicable)</label>
+                    <select id="gasProvider">
+                        <option value="">Select gas provider</option>
+                        <option value="NW Natural">NW Natural</option>
+                        <option value="Cascade">Cascade Natural Gas</option>
+                        <option value="Avista">Avista</option>
+                        <option value="None">No Gas Service</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="nextSection()">Next: Eligibility →</button>
+                </div>
+            <div class="section" data-section="2">
+                <h2>Eligibility Check</h2>
+                <p>Help us determine which programs you may qualify for.</p>
+
+                <div class="form-group">
+                    <label>Household Size <span class="required">*</span></label>
+                    <input type="number" id="householdSize" min="1" max="15" placeholder="Number of people in household" required>
+                    <small>Include all people living in the home</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Annual Household Income (Optional)</label>
+                    <input type="number" id="annualIncome" min="0" placeholder="Gross annual household income">
+                    <small>This helps determine eligibility for enhanced CPF incentives and no-cost programs. Leave blank if you prefer not to share.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Are you currently enrolled in any of these programs?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="billDiscount" value="billDiscount">
+                            <label for="billDiscount">Utility Bill Discount Program</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="snap" value="snap">
+                            <label for="snap">SNAP (Food Stamps)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="liheap" value="liheap">
+                            <label for="liheap">LIHEAP (Low Income Home Energy Assistance)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="medicaid" value="medicaid">
+                            <label for="medicaid">Oregon Health Plan / Medicaid</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Property Ownership <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="ownership" id="ownerOccupied" value="owner" required>
+                            <label for="ownerOccupied">Owner-Occupied</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="ownership" id="rentalOwner" value="rental-owner">
+                            <label for="rentalOwner">Rental Property Owner</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="ownership" id="renter" value="renter">
+                            <label for="renter">Renter</label>
+                        </div>
+                    </div>
+                    <small>Renters: You may need landlord approval for some upgrades</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Are you working with a Community Partner Organization?</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="communityPartner" id="cpYes" value="yes">
+                            <label for="cpYes">Yes</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="communityPartner" id="cpNo" value="no">
+                            <label for="cpNo">No</label>
+                        </div>
+                    </div>
+                    <small>Community Partner Organizations can help you access enhanced CPF incentives</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Program Tier (Based on eligibility assessment)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="certaEligible" value="certa" onchange="updateIncentiveDisplay()">
+                            <label for="certaEligible">CERTA Program Eligible (Communities of Color, Rural, Tribal)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="noCostOverride" value="no-cost" onchange="updateIncentiveDisplay()">
+                            <label for="noCostOverride">Force No-Cost Eligibility (for preview purposes)</label>
+                        </div>
+                    </div>
+                    <small>Use these toggles to preview different incentive levels you may qualify for</small>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="prevSection()">← Back</button>
+                    <button class="btn btn-primary" onclick="nextSection()">Next: Assessment →</button>
+                </div>
+            <div class="section" data-section="3">
+                <h2>Home Energy Assessment</h2>
+                <p>Tell us about your current heating, cooling, and insulation systems.</p>
+
+                <div class="card">
+                    <h3>Heating System</h3>
+                    <div class="form-group">
+                        <label>Current Primary Heating System <span class="required">*</span></label>
+                        <select id="heatingSystem" required>
+                            <option value="">Select heating system</option>
+                            <option value="electric-resistance">Electric Resistance (Baseboard, Wall Heaters)</option>
+                            <option value="electric-furnace">Electric Forced Air Furnace</option>
+                            <option value="gas-furnace">Gas Furnace</option>
+                            <option value="oil-furnace">Oil Furnace</option>
+                            <option value="heat-pump-ducted">Heat Pump (Ducted)</option>
+                            <option value="heat-pump-ductless">Heat Pump (Ductless/Mini-Split)</option>
+                            <option value="wood">Wood Stove/Pellet Stove</option>
+                            <option value="none">No Heating System</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Age of Heating System</label>
+                            <select id="heatingAge">
+                                <option value="">Select age</option>
+                                <option value="0-5">0-5 years</option>
+                                <option value="6-10">6-10 years</option>
+                                <option value="11-15">11-15 years</option>
+                                <option value="16-20">16-20 years</option>
+                                <option value="20+">20+ years</option>
+                                <option value="unknown">Unknown</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Heating System Condition</label>
+                            <select id="heatingCondition">
+                                <option value="">Select condition</option>
+                                <option value="excellent">Excellent</option>
+                                <option value="good">Good</option>
+                                <option value="fair">Fair</option>
+                                <option value="poor">Poor - Needs Replacement</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Does your home have ductwork?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" name="ductwork" id="ductYes" value="yes">
+                                <label for="ductYes">Yes</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="ductwork" id="ductNo" value="no">
+                                <label for="ductNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Cooling System</h3>
+                    <div class="form-group">
+                        <label>Current Cooling</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="centralAC" value="central-ac">
+                                <label for="centralAC">Central Air Conditioning</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="windowAC" value="window-ac">
+                                <label for="windowAC">Window/Portable AC Units</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="noCooling" value="none">
+                                <label for="noCooling">No Cooling System</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Water Heating</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Water Heater Type</label>
+                            <select id="waterHeater">
+                                <option value="">Select type</option>
+                                <option value="electric-tank">Electric Storage Tank</option>
+                                <option value="gas-tank">Gas Storage Tank</option>
+                                <option value="gas-tankless">Gas Tankless</option>
+                                <option value="heat-pump">Heat Pump Water Heater</option>
+                                <option value="unknown">Unknown</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Water Heater Age</label>
+                            <select id="waterHeaterAge">
+                                <option value="">Select age</option>
+                                <option value="0-5">0-5 years</option>
+                                <option value="6-10">6-10 years</option>
+                                <option value="11-15">11-15 years</option>
+                                <option value="15+">15+ years</option>
+                                <option value="unknown">Unknown</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Insulation</h3>
+                    <div class="form-group">
+                        <label>Attic Insulation</label>
+                        <select id="atticInsulation">
+                            <option value="">Estimate current level</option>
+                            <option value="none">None or minimal (less than 3 inches)</option>
+                            <option value="low">Low (3-6 inches / R-11 to R-18)</option>
+                            <option value="moderate">Moderate (6-10 inches / R-19 to R-30)</option>
+                            <option value="good">Good (10+ inches / R-38+)</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Floor/Crawlspace Insulation</label>
+                        <select id="floorInsulation">
+                            <option value="">Estimate current level</option>
+                            <option value="none">None or minimal</option>
+                            <option value="low">Low (less than R-11)</option>
+                            <option value="moderate">Moderate (R-11 to R-19)</option>
+                            <option value="good">Good (R-30+)</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Wall Insulation</label>
+                        <select id="wallInsulation">
+                            <option value="">Estimate current level</option>
+                            <option value="none">None or minimal</option>
+                            <option value="some">Some insulation (R-4 or less)</option>
+                            <option value="good">Well insulated (R-11+)</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Windows</h3>
+                    <div class="form-group">
+                        <label>Window Type</label>
+                        <select id="windows">
+                            <option value="">Select primary window type</option>
+                            <option value="single-pane">Single-Pane</option>
+                            <option value="double-pane-old">Double-Pane (older, metal frame)</option>
+                            <option value="double-pane-new">Double-Pane (newer, vinyl/wood)</option>
+                            <option value="mixed">Mixed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Window Condition</label>
+                        <select id="windowCondition">
+                            <option value="">Select condition</option>
+                            <option value="excellent">Excellent - Well sealed</option>
+                            <option value="good">Good - Minor drafts</option>
+                            <option value="fair">Fair - Some broken/drafty</option>
+                            <option value="poor">Poor - Many broken/drafty</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="prevSection()">← Back</button>
+                    <button class="btn btn-primary" onclick="nextSection()">View Summary →</button>
+                </div>
+            <div class="section" data-section="4">
+                <h2>Your Personalized Recommendations</h2>
+                <div id="eligibilityResults"></div>
+                <div id="recommendationsContainer"></div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="prevSection()">← Back</button>
+                    <button class="btn btn-primary" onclick="completeSection()">View Summary →</button>
+                </div>
+                            <!-- Section 5: Financial Summary -->
+            <div class="section" data-section="5">
+                <h2>Financial Summary & Next Steps</h2>
+                <div id="summaryContainer"></div>
+
+                <div class="card">
+                    <h3>Next Steps</h3>
+                    <ol style="line-height: 2; margin-left: 20px;">
+                        <li><strong>Save or Print this report</strong> for your records</li>
+                        <li><strong>Contact a Trade Ally Contractor</strong> for detailed quotes and installation</li>
+                        <li><strong>If you're income-qualified:</strong> Reach out to a Community Partner Organization for assistance</li>
+                        <li><strong>Complete application forms</strong> after installation (contractor can help with this)</li>
+                        <li><strong>Submit to Energy Trust</strong> within 60 days of project completion</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h3>Contact Information</h3>
+                    <p><strong>Energy Trust of Oregon:</strong></p>
+                    <ul style="line-height: 2; margin-left: 20px;">
+                        <li>Phone: 1-866-311-1822</li>
+                        <li>Email: residentialforms@energytrust.org</li>
+                        <li>CPF Program: communitypartners@energytrust.org</li>
+                        <li>Website: <a href="https://www.energytrust.org" target="_blank">www.energytrust.org</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="prevSection()">← Back</button>
+                    <button class="btn btn-success" onclick="window.print()">🖨️ Print Report</button>
+                    <button class="btn btn-primary" onclick="startOver()">Start New Assessment</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Community Consulting Partners LLC</strong> | Isaiah Kamrar</p>
+            <p>Energy Trust of Oregon - Community Partner Funding Program</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                This tool is for estimation purposes only. Final incentive amounts subject to verification and program requirements.
+                <br>Data accurate as of October 2025.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Application State
+        let currentSection = 1;
+        let assessmentData = {};
+        let recommendations = [];
+        let eligibility = {
+            standard: false,
+            cpf: false,
+            certa: false,
+            noCost: false,
+            incomeLevel: null
+        };
+
+        // 2025 HUD Income Limits for Oregon (example - Oregon statewide median)
+        const hudIncomeLimits = {
+            1: { low: 39900, veryLow: 24950, extremelyLow: 14970 },
+            2: { low: 45600, veryLow: 28500, extremelyLow: 17100 },
+            3: { low: 51300, veryLow: 32050, extremelyLow: 19230 },
+            4: { low: 57000, veryLow: 35600, extremelyLow: 21360 },
+            5: { low: 61560, veryLow: 38450, extremelyLow: 23076 },
+            6: { low: 66120, veryLow: 41300, extremelyLow: 24780 },
+            7: { low: 70680, veryLow: 44150, extremelyLow: 26490 },
+            8: { low: 75240, veryLow: 47000, extremelyLow: 28200 }
+        };
+
+        // Incentive Data
+        const incentives = {
+            'ductless-heat-pump-sf': {
+                name: 'Ductless Heat Pump (Single-Family)',
+                standard: 800,
+                cpf: 1800,
+                certa: 2500,
+                noCost: 'Full Coverage',
+                unit: 'per system',
+                specs: 'HSPF2 ≥8.10'
+            },
+            'ductless-heat-pump-mh': {
+                name: 'Ductless Heat Pump (Manufactured Home)',
+                standard: 800,
+                cpf: 3500,
+                certa: 4200,
+                noCost: 'Full Coverage',
+                unit: 'per system',
+                specs: 'HSPF2 ≥8.10'
+            },
+            'ducted-heat-pump': {
+                name: 'Ducted Heat Pump',
+                standard: 1000,
+                cpf: 4000,
+                certa: 5500,
+                noCost: 'Full Coverage',
+                unit: 'per system',
+                specs: 'HSPF2 ≥7.50'
+            },
+            'gas-furnace': {
+                name: 'High Efficiency Gas Furnace',
+                standard: 1600,
+                cpf: 2900,
+                certa: 3500,
+                noCost: null,
+                unit: 'per furnace',
+                specs: '95%+ AFUE with ECM'
+            },
+            'heat-pump-water-heater': {
+                name: 'Heat Pump Water Heater',
+                standard: 75,
+                cpf: 240,
+                certa: 400,
+                noCost: 'Full Coverage',
+                unit: 'per unit',
+                specs: 'NEEA Tier 3'
+            },
+            'smart-thermostat': {
+                name: 'Smart Thermostat',
+                standard: 75,
+                cpf: 250,
+                certa: 300,
+                noCost: null,
+                unit: 'per unit',
+                specs: 'WiFi enabled'
+            },
+            'attic-insulation': {
+                name: 'Attic Insulation',
+                standard: 0.40,
+                cpf: 1.00,
+                certa: 1.50,
+                noCost: null,
+                unit: 'per sq ft',
+                specs: 'R-38 or greater'
+            },
+            'floor-insulation': {
+                name: 'Floor Insulation',
+                standard: 0.60,
+                cpf: 1.50,
+                certa: 2.25,
+                noCost: null,
+                unit: 'per sq ft',
+                specs: 'R-30 or greater'
+            },
+            'wall-insulation': {
+                name: 'Wall Insulation',
+                standard: 0.50,
+                cpf: 1.25,
+                certa: 1.75,
+                noCost: null,
+                unit: 'per sq ft',
+                specs: 'R-11 or greater'
+            },
+            'windows': {
+                name: 'Window Replacement',
+                standard: 1.00,
+                cpf: 2.50,
+                certa: 4.00,
+                noCost: null,
+                unit: 'per sq ft',
+                specs: 'U-Value ≤0.27'
+            }
+        };
+
+        // Navigation Functions
+        function nextSection() {
+            if (currentSection < 5) {
+                document.querySelector(`[data-section="${currentSection}"]`).classList.remove('active');
+                document.querySelector(`[data-step="${currentSection}"]`).classList.add('completed');
+                document.querySelector(`[data-step="${currentSection}"]`).classList.remove('active');
+                
+                currentSection++;
+                
+                document.querySelector(`[data-section="${currentSection}"]`).classList.add('active');
+                document.querySelector(`[data-step="${currentSection}"]`).classList.add('active');
+                
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 1) {
+                document.querySelector(`[data-section="${currentSection}"]`).classList.remove('active');
+                document.querySelector(`[data-step="${currentSection}"]`).classList.remove('active');
+                
+                currentSection--;
+                
+                document.querySelector(`[data-section="${currentSection}"]`).classList.add('active');
+                document.querySelector(`[data-step="${currentSection}"]`).classList.remove('completed');
+                
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function startOver() {
+            if (confirm('Are you sure you want to start a new assessment? All current data will be lost.')) {
+                location.reload();
+            }
+        }
+
+        // Data Collection
+        function collectFormData() {
+            assessmentData = {
+                property: {
+                    type: document.getElementById('propertyType').value,
+                    state: document.querySelector('input[name="state"]:checked')?.value,
+                    yearBuilt: document.getElementById('yearBuilt').value,
+                    sqft: parseInt(document.getElementById('sqft').value) || 0,
+                    stories: document.getElementById('stories').value,
+                    foundation: document.getElementById('foundation').value,
+                    electricProvider: document.getElementById('electricProvider').value,
+                    gasProvider: document.getElementById('gasProvider').value
+                },
+                eligibility: {
+                    householdSize: parseInt(document.getElementById('householdSize').value) || 0,
+                    annualIncome: parseInt(document.getElementById('annualIncome').value) || null,
+                    billDiscount: document.getElementById('billDiscount').checked,
+                    snap: document.getElementById('snap').checked,
+                    liheap: document.getElementById('liheap').checked,
+                    medicaid: document.getElementById('medicaid').checked,
+                    ownership: document.querySelector('input[name="ownership"]:checked')?.value,
+                    communityPartner: document.querySelector('input[name="communityPartner"]:checked')?.value
+                },
+                heating: {
+                    system: document.getElementById('heatingSystem').value,
+                    age: document.getElementById('heatingAge').value,
+                    condition: document.getElementById('heatingCondition').value,
+                    ductwork: document.querySelector('input[name="ductwork"]:checked')?.value
+                },
+                cooling: {
+                    centralAC: document.getElementById('centralAC').checked,
+                    windowAC: document.getElementById('windowAC').checked,
+                    none: document.getElementById('noCooling').checked
+                },
+                waterHeater: {
+                    type: document.getElementById('waterHeater').value,
+                    age: document.getElementById('waterHeaterAge').value
+                },
+                insulation: {
+                    attic: document.getElementById('atticInsulation').value,
+                    floor: document.getElementById('floorInsulation').value,
+                    wall: document.getElementById('wallInsulation').value
+                },
+                windows: {
+                    type: document.getElementById('windows').value,
+                    condition: document.getElementById('windowCondition').value
+                }
+            };
+        }
+
+        // Eligibility Determination
+        function determineEligibility() {
+            collectFormData();
+            
+            // Standard program eligibility
+            eligibility.standard = ['PGE', 'Pacific Power'].includes(assessmentData.property.electricProvider);
+            eligibility.certa = false;
+            
+            // Income-based eligibility
+            const householdSize = assessmentData.eligibility.householdSize;
+            const income = assessmentData.eligibility.annualIncome;
+            
+            if (income && householdSize && hudIncomeLimits[householdSize]) {
+                const limits = hudIncomeLimits[householdSize] || hudIncomeLimits[8];
+                
+                if (income <= limits.extremelyLow) {
+                    eligibility.incomeLevel = 'extremely-low';
+                    eligibility.noCost = true;
+                } else if (income <= limits.veryLow) {
+                    eligibility.incomeLevel = 'very-low';
+                    eligibility.noCost = true;
+                } else if (income <= limits.low) {
+                    eligibility.incomeLevel = 'low';
+                    eligibility.cpf = true;
+                } else {
+                    eligibility.incomeLevel = 'above-lmi';
+                }
+            } else if (assessmentData.eligibility.billDiscount || 
+                       assessmentData.eligibility.snap || 
+                       assessmentData.eligibility.liheap) {
+                eligibility.incomeLevel = 'presumed-eligible';
+                eligibility.cpf = true;
+                eligibility.noCost = true;
+            }
+            
+            // CPF eligibility (with or without income verification)
+            if (assessmentData.eligibility.communityPartner === 'yes') {
+                eligibility.cpf = true;
+            }
+            
+            // Manual overrides for preview purposes
+            if (document.getElementById('certaEligible')?.checked) {
+                eligibility.certa = true;
+                eligibility.cpf = true; // CERTA includes CPF benefits
+            }
+            
+            if (document.getElementById('noCostOverride')?.checked) {
+                eligibility.noCost = true;
+                eligibility.cpf = true; // No-cost includes CPF benefits
+            }
+        }
+
+        // Recommendations Engine
+        function calculateRecommendations() {
+            determineEligibility();
+            recommendations = [];
+
+            const data = assessmentData;
+            
+            // Heating recommendations
+            if (['electric-resistance', 'electric-furnace'].includes(data.heating.system)) {
+                if (data.heating.ductwork === 'no') {
+                    const key = data.property.type === 'manufactured' ? 'ductless-heat-pump-mh' : 'ductless-heat-pump-sf';
+                    recommendations.push({
+                        ...incentives[key],
+                        category: 'heating',
+                        priority: 'high',
+                        reason: 'Replace inefficient electric resistance heating with high-efficiency heat pump',
+                        estimatedCost: 5000,
+                        annualSavings: 800
+                    });
+                } else {
+                    recommendations.push({
+                        ...incentives['ducted-heat-pump'],
+                        category: 'heating',
+                        priority: 'high',
+                        reason: 'Upgrade to efficient ducted heat pump system',
+                        estimatedCost: 8000,
+                        annualSavings: 1000
+                    });
+                }
+            } else if (data.heating.system === 'gas-furnace' && 
+                      (data.heating.age === '16-20' || data.heating.age === '20+' || data.heating.condition === 'poor')) {
+                recommendations.push({
+                    ...incentives['gas-furnace'],
+                    category: 'heating',
+                    priority: 'medium',
+                    reason: 'Old gas furnace - upgrade to high-efficiency model',
+                    estimatedCost: 4500,
+                    annualSavings: 300
+                });
+            }
+
+            // Water heater recommendations
+            if (data.waterHeater.type === 'electric-tank' && 
+                (data.waterHeater.age === '11-15' || data.waterHeater.age === '15+')) {
+                recommendations.push({
+                    ...incentives['heat-pump-water-heater'],
+                    category: 'water-heating',
+                    priority: 'medium',
+                    reason: 'Old electric water heater - switch to heat pump model',
+                    estimatedCost: 1800,
+                    annualSavings: 200
+                });
+            }
+
+            // Insulation recommendations
+            if (['none', 'low'].includes(data.insulation.attic)) {
+                const sqft = data.sqft || 1500;
+                recommendations.push({
+                    ...incentives['attic-insulation'],
+                    category: 'weatherization',
+                    priority: 'high',
+                    reason: 'Insufficient attic insulation - major heat loss',
+                    estimatedCost: sqft * 1.50,
+                    estimatedArea: sqft,
+                    annualSavings: 400
+                });
+            }
+
+            if (['none', 'low'].includes(data.insulation.floor) && 
+                ['crawlspace', 'crawlspace-vapor'].includes(data.property.foundation)) {
+                const sqft = data.sqft || 1500;
+                recommendations.push({
+                    ...incentives['floor-insulation'],
+                    category: 'weatherization',
+                    priority: 'medium',
+                    reason: 'Poor floor insulation in crawlspace',
+                    estimatedCost: sqft * 2.00,
+                    estimatedArea: sqft,
+                    annualSavings: 300
+                });
+            }
+
+            if (data.insulation.wall === 'none' || data.insulation.wall === 'some') {
+                const wallSqft = (data.sqft || 1500) * 0.5; // Rough estimate
+                recommendations.push({
+                    ...incentives['wall-insulation'],
+                    category: 'weatherization',
+                    priority: 'low',
+                    reason: 'Improve wall insulation',
+                    estimatedCost: wallSqft * 3.00,
+                    estimatedArea: wallSqft,
+                    annualSavings: 200
+                });
+            }
+
+            // Window recommendations
+            if (data.windows.type === 'single-pane' || 
+                (data.windows.type === 'double-pane-old' && data.windows.condition === 'poor')) {
+                const windowSqft = (data.sqft || 1500) * 0.15; // Rough estimate
+                recommendations.push({
+                    ...incentives['windows'],
+                    category: 'weatherization',
+                    priority: 'medium',
+                    reason: 'Old or inefficient windows causing heat loss',
+                    estimatedCost: windowSqft * 35,
+                    estimatedArea: windowSqft,
+                    annualSavings: 250
+                });
+            }
+
+            // Smart thermostat (if applicable)
+            if (data.heating.ductwork === 'yes' && data.heating.system.includes('furnace')) {
+                recommendations.push({
+                    ...incentives['smart-thermostat'],
+                    category: 'controls',
+                    priority: 'low',
+                    reason: 'Add smart control for heating system',
+                    estimatedCost: 250,
+                    annualSavings: 100
+                });
+            }
+
+            displayRecommendations();
+        }
+
+        // Display Functions
+        function displayRecommendations() {
+            const eligibilityDiv = document.getElementById('eligibilityResults');
+            const recommendationsDiv = document.getElementById('recommendationsContainer');
+
+            // Display eligibility status
+            let eligibilityHTML = '<div class="card">';
+            eligibilityHTML += '<h3>Your Eligibility Status</h3>';
+            
+            if (eligibility.standard) {
+                eligibilityHTML += '<div class="alert alert-success">';
+                eligibilityHTML += '<strong>✓ Standard Program:</strong> You are eligible for Energy Trust standard incentives!';
+                eligibilityHTML += '</div>';
+            }
+
+            if (eligibility.cpf) {
+                eligibilityHTML += '<div class="alert alert-success">';
+                eligibilityHTML += '<strong>✓ CPF Program:</strong> You qualify for enhanced Community Partner Funding incentives - significantly higher than standard!';
+                eligibilityHTML += '</div>';
+            }
+
+            if (eligibility.certa) {
+                eligibilityHTML += '<div class="alert alert-success">';
+                eligibilityHTML += '<strong>⭐ CERTA Program:</strong> You qualify for the highest tier incentives available for Communities of Color, Rural, and Tribal communities!';
+                eligibilityHTML += '</div>';
+            }
+
+            if (eligibility.noCost) {
+                eligibilityHTML += '<div class="alert alert-warning">';
+                eligibilityHTML += '<strong>⭐ No-Cost Program:</strong> You may qualify for no-cost heat pump and water heater installations! Contact a Community Partner Organization.';
+                eligibilityHTML += '</div>';
+            }
+
+            if (!eligibility.standard && !eligibility.cpf) {
+                eligibilityHTML += '<div class="alert alert-info">';
+                eligibilityHTML += '<strong>Note:</strong> Based on your electric provider, you may not be eligible for Energy Trust programs. Please contact Energy Trust directly to confirm eligibility.';
+                eligibilityHTML += '</div>';
+            }
+
+            eligibilityHTML += '</div>';
+            eligibilityDiv.innerHTML = eligibilityHTML;
+
+            // Display recommendations
+            let recsHTML = '<h3>Recommended Upgrades</h3>';
+            
+            if (recommendations.length === 0) {
+                recsHTML += '<div class="alert alert-info">Your home appears to be well-equipped! No major upgrades recommended at this time.</div>';
+            } else {
+                const priorityOrder = { high: 1, medium: 2, low: 3 };
+                recommendations.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+
+                recommendations.forEach((rec, index) => {
+                    const canBeNoCost = eligibility.noCost && rec.noCost;
+                    const incentiveAmount = canBeNoCost ? rec.noCost : 
+                                          (eligibility.certa ? rec.certa :
+                                          (eligibility.cpf ? rec.cpf : rec.standard));
+                    
+                    const calcIncentive = typeof incentiveAmount === 'number' && rec.estimatedArea ? 
+                                        (incentiveAmount * rec.estimatedArea).toFixed(0) : 
+                                        incentiveAmount;
+
+                    const priorityColor = {
+                        high: 'var(--danger)',
+                        medium: 'var(--warning)',
+                        low: 'var(--primary)'
+                    };
+
+                    recsHTML += `
+                        <div class="card equipment-card ${canBeNoCost ? 'no-cost' : 'recommended'}">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div style="flex: 1;">
+                                    <h3 style="color: ${priorityColor[rec.priority]}">
+                                        ${index + 1}. ${rec.name}
+                                    </h3>
+                                    <p style="margin: 10px 0;"><strong>Why:</strong> ${rec.reason}</p>
+                                    <p><strong>Technical Specs:</strong> ${rec.specs}</p>
+                                    ${rec.estimatedArea ? `<p><strong>Estimated Area:</strong> ${Math.round(rec.estimatedArea)} sq ft</p>` : ''}
+                                </div>
+                                <div style="text-align: right; min-width: 150px;">
+                                    <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 5px;">Priority</div>
+                                    <div style="font-weight: bold; text-transform: uppercase; color: ${priorityColor[rec.priority]}">${rec.priority}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border);">
+                                <div>
+                                    <strong>Estimated Cost:</strong><br>
+                                    <span style="font-size: 1.3em; color: var(--danger);">$${rec.estimatedCost.toLocaleString()}</span>
+                                </div>
+                                <div>
+                                    <strong>Your Incentive:</strong><br>
+                                    <span style="font-size: 1.3em; color: var(--success);">
+                                        ${typeof calcIncentive === 'string' ? calcIncentive : `$${Number(calcIncentive).toLocaleString()}`}
+                                    </span>
+                                    ${canBeNoCost ? '<span class="incentive-badge no-cost">NO-COST ELIGIBLE!</span>' : 
+                                      eligibility.certa ? '<span class="incentive-badge certa">CERTA Premium</span>' :
+                                      eligibility.cpf ? '<span class="incentive-badge cpf">CPF Enhanced</span>' : 
+                                      '<span class="incentive-badge standard">Standard</span>'}
+                                </div>
+                                <div>
+                                    <strong>Estimated Annual Savings:</strong><br>
+                                    <span style="font-size: 1.3em; color: var(--success);">$${rec.annualSavings.toLocaleString()}/yr</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            recommendationsDiv.innerHTML = recsHTML;
+            nextSection();
+        }
+
+        function displaySummary() {
+            const summaryDiv = document.getElementById('summaryContainer');
+            
+            let totalCost = 0;
+            let totalIncentive = 0;
+            let totalSavings = 0;
+            let outOfPocket = 0;
+
+            let summaryHTML = '<div class="card">';
+            summaryHTML += '<h3>Financial Summary</h3>';
+            
+            if (recommendations.length > 0) {
+                summaryHTML += '<table class="summary-table"><thead><tr>';
+                summaryHTML += '<th>Upgrade</th>';
+                summaryHTML += '<th style="text-align: right;">Est. Cost</th>';
+                summaryHTML += '<th style="text-align: right;">Incentive</th>';
+                summaryHTML += '<th style="text-align: right;">Your Cost</th>';
+                summaryHTML += '<th style="text-align: right;">Annual Savings</th>';
+                summaryHTML += '</tr></thead><tbody>';
+
+                recommendations.forEach(rec => {
+                    const canBeNoCost = eligibility.noCost && rec.noCost;
+                    const incentiveAmount = canBeNoCost ? rec.estimatedCost : 
+                                          (eligibility.certa ? (typeof rec.certa === 'number' && rec.estimatedArea ? rec.certa * rec.estimatedArea : rec.certa) :
+                                          (eligibility.cpf ? (typeof rec.cpf === 'number' && rec.estimatedArea ? rec.cpf * rec.estimatedArea : rec.cpf) : 
+                                           (typeof rec.standard === 'number' && rec.estimatedArea ? rec.standard * rec.estimatedArea : rec.standard)));
+                    
+                    const incentiveValue = typeof incentiveAmount === 'number' ? incentiveAmount : 0;
+                    const yourCost = Math.max(0, rec.estimatedCost - incentiveValue);
+
+                    totalCost += rec.estimatedCost;
+                    totalIncentive += incentiveValue;
+                    totalSavings += rec.annualSavings;
+                    outOfPocket += yourCost;
+
+                    summaryHTML += `<tr>
+                        <td>${rec.name}</td>
+                        <td style="text-align: right;">$${rec.estimatedCost.toLocaleString()}</td>
+                        <td style="text-align: right; color: var(--success);">
+                            ${canBeNoCost ? 'Full Coverage' : `$${incentiveValue.toLocaleString()}`}
+                        </td>
+                        <td style="text-align: right;">$${yourCost.toLocaleString()}</td>
+                        <td style="text-align: right;">$${rec.annualSavings.toLocaleString()}</td>
+                    </tr>`;
+                });
+
+                summaryHTML += `
+                    <tr class="total-row">
+                        <td><strong>TOTAL</strong></td>
+                        <td style="text-align: right;"><strong>$${totalCost.toLocaleString()}</strong></td>
+                        <td style="text-align: right; color: var(--success);"><strong>$${totalIncentive.toLocaleString()}</strong></td>
+                        <td style="text-align: right;"><strong>$${outOfPocket.toLocaleString()}</strong></td>
+                        <td style="text-align: right;"><strong>$${totalSavings.toLocaleString()}/yr</strong></td>
+                    </tr>
+                `;
+
+                summaryHTML += '</tbody></table></div>';
+
+                // Savings highlight
+                const paybackYears = outOfPocket > 0 ? (outOfPocket / totalSavings).toFixed(1) : 0;
+                summaryHTML += `
+                    <div class="savings-highlight">
+                        <h2>$${totalIncentive.toLocaleString()}</h2>
+                        <p>Total Incentives Available</p>
+                        <p style="margin-top: 20px; font-size: 1.2em;">
+                            ${outOfPocket > 0 ? 
+                              `Simple payback period: <strong>${paybackYears} years</strong><br>` : 
+                              'Zero out-of-pocket cost with no-cost programs!<br>'}
+                            Annual energy savings: <strong>$${totalSavings.toLocaleString()}</strong>
+                        </p>
+                    </div>
+                `;
+
+                // Program info
+                summaryHTML += '<div class="info-box">';
+                summaryHTML += '<h4>Your Program Path</h4>';
+                if (eligibility.noCost) {
+                    summaryHTML += '<p><strong>No-Cost Program:</strong> Contact a Community Partner Organization to access no-cost heat pump and water heater installations.</p>';
+                } else if (eligibility.certa) {
+                    summaryHTML += '<p><strong>CERTA Premium Incentives:</strong> Work with a Community Partner Organization specializing in Communities of Color, Rural, and Tribal programs for the highest incentive amounts.</p>';
+                } else if (eligibility.cpf) {
+                    summaryHTML += '<p><strong>CPF Enhanced Incentives:</strong> Work with a Community Partner Organization for higher incentive amounts.</p>';
+                } else {
+                    summaryHTML += '<p><strong>Standard Program:</strong> Work with any Trade Ally contractor for standard incentives.</p>';
+                }
+                summaryHTML += '</div>';
+
+            } else {
+                summaryHTML += '<p>No upgrades recommended at this time.</p></div>';
+            }
+
+            summaryDiv.innerHTML = summaryHTML;
+        }
+
+        // Auto-advance to summary when entering section 5
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.classList.contains('active') && 
+                    mutation.target.getAttribute('data-section') === '5') {
+                    displaySummary();
+                }
+            });
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section, { attributes: true, attributeFilter: ['class'] });
+        });
+
+        // Dynamic incentive display update
+        function updateIncentiveDisplay() {
+            if (recommendations.length > 0) {
+                displayRecommendations();
+            }
+        }
+
+        // Load Sample Data for Testing
+        function loadSampleData() {
+            // Property Information
+            document.getElementById('propertyType').value = 'single-family';
+            document.getElementById('stateOR').checked = true;
+            document.getElementById('yearBuilt').value = '1985';
+            document.getElementById('sqft').value = '1500';
+            document.getElementById('stories').value = '1';
+            document.getElementById('foundation').value = 'crawlspace';
+            document.getElementById('electricProvider').value = 'PGE';
+            document.getElementById('gasProvider').value = 'NW Natural';
+            
+            // Eligibility
+            document.getElementById('householdSize').value = '3';
+            document.getElementById('annualIncome').value = '45000';
+            document.getElementById('billDiscount').checked = false;
+            document.getElementById('ownerOccupied').checked = true;
+            document.getElementById('cpYes').checked = true;
+            
+            // Home Energy Assessment
+            document.getElementById('heatingSystem').value = 'electric-resistance';
+            document.getElementById('heatingAge').value = '20+';
+            document.getElementById('heatingCondition').value = 'poor';
+            document.getElementById('ductNo').checked = true;
+            document.getElementById('noCooling').checked = true;
+            document.getElementById('waterHeater').value = 'electric-tank';
+            document.getElementById('waterHeaterAge').value = '15+';
+            document.getElementById('atticInsulation').value = 'low';
+            document.getElementById('floorInsulation').value = 'low';
+            document.getElementById('wallInsulation').value = 'some';
+            document.getElementById('windows').value = 'single-pane';
+            document.getElementById('windowCondition').value = 'poor';
+            
+            alert('Sample data loaded! Click "Next" to proceed through the assessment.');
+        }
+
+        // Initialize
+        console.log('CPF Assessment Tool Loaded - All data processed locally in browser');
+    </script>
+</body>
+</html>
