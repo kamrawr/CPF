@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Trust CPF - Document Library</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004a99;
+            --secondary: #00a651;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #212529;
+            --text-light: #6c757d;
+            --border: #dee2e6;
+            --shadow: 0 2px 4px rgba(0,0,0,0.08);
+            --shadow-hover: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--text);
+            background: var(--background);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header h1 { font-size: 1.5rem; font-weight: 600; }
+
+        .lang-toggle {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .lang-toggle:hover { background: rgba(255,255,255,0.3); }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .search-bar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 90px;
+            z-index: 90;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quick-access {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .quick-access h2 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem;
+            background: var(--background);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text);
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .quick-link:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .quick-link-icon { font-size: 1.5rem; }
+        .quick-link-text { font-size: 0.875rem; font-weight: 500; }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .category-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .count-badge {
+            background: rgba(255,255,255,0.25);
+            padding: 0.25rem 0.625rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .category-card.expanded .category-content {
+            max-height: 3000px;
+        }
+
+        .file-list { padding: 0.75rem; }
+
+        .file-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: var(--background);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .file-item:hover {
+            background: #e3f2fd;
+            transform: translateX(4px);
+        }
+
+        .file-icon { font-size: 1.25rem; flex-shrink: 0; }
+
+        .file-link {
+            color: var(--text);
+            text-decoration: none;
+            flex: 1;
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .file-link:hover { color: var(--primary); }
+
+        .file-badges {
+            display: flex;
+            gap: 0.375rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.125rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .badge-spanish { background: #ff9500; }
+        .badge-form { background: #00a651; }
+
+        .expand-icon {
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .category-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; text-align: center; }
+            .category-grid { grid-template-columns: 1fr; }
+            .filter-tabs { overflow-x: auto; flex-wrap: nowrap; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>⚡ Energy Trust CPF Document Library</h1>
+            <button class="lang-toggle" onclick="toggleLanguage()">
+                <span id="lang-text">Show Spanish Only</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number" id="total-docs">70</div>
+                <div class="stat-label">Documents</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">13</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">543</div>
+                <div class="stat-label">Form Fields</div>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="🔍 Search by document name, form number, or keyword..."
+                autocomplete="off"
+            >
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All Documents</button>
+                <button class="filter-tab" data-filter="forms">Application Forms</button>
+                <button class="filter-tab" data-filter="guides">Program Guides</button>
+                <button class="filter-tab" data-filter="marketing">Marketing Materials</button>
+                <button class="filter-tab" data-filter="onboarding">Onboarding</button>
+                <button class="filter-tab" data-filter="equipment">Equipment Specs</button>
+                <button class="filter-tab" data-filter="spanish">Español</button>
+            </div>
+        </div>
+
+        <div class="quick-access">
+            <h2>📌 Quick Access</h2>
+            <div class="quick-links">
+                <a href="README.md" class="quick-link">
+                    <span class="quick-link-icon">📖</span>
+                    <span class="quick-link-text">Project Overview</span>
+                </a>
+                <a href="analysis/form_fields_enhanced.csv" class="quick-link">
+                    <span class="quick-link-icon">📊</span>
+                    <span class="quick-link-text">Field Database (CSV)</span>
+                </a>
+                <a href="analysis/DATA_DICTIONARY.md" class="quick-link">
+                    <span class="quick-link-icon">📚</span>
+                    <span class="quick-link-text">Data Dictionary</span>
+                </a>
+                <a href="analysis/PROCESSING_SUMMARY.md" class="quick-link">
+                    <span class="quick-link-icon">📈</span>
+                    <span class="quick-link-text">Processing Summary</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="category-grid" id="categories"></div>
+    </div>
+
+    <script>
+        const docs = {
+            'cpf-application-forms': {
+                title: '📝 CPF Application Forms',
+                tags: ['forms', 'cpf'],
+                files: [
+                    { name: '011_HES_FM0300CPF.pdf', path: 'cpf-docs', form: '300CPF', lang: 'en' },
+                    { name: '012_HES_FM0300CPF_es.pdf', path: 'cpf-docs', form: '300CPF', lang: 'es' },
+                    { name: '013_HES_FM0320CPF.pdf', path: 'cpf-docs', form: '320CPF', lang: 'en' },
+                    { name: '014_HES_FM0320CPF_ES.pdf', path: 'cpf-docs', form: '320CPF', lang: 'es' },
+                    { name: '005_HES_FM0371CPF.pdf', path: 'cpf-docs', form: '371CPF', lang: 'en' },
+                    { name: '006_BEM_FM0371CPF-A.pdf', path: 'cpf-docs', form: '371CPF-A', lang: 'en' },
+                    { name: '015_HES_FM_WindowsAddendum.pdf', path: 'cpf-docs', form: 'Windows', lang: 'en' },
+                    { name: '016_HES_FM0300HPQ.pdf', path: 'cpf-docs', form: '300HPQ', lang: 'en' },
+                    { name: '017_HES_FM0300HPQ-es.pdf', path: 'cpf-docs', form: '300HPQ', lang: 'es' }
+                ]
+            },
+            'cpf-program-guides': {
+                title: '📘 CPF Program Information',
+                tags: ['guides', 'cpf'],
+                files: [
+                    { name: '001_Program Information sheet_ PI0320CPF.pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '002_Residential Program Incentive guide Washington_ PI0320CPF-WA.pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '003_CPF-Overview-Document-1.pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '004_CPF-Overview-Document_For-Contractors.pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '009_No-Cost-Heat-Pump-Reference-Guide.pdf', path: 'cpf-docs', lang: 'en' }
+                ]
+            },
+            'cpf-onboarding': {
+                title: '✅ CPF Onboarding & Training',
+                tags: ['onboarding', 'cpf'],
+                files: [
+                    { name: '007_CPF-Onboarding-PPT.pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '008_CPF_Onboarding_Checklist.pdf', path: 'cpf-docs', lang: 'en' }
+                ]
+            },
+            'cpf-marketing': {
+                title: '📢 CPF Marketing & Outreach',
+                tags: ['marketing', 'cpf'],
+                files: [
+                    { name: '018_CPF-Home-Energy-Assessment-Flyer-Template.pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '019_CPF-Incentive-Grid_INFOGR_0423-Customizable.pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '020_CPF-Incentive-Grid-Spanish-_INFOGR_0523-Customizable.pdf', path: 'cpf-docs', lang: 'es' }
+                ]
+            },
+            'cpf-windows': {
+                title: '🪟 Enhanced CPF Windows',
+                tags: ['equipment', 'cpf'],
+                files: [
+                    { name: '004_Enhanced CPF Windows Summary (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '010_Enhanced-CPF-Windows-Incentive-Summary-2024.pdf', path: 'cpf-docs', lang: 'en' }
+                ]
+            },
+            'standard-forms': {
+                title: '📝 Standard Application Forms',
+                tags: ['forms'],
+                files: [
+                    { name: '034_Heating and Cooling, Contractor Installed–Form 320C-HVAC (PDF).pdf', path: 'residential-docs', form: '320C-HVAC', lang: 'en' },
+                    { name: '035_Incentivos de HVAC para viviendas, instalados por contratista–Formulario 320C-HVAC-ES (PDF ).pdf', path: 'residential-docs', form: '320C-HVAC', lang: 'es' },
+                    { name: '036_Water Heating, Contractor Installed–Form 320C-WH (PDF).pdf', path: 'residential-docs', form: '320C-WH', lang: 'en' },
+                    { name: '037_Incentivos de calentamiento de agua de vivienda, instalado por contratista–Formulario 320C-WH-ES (PDF).pdf', path: 'residential-docs', form: '320C-WH', lang: 'es' },
+                    { name: '038_Weatherization, Contractor Installed_ Form 320C-WX (PDF).pdf', path: 'residential-docs', form: '320C-WX', lang: 'en' },
+                    { name: '039_Incentivos de impermeabilización de viviendas,  instalación por contratista–Formulario 320C-WX-ES (PDF).pdf', path: 'residential-docs', form: '320C-WX', lang: 'es' },
+                    { name: '040_Windows Addendum (PDF).pdf', path: 'residential-docs', form: 'Windows', lang: 'en' },
+                    { name: '041_Windows Addendum Existing Type (Washington projects only) (PDF).pdf', path: 'residential-docs', form: 'Windows', lang: 'en' },
+                    { name: '042_Extended Capacity Heat Pump, Contractor Installed–Form 320ECHP (PDF).pdf', path: 'residential-docs', form: '320ECHP', lang: 'en' },
+                    { name: '043_Customer Consent Form–Form 350CC (PDF).pdf', path: 'residential-docs', form: '350CC', lang: 'en' },
+                    { name: '044_Formulario de Consentimiento y Autorización de Cliente–Formulario 350CC-ES en espanol (PDF).pdf', path: 'residential-docs', form: '350CC', lang: 'es' }
+                ]
+            },
+            'standard-programs': {
+                title: '📘 Standard Program Guides',
+                tags: ['guides'],
+                files: [
+                    { name: '001_Residential Program Incentive guide – PI 320I (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '002_Residential Ductless and Ducted Heat Pump Program Incentive guide.pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '003_PI 320I-HP (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '034_Program Cost Assistance Fund Pre-Approval application.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '035_Pre-approval application.pdf', path: 'residential-docs', lang: 'en' }
+                ]
+            },
+            'specs-manuals': {
+                title: '📋 Specifications & Manuals',
+                tags: ['equipment', 'guides'],
+                files: [
+                    { name: '005_2025 Specifications manual (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '006_Manual de Especificaciones 2025 (PDF).pdf', path: 'cpf-docs', lang: 'es' },
+                    { name: '007_2025 Quality Management Policy (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '008_Minimum Ventilation Level letter (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '009_Carta de Clasificación Mínima de Ventilación (PDF).pdf', path: 'cpf-docs', lang: 'es' }
+                ]
+            },
+            'equipment-specs': {
+                title: '🔧 Equipment Specification Sheets',
+                tags: ['equipment'],
+                files: [
+                    { name: '045_Smart Thermostats.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '046_Heat Pump Advanced Controls.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '047_Central Air Conditioners.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '048_Extended Capacity Heat Pumps.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '049_Gas Fireplaces.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '022_Heat Pump (PDF).pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '023_Bomba de Calefaccion (PDF).pdf', path: 'residential-docs', lang: 'es' },
+                    { name: '026_Ductless Heat Pump (PDF).pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '027_Bomba de Calefaccion sin Ductos (PDF).pdf', path: 'residential-docs', lang: 'es' },
+                    { name: '030_Heat Pump Water Heater (PDF).pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '031_Calentador de Agua de Bomba de Calor (PDF).pdf', path: 'residential-docs', lang: 'es' },
+                    { name: '032_Gas Tankless Water Heater (PDF).pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '033_Calentador de Agua de Gas sin Tanque, (PDF).pdf', path: 'residential-docs', lang: 'es' }
+                ]
+            },
+            'insulation-weatherization': {
+                title: '🏠 Insulation & Weatherization',
+                tags: ['equipment'],
+                files: [
+                    { name: '010_Attic Insulation (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '011_Aislamiento del Atico (PDF).pdf', path: 'cpf-docs', lang: 'es' },
+                    { name: '012_Floor Insulation (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '013_Aislamiento del Piso (PDF).pdf', path: 'cpf-docs', lang: 'es' },
+                    { name: '014_Wall Insulation (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '015_Aislamiento de Paredes (PDF).pdf', path: 'cpf-docs', lang: 'es' },
+                    { name: '016_Windows (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '017_Ventanas PDF).pdf', path: 'cpf-docs', lang: 'es' },
+                    { name: '023_Weatherization-Accordion.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '024_Weatherization-Accordion-Translation.pdf', path: 'residential-docs', lang: 'es' }
+                ]
+            },
+            'cbo-outreach': {
+                title: '🤝 Community Outreach (CBO)',
+                tags: ['marketing', 'onboarding'],
+                files: [
+                    { name: '021_CBO-Roadmap_CLEAN.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '022_CBO-Door-Hanger_CLEAN.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '029_CBO-Low-Cost-No-Cost-Biligual-Flyer_CLEAN.pdf', path: 'residential-docs', lang: 'both' },
+                    { name: '032_DHP-Engagement-Guide-English_CLEAN.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '033_DHP-Engagement-Guide-Spanish_CLEAN.pdf', path: 'residential-docs', lang: 'es' },
+                    { name: '030_LowCostNoCost_FS_1802.pdf', path: 'residential-docs', lang: 'en' }
+                ]
+            },
+            'customer-materials': {
+                title: '📄 Customer Materials (Accordions)',
+                tags: ['marketing'],
+                files: [
+                    { name: '025_Heating-Accordion.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '026_Heating-Accordion-Translation.pdf', path: 'residential-docs', lang: 'es' },
+                    { name: '027_Water-Heating-Accordion.pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '028_Water-Heating-Accordion-Translation.pdf', path: 'residential-docs', lang: 'es' },
+                    { name: '024_Heat Pump Controls (PDF).pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '025_Controles de Bomba de Calefaccion (PDF).pdf', path: 'residential-docs', lang: 'es' },
+                    { name: '028_Central Air Conditioner (PDF).pdf', path: 'residential-docs', lang: 'en' },
+                    { name: '029_Aire Acondicionado Central (PDF).pdf', path: 'residential-docs', lang: 'es' }
+                ]
+            },
+            'gas-equipment': {
+                title: '🔥 Gas Equipment',
+                tags: ['equipment'],
+                files: [
+                    { name: '018_Gas Fireplace (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '019_Chiminea de Gas (PDF).pdf', path: 'cpf-docs', lang: 'es' },
+                    { name: '020_Gas Furnace (PDF).pdf', path: 'cpf-docs', lang: 'en' },
+                    { name: '021_Horno de Calefaccion de Gas (PDF).pdf', path: 'residential-docs', lang: 'es' }
+                ]
+            }
+        };
+
+        let langFilter = 'all';
+
+        function render() {
+            const container = document.getElementById('categories');
+            container.innerHTML = '';
+
+            Object.keys(docs).forEach(key => {
+                const cat = docs[key];
+                const files = cat.files.filter(f => {
+                    if (langFilter === 'all') return true;
+                    if (langFilter === 'es') return f.lang === 'es' || f.lang === 'both';
+                    if (langFilter === 'en') return f.lang === 'en' || f.lang === 'both';
+                    return true;
+                });
+
+                if (files.length === 0) return;
+
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.dataset.tags = cat.tags.join(',');
+                
+                const filesHTML = files.map(f => {
+                    const name = f.name.replace(/^\d+_/, '').replace('.pdf', '').replace(' (PDF)', '');
+                    const badges = [];
+                    if (f.lang === 'es' || f.name.includes('Spanish') || f.name.includes('Español')) {
+                        badges.push('<span class="badge badge-spanish">ES</span>');
+                    }
+                    if (f.form) badges.push(`<span class="badge badge-form">${f.form}</span>`);
+                    
+                    return `
+                        <div class="file-item" data-lang="${f.lang}">
+                            <span class="file-icon">📄</span>
+                            <a href="${f.path}/${encodeURIComponent(f.name)}" class="file-link" target="_blank">${name}</a>
+                            <div class="file-badges">${badges.join('')}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                card.innerHTML = `
+                    <div class="category-header" onclick="toggle(this)">
+                        <h3>${cat.title}</h3>
+                        <div style="display:flex;gap:0.5rem;align-items:center;">
+                            <span class="count-badge">${files.length}</span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="file-list">${filesHTML}</div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+
+            updateDocCount();
+        }
+
+        function updateDocCount() {
+            const visibleFiles = document.querySelectorAll('.category-card:not(.hidden) .file-item:not(.hidden)').length;
+            document.getElementById('total-docs').textContent = visibleFiles;
+        }
+
+        function toggle(el) {
+            const card = el.closest('.category-card');
+            const isExpanding = !card.classList.contains('expanded');
+            
+            if (isExpanding) {
+                // Expand this card and all cards in the same row
+                const allCards = Array.from(document.querySelectorAll('.category-card:not(.hidden)'));
+                const cardIndex = allCards.indexOf(card);
+                const container = document.getElementById('categories');
+                const computedStyle = window.getComputedStyle(container);
+                const columns = computedStyle.gridTemplateColumns.split(' ').length;
+                
+                // Calculate which cards are in the same row
+                const rowStart = Math.floor(cardIndex / columns) * columns;
+                const rowEnd = rowStart + columns;
+                
+                // Expand all cards in this row
+                for (let i = rowStart; i < rowEnd && i < allCards.length; i++) {
+                    allCards[i].classList.add('expanded');
+                }
+            } else {
+                // Just collapse this one card
+                card.classList.remove('expanded');
+            }
+        }
+
+        function toggleLanguage() {
+            const txt = document.getElementById('lang-text');
+            if (langFilter === 'all') {
+                langFilter = 'es';
+                txt.textContent = 'Show English Only';
+            } else if (langFilter === 'es') {
+                langFilter = 'en';
+                txt.textContent = 'Show All Languages';
+            } else {
+                langFilter = 'all';
+                txt.textContent = 'Show Spanish Only';
+            }
+            render();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.category-card').forEach(card => {
+                const items = card.querySelectorAll('.file-item');
+                let visible = false;
+                
+                items.forEach(item => {
+                    if (item.textContent.toLowerCase().includes(term)) {
+                        item.classList.remove('hidden');
+                        visible = true;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                if (term && visible) {
+                    card.classList.add('expanded');
+                    card.classList.remove('hidden');
+                } else if (term && !visible) {
+                    card.classList.add('hidden');
+                } else {
+                    card.classList.remove('hidden');
+                }
+            });
+            updateDocCount();
+        });
+
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                
+                if (filter === 'all') {
+                    document.querySelectorAll('.category-card').forEach(c => c.classList.remove('hidden'));
+                    updateDocCount();
+                } else if (filter === 'spanish') {
+                    langFilter = 'es';
+                    render();
+                } else {
+                    langFilter = 'all';
+                    document.querySelectorAll('.category-card').forEach(c => {
+                        const tags = c.dataset.tags.split(',');
+                        c.classList.toggle('hidden', !tags.includes(filter));
+                    });
+                    updateDocCount();
+                }
+            });
+        });
+
+        render();
+    </script>
+</body>
+</html>

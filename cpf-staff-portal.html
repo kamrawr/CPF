@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPF Staff Portal - Quick Reference</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #28a745;
+            --accent: #ff6b35;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --border: #e1e8ed;
+            --hover: #f0f4f8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #2c3e50;
+            background: var(--light);
+        }
+        
+        /* Fixed Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .header h1 {
+            font-size: 1.5em;
+            color: var(--primary);
+        }
+        
+        .search-box {
+            flex: 1;
+            max-width: 500px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9em;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0052a3;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #218838;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 75px;
+            bottom: 0;
+            width: 250px;
+            background: white;
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+        
+        .sidebar-title {
+            padding: 0 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #6c757d;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+        
+        .sidebar-link {
+            display: block;
+            padding: 10px 20px;
+            color: #495057;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            font-size: 0.95em;
+        }
+        
+        .sidebar-link:hover {
+            background: var(--hover);
+            border-left-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .sidebar-link.active {
+            background: rgba(0,102,204,0.1);
+            border-left-color: var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            margin-top: 75px;
+            padding: 30px;
+            max-width: 1200px;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+        }
+        
+        .tab:hover {
+            color: var(--primary);
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Collapsible Sections */
+        .collapsible {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .collapsible-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: white;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            font-weight: 600;
+        }
+        
+        .collapsible-header:hover {
+            background: var(--hover);
+        }
+        
+        .collapsible-header.open {
+            background: var(--hover);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .collapsible-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .collapsible-header.open .collapsible-icon {
+            transform: rotate(180deg);
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .collapsible-content.open {
+            max-height: 2000px;
+        }
+        
+        .collapsible-body {
+            padding: 20px;
+        }
+        
+        /* Quick Reference Cards */
+        .quick-ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .quick-ref-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .quick-ref-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0,102,204,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .quick-ref-card h3 {
+            font-size: 1.1em;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .quick-ref-card p {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 12px;
+        }
+        
+        .quick-ref-card .amount {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        /* Compact Table */
+        .compact-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.9em;
+        }
+        
+        .compact-table th {
+            background: var(--dark);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 75px;
+        }
+        
+        .compact-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .compact-table tr:hover {
+            background: var(--hover);
+        }
+        
+        .compact-table strong {
+            color: var(--dark);
+        }
+        
+        /* Form Cards */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .form-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .form-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,102,204,0.1);
+        }
+        
+        .form-card h4 {
+            font-size: 0.9em;
+            color: var(--dark);
+            margin-bottom: 8px;
+            min-height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .form-card a {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+        
+        .form-card a:hover {
+            background: #0052a3;
+        }
+        
+        .form-card .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .form-card .badge.spanish {
+            background: var(--secondary);
+        }
+        
+        /* Highlight Box */
+        .highlight {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight strong {
+            color: #856404;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #0c5460;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        /* Tag */
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .tag-blue {
+            background: #cfe2ff;
+            color: #084298;
+        }
+        
+        .tag-green {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+        
+        .tag-red {
+            background: #f8d7da;
+            color: #842029;
+        }
+        
+        /* Search Highlight */
+        .search-highlight {
+            background: yellow;
+            font-weight: bold;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+            
+            .quick-actions {
+                justify-content: center;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .header, .sidebar, .tabs, .btn {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                margin-top: 0;
+            }
+            
+            .collapsible-content {
+                max-height: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Enable smooth scrolling for all anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href !== '#') {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            const headerOffset = 100;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- Fixed Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>CPF Staff Portal</h1>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search forms, incentives, requirements..." />
+            </div>
+            <div class="quick-actions">
+                <button class="btn btn-secondary" onclick="expandAll()">Expand All</button>
+                <button class="btn btn-primary" onclick="collapseAll()">Collapse All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Quick Access</div>
+            <a href="#forms" class="sidebar-link">📄 Forms</a>
+            <a href="#incentives" class="sidebar-link">💰 Incentives</a>
+            <a href="#workflow" class="sidebar-link">⚡ Workflow</a>
+            <a href="#eligibility" class="sidebar-link">✓ Eligibility</a>
+            <a href="#resources" class="sidebar-link">📚 All Resources</a>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">By Category</div>
+            <a href="#hvac" class="sidebar-link">HVAC/Heating</a>
+            <a href="#water" class="sidebar-link">Water Heating</a>
+            <a href="#insulation" class="sidebar-link">Insulation</a>
+            <a href="#windows" class="sidebar-link">Windows</a>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Languages</div>
+            <a href="#english" class="sidebar-link">🇺🇸 English</a>
+            <a href="#spanish" class="sidebar-link">🇪🇸 Español</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('quick-ref')">Quick Reference</button>
+            <button class="tab" onclick="switchTab('forms-tab')">Forms</button>
+            <button class="tab" onclick="switchTab('incentives-tab')">Incentives</button>
+            <button class="tab" onclick="switchTab('workflow-tab')">Workflow</button>
+            <button class="tab" onclick="switchTab('all-docs')">All Documents</button>
+        </div>
+
+        <!-- QUICK REFERENCE TAB -->
+        <div id="quick-ref" class="tab-content active">
+            <h2 id="forms">🚀 Most Used Forms</h2>
+            <div class="form-grid" style="margin-bottom: 40px;">
+                <div class="form-card">
+                    <h4>Customer Authorization (300CPF)</h4>
+                    <a href="cpf-docs/011_HES_FM0300CPF.pdf" target="_blank">Open PDF</a>
+                </div>
+                <div class="form-card">
+                    <h4>No-Cost Heat Pump (300HPQ)</h4>
+                    <a href="cpf-docs/016_HES_FM0300HPQ.pdf" target="_blank">Open PDF</a>
+                </div>
+                <div class="form-card">
+                    <h4>Home Energy Assessment</h4>
+                    <a href="cpf-docs/013_HES_FM0320CPF.pdf" target="_blank">Open PDF</a>
+                </div>
+                <div class="form-card">
+                    <h4>Participation Agreement</h4>
+                    <a href="cpf-docs/005_HES_FM0371CPF.pdf" target="_blank">Open PDF</a>
+                </div>
+            </div>
+
+            <h2 id="incentives">💰 Top Incentives (Quick View)</h2>
+            <div class="quick-ref-grid">
+                <div class="quick-ref-card">
+                    <h3>Ductless Heat Pump</h3>
+                    <p>Single-Family</p>
+                    <div class="amount">$1,800</div>
+                    <span class="tag tag-blue">HSPF2 ≥8.10</span>
+                </div>
+                <div class="quick-ref-card">
+                    <h3>Ductless Heat Pump</h3>
+                    <p>Manufactured Home</p>
+                    <div class="amount">$3,500</div>
+                    <span class="tag tag-blue">HSPF2 ≥8.10</span>
+                </div>
+                <div class="quick-ref-card">
+                    <h3>Ducted Heat Pump</h3>
+                    <p>Replaces electric furnace</p>
+                    <div class="amount">$4,000</div>
+                    <span class="tag tag-blue">HSPF2 ≥7.50</span>
+                </div>
+                <div class="quick-ref-card">
+                    <h3>Gas Furnace</h3>
+                    <p>High efficiency</p>
+                    <div class="amount">$2,900</div>
+                    <span class="tag tag-blue">95%+ AFUE</span>
+                </div>
+                <div class="quick-ref-card">
+                    <h3>Attic Insulation</h3>
+                    <p>Per square foot</p>
+                    <div class="amount">$2.49-3.00</div>
+                    <span class="tag tag-green">R-38+</span>
+                </div>
+                <div class="quick-ref-card">
+                    <h3>Home Assessment</h3>
+                    <p>Per household</p>
+                    <div class="amount">$250</div>
+                    <span class="tag tag-green">Admin Cost</span>
+                </div>
+            </div>
+
+            <h2 id="workflow">⚡ Quick Workflow</h2>
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span><strong>1. Partnership Formation</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <p>✓ Organization contacts Energy Trust</p>
+                        <p>✓ Sign participation agreement (Form 371CPF)</p>
+                        <p>✓ Get matched with program representative</p>
+                        <p style="margin-top: 10px;"><a href="cpf-docs/005_HES_FM0371CPF.pdf" target="_blank" class="btn btn-primary">Form 371CPF</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span><strong>2. Customer Identification</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <p>✓ Partner finds eligible households</p>
+                        <p>✓ Conduct Home Energy Assessment ($250 incentive)</p>
+                        <p>✓ Identify needed upgrades</p>
+                        <p style="margin-top: 10px;"><a href="cpf-docs/013_HES_FM0320CPF.pdf" target="_blank" class="btn btn-primary">Assessment Form</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span><strong>3. Installation</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <p>✓ Partner's staff OR approved contractors install</p>
+                        <p>✓ Must meet Energy Trust specifications</p>
+                        <p>✓ Complete within 60 days</p>
+                        <p style="margin-top: 10px;">
+                            <a href="cpf-docs/005_2025 Specifications manual (PDF).pdf" target="_blank" class="btn btn-primary">Specs Manual</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span><strong>4. Paperwork & Payment</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <p>✓ Submit customer authorization (Form 300CPF)</p>
+                        <p>✓ Submit project details and invoices</p>
+                        <p>✓ Energy Trust processes and sends payment</p>
+                        <p style="margin-top: 10px;"><a href="cpf-docs/011_HES_FM0300CPF.pdf" target="_blank" class="btn btn-primary">Form 300CPF</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="eligibility">✓ Eligibility Quick Check</h2>
+            <div class="highlight">
+                <strong>Customer Must:</strong><br>
+                • Be customer of PGE, Pacific Power, NW Natural, Cascade Natural Gas, or Avista<br>
+                • Live in occupied home (owner or renter)<br>
+                • Belong to target community (LMI, communities of color, rural, veterans, etc.)
+            </div>
+            <div class="info-box">
+                <strong>Technical Must:</strong><br>
+                • Meet Residential Specifications Manual<br>
+                • Contractors have OR CCB or WA license<br>
+                • Equipment meets efficiency ratings<br>
+                • Apply within 60 days of installation
+            </div>
+        </div>
+
+        <!-- FORMS TAB -->
+        <div id="forms-tab" class="tab-content">
+            <h2>📄 All Forms & Applications</h2>
+            
+            <div class="collapsible">
+                <div class="collapsible-header open" onclick="toggleCollapsible(this)">
+                    <span><strong>Core Forms (English)</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content open">
+                    <div class="collapsible-body">
+                        <div class="form-grid">
+                            <div class="form-card">
+                                <h4>Participation Agreement (371CPF)</h4>
+                                <a href="cpf-docs/005_HES_FM0371CPF.pdf" target="_blank">Open PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Customer Authorization (300CPF)</h4>
+                                <a href="cpf-docs/011_HES_FM0300CPF.pdf" target="_blank">Open PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>No-Cost Heat Pump (300HPQ)</h4>
+                                <a href="cpf-docs/016_HES_FM0300HPQ.pdf" target="_blank">Open PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Home Energy Assessment</h4>
+                                <a href="cpf-docs/013_HES_FM0320CPF.pdf" target="_blank">Open PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Windows Addendum</h4>
+                                <a href="cpf-docs/015_HES_FM_WindowsAddendum.pdf" target="_blank">Open PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span><strong>Core Forms (Spanish)</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <div class="form-grid">
+                            <div class="form-card">
+                                <h4>Customer Authorization (Spanish)</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/012_HES_FM0300CPF_es.pdf" target="_blank">Abrir PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>No-Cost Heat Pump (Spanish)</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/017_HES_FM0300HPQ-es.pdf" target="_blank">Abrir PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Home Energy Assessment (Spanish)</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/014_HES_FM0320CPF_ES.pdf" target="_blank">Abrir PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INCENTIVES TAB -->
+        <div id="incentives-tab" class="tab-content">
+            <h2 id="hvac">🌡️ HVAC/Heating Equipment</h2>
+            <table class="compact-table">
+                <thead>
+                    <tr>
+                        <th>Upgrade</th>
+                        <th>Incentive</th>
+                        <th>Requirements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ductless Heat Pump</strong> (Single-Family)</td>
+                        <td><strong>$1,800</strong></td>
+                        <td>Replaces electric resistance heat, HSPF2 ≥8.10, main living space</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ductless Heat Pump</strong> (Manufactured)</td>
+                        <td><strong>$3,500</strong></td>
+                        <td>Same as above, manufactured homes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ductless Heat Pump</strong> (Multifamily)</td>
+                        <td><strong>$2,000</strong></td>
+                        <td>Multifamily properties</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ducted Heat Pump</strong></td>
+                        <td><strong>$4,000</strong></td>
+                        <td>Replaces electric forced air furnace, HSPF2 ≥7.50</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"No-Cost" Ducted Heat Pump</strong></td>
+                        <td><strong>Variable (Full Cost)</strong></td>
+                        <td>Income-qualified customers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Extended Capacity Heat Pump</strong></td>
+                        <td><strong>$2,000-$6,650</strong></td>
+                        <td>Varies by property type</td>
+                    </tr>
+                    <tr>
+                        <td><strong>High Efficiency Gas Furnace</strong></td>
+                        <td><strong>$2,900</strong></td>
+                        <td>95%+ AFUE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Heat Pump Controls</strong></td>
+                        <td><strong>$250</strong></td>
+                        <td>Smart controls with 35°F lockout</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="water" style="margin-top: 40px;">💧 Water Heating</h2>
+            <table class="compact-table">
+                <thead>
+                    <tr>
+                        <th>Upgrade</th>
+                        <th>Incentive</th>
+                        <th>Requirements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Heat Pump Water Heater</strong></td>
+                        <td><strong>$240</strong></td>
+                        <td>NEEA Tier 3, replaces electric tank</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"No-Cost" Heat Pump Water Heater</strong></td>
+                        <td><strong>Variable (Full Cost)</strong></td>
+                        <td>Income-qualified customers</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="insulation" style="margin-top: 40px;">🏠 Insulation & Weatherization</h2>
+            <table class="compact-table">
+                <thead>
+                    <tr>
+                        <th>Upgrade</th>
+                        <th>Incentive Range</th>
+                        <th>Requirements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Attic Insulation</strong></td>
+                        <td><strong>$2.49-$3.00/sq ft</strong></td>
+                        <td>R-11 or less existing → R-38+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wall Insulation</strong></td>
+                        <td><strong>$2.32-$3.30/sq ft</strong></td>
+                        <td>R-4 or less existing → R-11+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Floor Insulation</strong></td>
+                        <td><strong>$1.09-$3.65/sq ft</strong></td>
+                        <td>R-11 or less existing → R-30+</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="windows" style="margin-top: 40px;">🪟 Windows</h2>
+            <table class="compact-table">
+                <thead>
+                    <tr>
+                        <th>Upgrade</th>
+                        <th>Incentive</th>
+                        <th>Requirements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Standard Windows</strong></td>
+                        <td><strong>$1.00-$1.50/sq ft</strong></td>
+                        <td>U-Value 0.22-0.27</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enhanced Windows</strong></td>
+                        <td><strong>Variable</strong></td>
+                        <td>U-Value ≤0.30, special funding</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight" style="margin-top: 30px;">
+                <strong>CERTA Grant (Federal):</strong> Up to $2,000 in flexible funds for projects with insulation. Can cover customer costs OR repairs needed to enable work.
+            </div>
+        </div>
+
+        <!-- WORKFLOW TAB -->
+        <div id="workflow-tab" class="tab-content">
+            <h2>⚡ Complete CPF Workflow</h2>
+            
+            <div class="collapsible">
+                <div class="collapsible-header open" onclick="toggleCollapsible(this)">
+                    <span><strong>Step 1: Partnership Formation</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content open">
+                    <div class="collapsible-body">
+                        <h4>Actions:</h4>
+                        <p>1. Organization contacts Energy Trust</p>
+                        <p>2. Review program requirements and benefits</p>
+                        <p>3. Sign participation agreement (Form 371CPF)</p>
+                        <p>4. Get matched with program representative</p>
+                        
+                        <h4 style="margin-top: 20px;">Required Documents:</h4>
+                        <p><a href="cpf-docs/005_HES_FM0371CPF.pdf" target="_blank" class="btn btn-primary">Form 371CPF - Participation Agreement</a></p>
+                        <p><a href="cpf-docs/003_CPF-Overview-Document-1.pdf" target="_blank" class="btn btn-secondary">Program Overview</a></p>
+                        <p><a href="cpf-docs/008_CPF_Onboarding_Checklist.pdf" target="_blank" class="btn btn-secondary">Onboarding Checklist</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header open" onclick="toggleCollapsible(this)">
+                    <span><strong>Step 2: Customer Identification</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content open">
+                    <div class="collapsible-body">
+                        <h4>Actions:</h4>
+                        <p>1. Community Partner finds eligible households</p>
+                        <p>2. Verify utility provider (PGE, Pacific Power, NW Natural, Cascade, Avista)</p>
+                        <p>3. Conduct Home Energy Assessment</p>
+                        <p>4. Identify needed upgrades</p>
+                        <p>5. Receive $250 incentive for assessment</p>
+                        
+                        <h4 style="margin-top: 20px;">Required Documents:</h4>
+                        <p><a href="cpf-docs/013_HES_FM0320CPF.pdf" target="_blank" class="btn btn-primary">Home Energy Assessment Form</a></p>
+                        <p><a href="cpf-docs/018_CPF-Home-Energy-Assessment-Flyer-Template.pdf" target="_blank" class="btn btn-secondary">Customer Flyer Template</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header open" onclick="toggleCollapsible(this)">
+                    <span><strong>Step 3: Installation</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content open">
+                    <div class="collapsible-body">
+                        <h4>Actions:</h4>
+                        <p>1. Partner's own staff OR approved contractors install improvements</p>
+                        <p>2. Ensure work meets Energy Trust specifications</p>
+                        <p>3. Complete work within 60 days</p>
+                        <p>4. Verify equipment efficiency ratings</p>
+                        
+                        <h4 style="margin-top: 20px;">Required Documents:</h4>
+                        <p><a href="cpf-docs/005_2025 Specifications manual (PDF).pdf" target="_blank" class="btn btn-primary">2025 Specifications Manual</a></p>
+                        <p><a href="cpf-docs/007_2025 Quality Management Policy (PDF).pdf" target="_blank" class="btn btn-secondary">Quality Management Policy</a></p>
+                        <p><a href="cpf-docs/004_CPF-Overview-Document_For-Contractors.pdf" target="_blank" class="btn btn-secondary">Contractor Overview</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header open" onclick="toggleCollapsible(this)">
+                    <span><strong>Step 4: Paperwork & Payment</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content open">
+                    <div class="collapsible-body">
+                        <h4>Actions:</h4>
+                        <p>1. Submit customer authorization (Form 300CPF)</p>
+                        <p>2. Submit project details</p>
+                        <p>3. Submit invoices</p>
+                        <p>4. Energy Trust processes application</p>
+                        <p>5. Payment sent to payer (partner or contractor)</p>
+                        
+                        <h4 style="margin-top: 20px;">Required Documents:</h4>
+                        <p><a href="cpf-docs/011_HES_FM0300CPF.pdf" target="_blank" class="btn btn-primary">Form 300CPF - Customer Authorization</a></p>
+                        <p><a href="cpf-docs/016_HES_FM0300HPQ.pdf" target="_blank" class="btn btn-secondary">Form 300HPQ - No-Cost (if applicable)</a></p>
+                        <p><a href="cpf-docs/015_HES_FM_WindowsAddendum.pdf" target="_blank" class="btn btn-secondary">Windows Addendum (if applicable)</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALL DOCUMENTS TAB -->
+        <div id="all-docs" class="tab-content">
+            <h2 id="resources">📚 All Resources & Documentation</h2>
+            
+            <div class="collapsible">
+                <div class="collapsible-header open" onclick="toggleCollapsible(this)">
+                    <span><strong>Program Guides & Getting Started</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content open">
+                    <div class="collapsible-body">
+                        <div class="form-grid">
+                            <div class="form-card">
+                                <h4>Program Overview</h4>
+                                <a href="cpf-docs/003_CPF-Overview-Document-1.pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Program Info Sheet</h4>
+                                <a href="cpf-docs/001_Program Information sheet_ PI0320CPF.pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Onboarding Presentation</h4>
+                                <a href="cpf-docs/007_CPF-Onboarding-PPT.pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Onboarding Checklist</h4>
+                                <a href="cpf-docs/008_CPF_Onboarding_Checklist.pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Contractor Overview</h4>
+                                <a href="cpf-docs/004_CPF-Overview-Document_For-Contractors.pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>2025 Specs Manual</h4>
+                                <a href="cpf-docs/005_2025 Specifications manual (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Quality Policy 2025</h4>
+                                <a href="cpf-docs/007_2025 Quality Management Policy (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span><strong>Quick Reference Sheets</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <div class="form-grid">
+                            <div class="form-card">
+                                <h4>CPF Incentive Grid</h4>
+                                <a href="cpf-docs/019_CPF-Incentive-Grid_INFOGR_0423-Customizable.pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Incentive Grid (Spanish)</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/020_CPF-Incentive-Grid-Spanish-_INFOGR_0523-Customizable.pdf" target="_blank">Ver PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>No-Cost Heat Pump Guide</h4>
+                                <a href="cpf-docs/009_No-Cost-Heat-Pump-Reference-Guide.pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Enhanced Windows Summary</h4>
+                                <a href="cpf-docs/010_Enhanced-CPF-Windows-Incentive-Summary-2024.pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Assessment Flyer Template</h4>
+                                <a href="cpf-docs/018_CPF-Home-Energy-Assessment-Flyer-Template.pdf" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span id="english"><strong>Measure Guides - English</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <div class="form-grid">
+                            <div class="form-card">
+                                <h4>Attic Insulation</h4>
+                                <a href="cpf-docs/010_Attic Insulation (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Wall Insulation</h4>
+                                <a href="cpf-docs/014_Wall Insulation (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Floor Insulation</h4>
+                                <a href="cpf-docs/012_Floor Insulation (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Windows</h4>
+                                <a href="cpf-docs/016_Windows (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Gas Fireplace</h4>
+                                <a href="cpf-docs/018_Gas Fireplace (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Gas Furnace</h4>
+                                <a href="cpf-docs/020_Gas Furnace (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Min. Ventilation Letter</h4>
+                                <a href="cpf-docs/008_Minimum Ventilation Level letter (PDF).pdf" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span id="spanish"><strong>Measure Guides - Español</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <div class="form-grid">
+                            <div class="form-card">
+                                <h4>Aislamiento del Ático</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/011_Aislamiento del Atico (PDF).pdf" target="_blank">Ver PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Aislamiento de Paredes</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/015_Aislamiento de Paredes (PDF).pdf" target="_blank">Ver PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Aislamiento del Piso</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/013_Aislamiento del Piso (PDF).pdf" target="_blank">Ver PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Ventanas</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/017_Ventanas PDF).pdf" target="_blank">Ver PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Chiminea de Gas</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/019_Chiminea de Gas (PDF).pdf" target="_blank">Ver PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Carta Ventilación Mínima</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/009_Carta de Clasificación Mínima de Ventilación (PDF).pdf" target="_blank">Ver PDF</a>
+                            </div>
+                            <div class="form-card">
+                                <h4>Manual Especificaciones 2025</h4>
+                                <span class="badge spanish">ES</span>
+                                <a href="cpf-docs/006_Manual de Especificaciones 2025 (PDF).pdf" target="_blank">Ver PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span><strong>Washington State Resources</strong></span>
+                    <span class="collapsible-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-body">
+                        <div class="form-grid">
+                            <div class="form-card">
+                                <h4>Washington Program Guide</h4>
+                                <a href="cpf-docs/002_Residential Program Incentive guide Washington_ PI0320CPF-WA.pdf" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Tab Switching
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Collapsible Toggle
+        function toggleCollapsible(header) {
+            header.classList.toggle('open');
+            const content = header.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        // Expand All
+        function expandAll() {
+            document.querySelectorAll('.collapsible-header').forEach(header => {
+                header.classList.add('open');
+                header.nextElementSibling.classList.add('open');
+            });
+        }
+
+        // Collapse All
+        function collapseAll() {
+            document.querySelectorAll('.collapsible-header').forEach(header => {
+                header.classList.remove('open');
+                header.nextElementSibling.classList.remove('open');
+            });
+        }
+
+        // Search Functionality
+        let originalContent = new Map();
+        const searchableElements = document.querySelectorAll('.main-content p, .main-content td, .main-content h3, .main-content h4, .main-content li, .form-card h4');
+        
+        // Store original content
+        searchableElements.forEach(el => {
+            if (!el.querySelector('a')) { // Don't store elements with links
+                originalContent.set(el, el.innerHTML);
+            }
+        });
+        
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            // Clear previous highlights
+            originalContent.forEach((content, element) => {
+                element.innerHTML = content;
+            });
+            
+            if (searchTerm === '') {
+                return;
+            }
+            
+            // Search and highlight
+            let foundCount = 0;
+            originalContent.forEach((content, element) => {
+                const text = element.textContent;
+                if (text.toLowerCase().includes(searchTerm)) {
+                    // Escape special regex characters
+                    const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const regex = new RegExp(`(${escapedTerm})`, 'gi');
+                    element.innerHTML = content.replace(regex, '<span class="search-highlight">$1</span>');
+                    foundCount++;
+                    
+                    // Open parent collapsible if exists
+                    let parent = element.closest('.collapsible-content');
+                    if (parent && !parent.classList.contains('open')) {
+                        parent.classList.add('open');
+                        parent.previousElementSibling.classList.add('open');
+                    }
+                }
+            });
+            
+            console.log(`Found ${foundCount} matches for "${searchTerm}"`);
+        });
+
+        // Sidebar Active Link - smart navigation
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active state
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Get target section
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Check which tab the target is in
+                    const parentTab = targetElement.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        document.querySelectorAll('.tab-content').forEach(content => {
+                            content.classList.remove('active');
+                        });
+                        document.querySelectorAll('.tab').forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+                        
+                        parentTab.classList.add('active');
+                        
+                        // Find and activate corresponding tab button
+                        const tabId = parentTab.id;
+                        document.querySelectorAll('.tab').forEach(tab => {
+                            if (tab.getAttribute('onclick').includes(tabId)) {
+                                tab.classList.add('active');
+                            }
+                        });
+                    }
+                    
+                    // If in a collapsible, open it
+                    let parent = targetElement.closest('.collapsible-content');
+                    if (parent && !parent.classList.contains('open')) {
+                        parent.classList.add('open');
+                        parent.previousElementSibling.classList.add('open');
+                    }
+                    
+                    // Scroll after a short delay to ensure tab/collapsible is open
+                    setTimeout(() => {
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+F or Cmd+F to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+            
+            // Ctrl+E to expand all
+            if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+                e.preventDefault();
+                expandAll();
+            }
+            
+            // Ctrl+R to collapse all
+            if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+                e.preventDefault();
+                collapseAll();
+            }
+        });
+    </script>
+</body>
+</html>

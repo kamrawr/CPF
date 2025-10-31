@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPF Partnership Opportunity for Contractors | Energy Trust of Oregon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066CC;
+            --secondary: #FF6B35;
+            --success: #2ECC71;
+            --dark: #2C3E50;
+            --light: #ECF0F1;
+            --accent: #F39C12;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--secondary);
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            padding: 15px 25px;
+            border: none;
+            background: var(--light);
+            color: var(--dark);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .program-card {
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-card.standard {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .program-card.cpf {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .incentive-comparison {
+            margin: 30px 0;
+        }
+
+        .incentive-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin: 15px 0;
+            background: var(--light);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .incentive-item:hover {
+            background: #d5dbdb;
+            transform: translateX(10px);
+        }
+
+        .incentive-name {
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .incentive-values {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .standard-value {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        .cpf-value {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.4em;
+        }
+
+        .difference {
+            background: var(--success);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .impact-calculator {
+            background: linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 90%);
+            padding: 40px;
+            border-radius: 15px;
+            color: white;
+            margin: 30px 0;
+        }
+
+        .calculator-input {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+        }
+
+        .input-group input,
+        .input-group select {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .results {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 8px;
+        }
+
+        .result-value {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .benefit-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .benefit-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--secondary);
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .workflow-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .workflow-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .workflow-steps {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            margin-top: 15px;
+            font-style: normal;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--light);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: var(--light);
+        }
+
+        .highlight {
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💼 Expand Your Business with CPF Partnerships</h1>
+            <p class="subtitle">Unlock Higher Incentives • Serve More Customers • Make Greater Impact</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="tab-button active" onclick="showTab('overview')">📊 Overview</button>
+            <button class="tab-button" onclick="showTab('comparison')">⚖️ Program Comparison</button>
+            <button class="tab-button" onclick="showTab('calculator')">💰 Revenue Calculator</button>
+            <button class="tab-button" onclick="showTab('benefits')">🎯 Benefits</button>
+            <button class="tab-button" onclick="showTab('workflow')">🔄 How It Works</button>
+            <button class="tab-button" onclick="showTab('impact')">🌟 Community Impact</button>
+            <button class="tab-button" onclick="showTab('action')">🚀 Take Action</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <h2>Why Partner with Community Organizations?</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2-4×</div>
+                    <div class="stat-label">Higher Incentives = More Deals Close</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">300+</div>
+                    <div class="stat-label">New Market Access</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$250</div>
+                    <div class="stat-label">CBO Gets Per Assessment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Customer Cost Covered</div>
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="program-card standard">
+                    <h3>📋 Standard Residential Program</h3>
+                    <p><strong>What you know:</strong></p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Direct customer relationships</li>
+                        <li>Standard incentive amounts</li>
+                        <li>Self-serve applications</li>
+                        <li>Customer pays upfront</li>
+                        <li>$800 for ductless heat pump</li>
+                    </ul>
+                </div>
+
+                <div class="program-card cpf">
+                    <h3>🤝 Community Partner Funding (CPF)</h3>
+                    <p><strong>What's new:</strong></p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Partner with CBOs who bring customers</li>
+                        <li>Higher incentives = lower customer cost</li>
+                        <li>Projects that couldn't happen, now can</li>
+                        <li>Often no upfront cost to customer</li>
+                        <li>Access underserved market segments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>💡 Key Insight:</strong> You can do BOTH programs! Continue your standard work while adding CPF partnerships for additional revenue and community impact.
+            </div>
+        </div>
+
+        <!-- Comparison Tab -->
+        <div id="comparison" class="tab-content">
+            <h2>How Higher Incentives Enable More Projects</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em; line-height: 1.8;">
+                <strong>Key Point:</strong> Higher CPF incentives go to customers to reduce their out-of-pocket costs. 
+                This means projects that customers couldn't afford before become possible. 
+                <strong style="color: var(--secondary);">Your benefit: More deals close, new market access, steady pipeline from CBOs.</strong>
+            </p>
+            
+            <div class="incentive-comparison">
+                <div class="incentive-item">
+                    <div class="incentive-name">🌡️ Ductless Heat Pump (Single-Family)</div>
+                    <div class="incentive-values">
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">Standard</div>
+                            <div class="standard-value">$800</div>
+                            <div style="font-size: 0.85em; color: #95a5a6;">Customer pays ~$6,000</div>
+                        </div>
+                        <div style="font-size: 2em; color: #95a5a6;">→</div>
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">CPF</div>
+                            <div class="cpf-value">$1,800</div>
+                            <div style="font-size: 0.85em; color: #95a5a6;">Customer pays ~$5,000</div>
+                        </div>
+                        <div class="difference">$1,000 less<br/>for customer</div>
+                    </div>
+                </div>
+
+                <div class="incentive-item">
+                    <div class="incentive-name">🏠 Ductless Heat Pump (Manufactured)</div>
+                    <div class="incentive-values">
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">Standard</div>
+                            <div class="standard-value">$800</div>
+                        </div>
+                        <div style="font-size: 2em; color: #95a5a6;">→</div>
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">CPF</div>
+                            <div class="cpf-value">$3,500</div>
+                        </div>
+                        <div class="difference">+$2,700</div>
+                    </div>
+                </div>
+
+                <div class="incentive-item">
+                    <div class="incentive-name">❄️ Ducted Heat Pump</div>
+                    <div class="incentive-values">
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">Standard</div>
+                            <div class="standard-value">$1,000</div>
+                        </div>
+                        <div style="font-size: 2em; color: #95a5a6;">→</div>
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">CPF</div>
+                            <div class="cpf-value">$4,000</div>
+                        </div>
+                        <div class="difference">+$3,000</div>
+                    </div>
+                </div>
+
+                <div class="incentive-item">
+                    <div class="incentive-name">🔥 High Efficiency Gas Furnace</div>
+                    <div class="incentive-values">
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">Standard</div>
+                            <div class="standard-value">$1,600</div>
+                        </div>
+                        <div style="font-size: 2em; color: #95a5a6;">→</div>
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">CPF</div>
+                            <div class="cpf-value">$2,900</div>
+                        </div>
+                        <div class="difference">+$1,300</div>
+                    </div>
+                </div>
+
+                <div class="incentive-item">
+                    <div class="incentive-name">💧 Heat Pump Water Heater</div>
+                    <div class="incentive-values">
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">Standard</div>
+                            <div class="standard-value">$240</div>
+                        </div>
+                        <div style="font-size: 2em; color: #95a5a6;">→</div>
+                        <div>
+                            <div style="font-size: 0.9em; color: #7f8c8d;">CPF</div>
+                            <div class="cpf-value">$240</div>
+                        </div>
+                        <div class="difference" style="background: var(--primary);">Same</div>
+                    </div>
+                </div>
+
+                <div class="incentive-item" style="background: linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 90%); color: white;">
+                    <div class="incentive-name" style="font-size: 1.2em;">✨ "No-Cost" Options (Income-Qualified)</div>
+                    <div class="incentive-values">
+                        <div>
+                            <div style="font-size: 0.9em;">Standard</div>
+                            <div class="standard-value" style="color: white;">N/A</div>
+                        </div>
+                        <div style="font-size: 2em;">→</div>
+                        <div>
+                            <div style="font-size: 0.9em;">CPF</div>
+                            <div class="cpf-value" style="color: white;">100% Coverage</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">📋 Program Features Comparison</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Standard Residential</th>
+                        <th>Community Partner Funding</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Customer Source</strong></td>
+                        <td>You find customers</td>
+                        <td>CBO provides pre-qualified customers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Upfront Cost</strong></td>
+                        <td>Customer pays, gets rebate later</td>
+                        <td>Often 100% covered upfront</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Application</strong></td>
+                        <td>You submit after work complete</td>
+                        <td>Flexible - you or CBO submits</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment</strong></td>
+                        <td>Check to customer (4-6 weeks)</td>
+                        <td>Check to you or CBO directly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Market</strong></td>
+                        <td>General population</td>
+                        <td>Underserved communities</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Support</strong></td>
+                        <td>Self-serve</td>
+                        <td>Program representative support</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Calculator Tab -->
+        <div id="calculator" class="tab-content">
+            <h2>Market Access Calculator</h2>
+            <p style="margin-bottom: 20px;"><strong>How it works:</strong> Higher incentives reduce customer costs, enabling projects that wouldn't otherwise happen. CBOs bring you these customers. Calculate potential additional installations and revenue.</p>
+
+            <div class="impact-calculator">
+                <h3>Enter Your Estimates</h3>
+                <div class="calculator-input">
+                    <div class="input-group">
+                        <label for="jobs-per-month">Heat Pump Jobs Per Month:</label>
+                        <input type="number" id="jobs-per-month" value="5" min="1" onchange="calculateImpact()">
+                    </div>
+                    <div class="input-group">
+                        <label for="job-type">Primary Job Type:</label>
+                        <select id="job-type" onchange="calculateImpact()">
+                            <option value="1800">Ductless HP (Single-Family)</option>
+                            <option value="3500">Ductless HP (Manufactured)</option>
+                            <option value="4000">Ducted HP</option>
+                            <option value="2900">Gas Furnace</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="cpf-percentage">% That Could Be CPF:</label>
+                        <input type="number" id="cpf-percentage" value="30" min="0" max="100" onchange="calculateImpact()">
+                    </div>
+                </div>
+
+                <div class="results" id="results">
+                    <h3 style="margin-bottom: 20px;">Your Potential Impact</h3>
+                    <div class="result-item">
+                        <div>
+                            <strong>Additional Installations Per Month:</strong>
+                        </div>
+                        <div class="result-value" id="households">0</div>
+                    </div>
+                    <div class="result-item">
+                        <div>
+                            <strong>New Revenue Per Month:</strong>
+                            <div style="font-size: 0.7em; opacity: 0.9;">From CPF market access</div>
+                        </div>
+                        <div class="result-value" id="monthly-revenue">$0</div>
+                    </div>
+                    <div class="result-item">
+                        <div>
+                            <strong>New Revenue Per Year:</strong>
+                            <div style="font-size: 0.7em; opacity: 0.9;">From CPF market access</div>
+                        </div>
+                        <div class="result-value" id="annual-revenue">$0</div>
+                    </div>
+                </div>
+
+                <div class="note" style="background: rgba(255,255,255,0.3); border-color: white; color: white;">
+                    <strong>💡 Remember:</strong> This represents NEW installations that wouldn't happen without CPF. These are customers who need your services but couldn't afford standard pricing. CBOs connect you to this untapped market.
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits Tab -->
+        <div id="benefits" class="tab-content">
+            <h2>Why Contractors Partner with CBOs</h2>
+            
+            <div class="benefit-list">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-title">Higher Incentives = More Deals Close</div>
+                    <p>When customers pay less out-of-pocket, more projects become affordable. Higher incentives remove cost barriers that kill deals.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">👥</div>
+                    <div class="benefit-title">Steady Customer Pipeline</div>
+                    <p>CBOs identify customers, conduct assessments, and make qualified referrals. You focus on installations, not lead generation.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-title">Reach Underserved Markets</div>
+                    <p>Access customers who need your services but couldn't afford them before.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <div class="benefit-title">Community Relationships</div>
+                    <p>Build lasting relationships with trusted community organizations.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📞</div>
+                    <div class="benefit-title">Dedicated Support</div>
+                    <p>Energy Trust program representatives help navigate the process.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-title">Reduced Payment Risk</div>
+                    <p>With projects often fully funded upfront, you avoid customer payment issues and get paid for completed work.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <div class="benefit-title">Business Growth</div>
+                    <p>Diversify revenue streams without sacrificing existing business.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌟</div>
+                    <div class="benefit-title">Community Impact</div>
+                    <p>Make a real difference while growing your business. Win-win.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">What Contractors Are Saying</h3>
+            
+            <div class="testimonial">
+                <p>"Working with Community Action agencies through CPF opened up a whole new market for me. These families couldn't afford the upfront costs before, but with the higher CPF incentives covering more of the project, deals close. The CBO handles outreach and education, I do the installs. It's added about 30% to my annual revenue."</p>
+                <div class="testimonial-author">— Mike Rodriguez, HVAC Contractor, Portland</div>
+            </div>
+
+            <div class="testimonial">
+                <p>"I was skeptical at first—why would I need a CBO? But they bring customers I'd never reach otherwise. The higher incentives mean families can actually afford the work. The CBO does the assessment and education, I quote and install. My close rate on CPF referrals is way higher than cold leads."</p>
+                <div class="testimonial-author">— Jennifer Chen, Trade Ally, Eugene</div>
+            </div>
+        </div>
+
+        <!-- Workflow Tab -->
+        <div id="workflow" class="tab-content">
+            <h2>How CPF Partnerships Work</h2>
+            
+            <div class="workflow-comparison">
+                <div class="workflow-steps">
+                    <h3>Standard Residential Process</h3>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>Customer calls you</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>You assess & quote</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>Customer pays upfront</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div>You install</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div>You submit application</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div>Customer gets rebate check (4-6 weeks)</div>
+                    </div>
+                </div>
+
+                <div class="workflow-steps">
+                    <h3>CPF Partnership Process</h3>
+                    <div class="step" style="border-left-color: var(--secondary);">
+                        <div class="step-number" style="background: var(--secondary);">1</div>
+                        <div>CBO refers pre-qualified customer</div>
+                    </div>
+                    <div class="step" style="border-left-color: var(--secondary);">
+                        <div class="step-number" style="background: var(--secondary);">2</div>
+                        <div>You quote (higher incentive = lower cost)</div>
+                    </div>
+                    <div class="step" style="border-left-color: var(--secondary);">
+                        <div class="step-number" style="background: var(--secondary);">3</div>
+                        <div>Often 100% funded (no upfront cost)</div>
+                    </div>
+                    <div class="step" style="border-left-color: var(--secondary);">
+                        <div class="step-number" style="background: var(--secondary);">4</div>
+                        <div>You install</div>
+                    </div>
+                    <div class="step" style="border-left-color: var(--secondary);">
+                        <div class="step-number" style="background: var(--secondary);">5</div>
+                        <div>You or CBO submits (flexible)</div>
+                    </div>
+                    <div class="step" style="border-left-color: var(--secondary);">
+                        <div class="step-number" style="background: var(--secondary);">6</div>
+                        <div>You get paid directly</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Getting Started with CPF</h3>
+            <div class="benefit-list">
+                <div class="benefit-card" style="background: linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 90%);">
+                    <div class="benefit-title">Step 1: Connect with a CBO</div>
+                    <p>Reach out to community partners in your service area. Energy Trust can help with introductions.</p>
+                </div>
+                <div class="benefit-card" style="background: linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 90%);">
+                    <div class="benefit-title">Step 2: Understand Their Needs</div>
+                    <p>Each CBO has different capacity. Some need full installation services, others just need specific expertise.</p>
+                </div>
+                <div class="benefit-card" style="background: linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 90%);">
+                    <div class="benefit-title">Step 3: Agree on Process</div>
+                    <p>Work together to define how referrals, pricing, and installations will work.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Tab -->
+        <div id="impact" class="tab-content">
+            <h2>The Community Impact Story</h2>
+            
+            <div class="note">
+                <strong>🎯 The Challenge:</strong> Standard residential programs weren't reaching communities who needed them most—low-income households, communities of color, rural areas, veterans, and people with disabilities faced barriers to accessing energy efficiency upgrades.
+            </div>
+
+            <h3>Why CPF Was Created</h3>
+            <div class="comparison-grid">
+                <div class="program-card" style="background: linear-gradient(135deg, #ee9ca7 0%, #ffdde1 100%); color: #333;">
+                    <h4 style="color: #c0392b;">❌ Barriers for Underserved Communities</h4>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Can't afford upfront costs</li>
+                        <li>Don't know about programs</li>
+                        <li>Don't have relationships with contractors</li>
+                        <li>Language and cultural barriers</li>
+                        <li>Standard incentives still leave gaps</li>
+                    </ul>
+                </div>
+
+                <div class="program-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333;">
+                    <h4 style="color: #27ae60;">✅ CPF Solutions</h4>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>100% funding (no-cost options)</li>
+                        <li>CBOs do community outreach</li>
+                        <li>Trusted organizations make referrals</li>
+                        <li>Bilingual support built in</li>
+                        <li>Higher incentives close gaps</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">The Role of Contractors</h3>
+            <p style="font-size: 1.1em; line-height: 1.8;">
+                CBOs are trusted in their communities, but they often don't have technical expertise or installation capacity. 
+                <strong style="color: var(--secondary);">That's where you come in.</strong> 
+                By partnering with CBOs, you provide the technical skill while they provide community relationships and customer support.
+            </p>
+
+            <div class="stats-grid" style="margin: 30px 0;">
+                <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-label">Of CPF customers couldn't afford standard program</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Report improved comfort</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <div class="stat-number">$300+</div>
+                    <div class="stat-label">Average annual energy savings</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Oregon & Washington coverage</div>
+                </div>
+            </div>
+
+            <h3>Real Impact Examples</h3>
+            <div class="testimonial" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <p><strong>Rural Manufactured Home Community:</strong> A housing authority partnered with a local contractor to upgrade 25 manufactured homes with ductless heat pumps. Total project value: $87,500. Families went from spending $200+/month on electric heat to $60/month.</p>
+            </div>
+
+            <div class="testimonial" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <p><strong>Urban Affordable Housing:</strong> A community action agency worked with three contractors to weatherize 40 homes. The enhanced CPF incentives covered 100% of costs for income-qualified families. Average energy bill reduction: 35%.</p>
+            </div>
+
+            <div class="testimonial" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <p><strong>Veterans Housing:</strong> A veterans' service organization partnered with contractors to install heat pump water heaters in 15 veteran-owned homes. The higher CPF incentives meant zero out-of-pocket costs for the veterans.</p>
+            </div>
+        </div>
+
+        <!-- Action Tab -->
+        <div id="action" class="tab-content">
+            <div class="cta-section">
+                <h2 style="font-size: 2.5em; margin-bottom: 20px;">Ready to Grow Your Business While Making Impact?</h2>
+                <p style="font-size: 1.3em; margin-bottom: 30px;">Join contractors across Oregon and Washington who are building stronger businesses through CPF partnerships.</p>
+                
+                <button class="cta-button" onclick="window.open('mailto:communitypartners@energytrust.org', '_blank')">
+                    📧 Contact CPF Team
+                </button>
+                <button class="cta-button" onclick="window.open('https://www.energytrust.org', '_blank')">
+                    🌐 Visit Energy Trust
+                </button>
+            </div>
+
+            <h3>Next Steps</h3>
+            <div class="benefit-list">
+                <div class="benefit-card">
+                    <div class="benefit-title">1️⃣ Learn More</div>
+                    <p>Email <strong>communitypartners@energytrust.org</strong> to get connected with the CPF team.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">2️⃣ Meet CBOs</div>
+                    <p>The CPF team can introduce you to community organizations in your service area.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">3️⃣ Start Small</div>
+                    <p>Try one or two CPF projects to see how it fits your business model.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">4️⃣ Scale Up</div>
+                    <p>Once you're comfortable, CPF can become a significant revenue stream.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Frequently Asked Questions</h3>
+            
+            <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 20px 0;">
+                <details style="margin: 15px 0;">
+                    <summary style="font-weight: 600; cursor: pointer; padding: 10px; background: white; border-radius: 5px;">
+                        Do I need to be a Trade Ally?
+                    </summary>
+                    <p style="padding: 15px;">Not necessarily! While Trade Allies are preferred, any contractor with a valid Oregon CCB or Washington contractor's license can participate through CBO partnerships.</p>
+                </details>
+
+                <details style="margin: 15px 0;">
+                    <summary style="font-weight: 600; cursor: pointer; padding: 10px; background: white; border-radius: 5px;">
+                        How do I get paid?
+                    </summary>
+                    <p style="padding: 15px;">Payment arrangements are flexible. Often, you invoice the CBO or customer, complete the work, and Energy Trust sends the incentive check directly to you or the CBO (whoever funded the project).</p>
+                </details>
+
+                <details style="margin: 15px 0;">
+                    <summary style="font-weight: 600; cursor: pointer; padding: 10px; background: white; border-radius: 5px;">
+                        Is this instead of standard residential work?
+                    </summary>
+                    <p style="padding: 15px;">No! CPF is additional to your existing business. You can (and should) continue doing standard residential work while adding CPF partnerships.</p>
+                </details>
+
+                <details style="margin: 15px 0;">
+                    <summary style="font-weight: 600; cursor: pointer; padding: 10px; background: white; border-radius: 5px;">
+                        What if I don't know any CBOs?
+                    </summary>
+                    <p style="padding: 15px;">The Energy Trust CPF team can connect you with community organizations in your area looking for contractor partners. Email communitypartners@energytrust.org.</p>
+                </details>
+
+                <details style="margin: 15px 0;">
+                    <summary style="font-weight: 600; cursor: pointer; padding: 10px; background: white; border-radius: 5px;">
+                        Are the technical requirements different?
+                    </summary>
+                    <p style="padding: 15px;">No, the same technical specifications apply. You're doing the same quality work, just with higher incentives and different customer pipeline.</p>
+                </details>
+
+                <details style="margin: 15px 0;">
+                    <summary style="font-weight: 600; cursor: pointer; padding: 10px; background: white; border-radius: 5px;">
+                        What's the time commitment?
+                    </summary>
+                    <p style="padding: 15px;">However much you want! Some contractors do occasional CPF jobs, others make it a core part of their business. It's flexible based on your capacity.</p>
+                </details>
+            </div>
+
+            <div class="note">
+                <strong>📞 Questions?</strong> Contact the CPF team at <strong>communitypartners@energytrust.org</strong> or call <strong>1.866.311.1822</strong>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white;">
+                <h3 style="font-size: 2em;">The Opportunity is Now</h3>
+                <p style="font-size: 1.2em; margin: 20px 0;">
+                    More CBOs are joining CPF every month. More underserved households need your services. 
+                    Higher incentives make projects possible that weren't before.
+                </p>
+                <p style="font-size: 1.4em; font-weight: 700;">
+                    Don't miss out on this growing market.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function calculateImpact() {
+            const jobsPerMonth = parseInt(document.getElementById('jobs-per-month').value) || 0;
+            const jobType = parseInt(document.getElementById('job-type').value) || 0;
+            const cpfPercentage = parseInt(document.getElementById('cpf-percentage').value) || 0;
+            
+            // Estimate average project cost (contractor revenue per install)
+            let avgProjectCost = 7000; // typical ductless install
+            if (jobType === 3500) avgProjectCost = 8000; // manufactured
+            if (jobType === 4000) avgProjectCost = 12000; // ducted
+            if (jobType === 2900) avgProjectCost = 8500; // gas furnace
+            
+            const cpfJobsPerMonth = jobsPerMonth * (cpfPercentage / 100);
+            const additionalMonthly = cpfJobsPerMonth * avgProjectCost;
+            const additionalAnnual = additionalMonthly * 12;
+            const householdsServed = Math.round(cpfJobsPerMonth * 12);
+            
+            // Update display
+            document.getElementById('monthly-revenue').textContent = 
+                '$' + additionalMonthly.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('annual-revenue').textContent = 
+                '$' + additionalAnnual.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('households').textContent = householdsServed;
+        }
+        
+        // Initialize calculator on page load
+        calculateImpact();
+    </script>
+</body>
+</html>

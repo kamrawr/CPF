@@ -1,0 +1,304 @@
+form_number,document,field_name,field_type,required,context
+300CPF,012_HES_FM0300CPF_es.pdf,1. Bomba de calor sin ductos,Text Input,False,1. Bomba de calor sin ductos: sugerir si el hogar tiene calefacción por zonas de
+300CPF,011_HES_FM0300CPF.pdf,1. Ductless Heat Pump,Text Input,False,1. Ductless Heat Pump: Suggest if the home has electric resistance zonal heat like
+300CPF,011_HES_FM0300CPF.pdf,11. No-Cost,Text Input,False,"11. No-Cost: Is this site eligible for a co-cost ductless heat pump, ducted heat pump, heat"
+300CPF,012_HES_FM0300CPF_es.pdf,11. Sin costo,Text Input,False,"11. Sin costo: ¿Este sitio cumple con los requisitos para una bomba de calor sin ductos,"
+300CPF,012_HES_FM0300CPF_es.pdf,2. Bomba de calor con ductos,Text Input,False,2. Bomba de calor con ductos: sugerir si la casa tiene calefacción por aire forzado con
+300CPF,011_HES_FM0300CPF.pdf,2. Ducted Heat Pump,Text Input,False,2. Ducted Heat Pump: Suggest if the home has an electric resistance forced air furnace
+300CPF,011_HES_FM0300CPF.pdf,3. 90+% AFUE Gas Furnace,Text Input,False,"3. 90+% AFUE Gas Furnace: Suggest if the home has an existing, older gas furnace,"
+300CPF,011_HES_FM0300CPF.pdf,4. Smart Thermostat,Text Input,False,"4. Smart Thermostat: Suggest if the home has Wi -Fi, a forced air furnace (gas or electric"
+300CPF,012_HES_FM0300CPF_es.pdf,4. Termostato inteligente,Text Input,False,"4. Termostato inteligente: sugerir si la casa tiene Wi -Fi, calefacción por aire forzado (a"
+300CPF,012_HES_FM0300CPF_es.pdf,5. Calentador de agua con bomba de calor,Text Input,False,5. Calentador de agua con bomba de calor: sugerir si la casa tiene un calentador de
+300CPF,011_HES_FM0300CPF.pdf,5. Heat Pump Water Heater,Text Input,False,"5. Heat Pump Water Heater: Suggest if the home has an older water heater, especially if"
+300CPF,012_HES_FM0300CPF_es.pdf,6. Aislamiento del ático,Text Input,False,6. Aislamiento del ático: sugerir si la casa tiene menos de R -18 (usualmente 6 pulgadas
+300CPF,011_HES_FM0300CPF.pdf,6. Attic Insulation,Text Input,False,6. Attic Insulation: Suggest if the home has less than R -18 (typically 6 inches of
+300CPF,012_HES_FM0300CPF_es.pdf,7. Aislamiento del piso,Text Input,False,7. Aislamiento del piso: sugerir si la casa tiene menos de R -11 (usualmente de 3 a 4
+300CPF,011_HES_FM0300CPF.pdf,7. Floor Insulation,Text Input,False,7. Floor Insulation: Suggest if the home has less than R-11 (typically 3-4 inches of
+300CPF,011_HES_FM0300CPF.pdf,7. Other Health and Safety Concerns,Text Input,False,7. Other Health and Safety Concerns: Please check any/all of the following:
+300CPF,011_HES_FM0300CPF.pdf,8. Roof (optional),Text Input,False,8. Roof (optional) : Please Check any/all of the following
+300CPF,012_HES_FM0300CPF_es.pdf,8. Techo,Text Input,False,"8. Techo: por favor, marque una o todas las opciones siguientes"
+300CPF,012_HES_FM0300CPF_es.pdf,8. Ventanas,Text Input,False,8. Ventanas: sugerir que se reemplacen las ventanas de un solo panel que estén
+300CPF,011_HES_FM0300CPF.pdf,8. Windows,Text Input,False,8. Windows: Suggest any broken/non-functioning single-pane windows to be replaced
+300CPF,011_HES_FM0300CPF.pdf,9. Referral to Community Action Agency (CAA),Text Input,False,9. Referral to Community Action Agency (CAA): Income -qualified residents may be
+300CPF,012_HES_FM0300CPF_es.pdf,90%,Text Input,False,"90%: sugerir si la casa tiene una calefacción de gas existente y más antigua,"
+300CPF,011_HES_FM0300CPF.pdf,ACCESS AND EVALUATION,Text Input,False,ACCESS AND EVALUATION: Energy Trust and/or its representatives
+300CPF,011_HES_FM0300CPF.pdf,AUTHORIZATION,Text Input,False,"AUTHORIZATION: This authorization form must be filled out completely,"
+300CPF,012_HES_FM0300CPF_es.pdf,AUTORIZACIÓN,Text Input,False,AUTORIZACIÓN: este formulario de autorización debe
+300CPF,012_HES_FM0300CPF_es.pdf,Asbesto,Text Input,False,Asbesto: ¿La presencia de asbesto impide
+300CPF,011_HES_FM0300CPF.pdf,Asbestos,Text Input,False,Asbestos: Does the presence of asbestos
+300CPF,011_HES_FM0300CPF.pdf,Bill Discount Program,Text Input,False,"Bill Discount Program: If site is a candidate for a no -cost measure, is the household"
+300CPF,012_HES_FM0300CPF_es.pdf,"CAA, por sus siglas en inglés)",Text Input,False,"CAA, por sus siglas en inglés): los residentes que califiquen con base en sus"
+300CPF,012_HES_FM0300CPF_es.pdf,CANTIDAD DE FINANCIACIÓN,Text Input,False,CANTIDAD DE FINANCIACIÓN: la cantidad financiada no
+300CPF,012_HES_FM0300CPF_es.pdf,CLIENTE,Text Input,False,CLIENTE: la persona que firma este formulario lo hace en
+300CPF,011_HES_FM0300CPF.pdf,CUSTOMER,Text Input,False,CUSTOMER: The person signing this form is signing on behalf of the
+300CPF,011_HES_FM0300CPF.pdf,CUSTOMER NOTIFICATION,Text Input,False,CUSTOMER NOTIFICATION: Participating Organization will inform
+300CPF,012_HES_FM0300CPF_es.pdf,Combustible Sistema de calefacción Uso actual,Text Input,False,Combustible Sistema de calefacción Uso actual: Condición
+300CPF,012_HES_FM0300CPF_es.pdf,Consideraciones para la mejora energética,Text Input,False,Consideraciones para la mejora energética: ¿El hogar es
+300CPF,011_HES_FM0300CPF.pdf,Customer Name and Signature,Signature,False,"Signature Section A: Customer must sign below prior to the HEA being conducted, and sign on page 6 after completion of the HEA. Customer Name and Signature By signing below, Customer agrees to"
+300CPF,011_HES_FM0300CPF.pdf,Customer Type,Text Input,False,Customer Type: Homeowner Renter Rental Property Owner/Manager
+300CPF,011_HES_FM0300CPF.pdf,Customer signature Date,Signature,False,Assessor that performed the HEA explained the results or provided a copy of the results. Customer signature Date
+300CPF,011_HES_FM0300CPF.pdf,Customer signature Full name (please print and use same name as on invoice) Date,Signature,False,Customer’s behalf. Customer signature Full name (please print and use same name as on invoice) Date Site Address Cit
+300CPF,012_HES_FM0300CPF_es.pdf,DERECHOS DE PROPIEDAD,Text Input,False,DERECHOS DE PROPIEDAD: el cliente declara que tiene
+300CPF,011_HES_FM0300CPF.pdf,DISCLAIMER / NO LIABILITY,Text Input,False,"DISCLAIMER / NO LIABILITY: Customer understands that, although"
+300CPF,012_HES_FM0300CPF_es.pdf,ELEGIBILIDAD,Text Input,False,ELEGIBILIDAD: se dispone de financiación para casas
+300CPF,011_HES_FM0300CPF.pdf,ELIGIBILITY,Text Input,False,"ELIGIBILITY: Funding is available to detached single- family homes,"
+300CPF,011_HES_FM0300CPF.pdf,Energy Upgrade Considerations,Text Input,False,Energy Upgrade Considerations: Is the home
+300CPF,011_HES_FM0300CPF.pdf,FUNDING AMOUNT,Text Input,False,FUNDING AMOUNT: Funding amount cannot exceed total cost of the
+300CPF,011_HES_FM0300CPF.pdf,Fuel Heating System Current Use,Text Input,False,Fuel Heating System Current Use: Condition
+300CPF,011_HES_FM0300CPF.pdf,HEA completing organization,Text Input,False,HEA completing organization: Site referred to:
+300CPF,011_HES_FM0300CPF.pdf,Home Assessor Name,Text Input,False,Home Assessor Name : Date :
+300CPF,011_HES_FM0300CPF.pdf,Home Assessor Name and Signature,Signature,False,"Signature Section C: If a third -party Home Assessor is requesting funding for this home energy assessment (HEA), please sign below . Home Assessor Name and Signature By signing below, Home Asses"
+300CPF,011_HES_FM0300CPF.pdf,Home Assessor signature Full name (please print) Date,Signature,False,Energy Trust will issue payment to the entity listed below at the address listed below. Home Assessor signature Full name (please print) Date Company OCC
+300CPF,011_HES_FM0300CPF.pdf,INFORMATION RELEASE,Text Input,False,INFORMATION RELEASE: Customer agrees that Energy Trust may
+300CPF,011_HES_FM0300CPF.pdf,Lead,Text Input,False,Lead: Does presence of lead prevent any measure installation?
+300CPF,011_HES_FM0300CPF.pdf,NO ENDORSEMENT,Text Input,False,NO ENDORSEMENT: Energy Trust does not endorse any particular
+300CPF,012_HES_FM0300CPF_es.pdf,NOTIFICACIÓN AL CLIENTE,Text Input,False,NOTIFICACIÓN AL CLIENTE: la organización participante
+300CPF,011_HES_FM0300CPF.pdf,"No, Contractor signature is not needed",Signature,False,"2. Will a Contractor be requesting funding for any home energy upgrades? Yes, Contractor to c omplete Signature Section B upon completion of upgrade(s) No, Contractor signature is not needed"
+300CPF,012_HES_FM0300CPF_es.pdf,Nombre del evaluador de hogares,Text Input,False,Nombre del evaluador de hogares: Fecha:
+300CPF,012_HES_FM0300CPF_es.pdf,Organización participante,Text Input,False,Organización participante: Financiación de socios comunitarios
+300CPF,012_HES_FM0300CPF_es.pdf,PAGO,Text Input,False,"PAGO: sujeto a la disponibilidad de fondos, la financiación"
+300CPF,011_HES_FM0300CPF.pdf,PAYMENT,Text Input,False,"PAYMENT : Subject to funding availability, funding for eligible HEAs will"
+300CPF,011_HES_FM0300CPF.pdf,PROPERTY RIGHTS,Text Input,False,PROPERTY RIGHTS: Customer represents that Customer has the right
+300CPF,011_HES_FM0300CPF.pdf,Participating Organization,Text Input,False,Participating Organization: Community Partner Funding
+300CPF,011_HES_FM0300CPF.pdf,Participating Organization Name and Signature,Signature,False,"Signature Section B: Participating Organization must sign this form after completion of the HEA . Participating Organization Name and Signature By signing below, Participating Organization (i) un"
+300CPF,011_HES_FM0300CPF.pdf,Participating Organization or Contractor after,Text Input,False,Participating Organization or Contractor after: (i) completion and or
+300CPF,011_HES_FM0300CPF.pdf,Participating Organization signature Full name (please print) Date,Signature,False,processing or paying any funding. Participating Organization signature Full name (please print) Date Participating Organization Home Energy Assessment Da
+300CPF,012_HES_FM0300CPF_es.pdf,Plomo,Text Input,False,Plomo: ¿La presencia de plomo impide la instalación de alguna
+300CPF,012_HES_FM0300CPF_es.pdf,Programa de Descuento en Facturas,Text Input,False,Programa de Descuento en Facturas: Si el sitio es candidato para una medida
+300CPF,012_HES_FM0300CPF_es.pdf,Sección A de la firma,Text Input,False,Sección A de la firma: el cliente debe firmar a continuación antes de que se realice la HEA y
+300CPF,012_HES_FM0300CPF_es.pdf,Sección B de la firma,Text Input,False,Sección B de la firma: la organización participante debe firmar este formulario después de
+300CPF,012_HES_FM0300CPF_es.pdf,Sección C de la firma,Text Input,False,Sección C de la firma: si un evaluador de hogares externo está solicitando una financiación
+300CPF,012_HES_FM0300CPF_es.pdf,Sección D de la firma,Text Input,False,Sección D de la firma: el cliente debe firmar a continuación después de completar la HEA.
+300CPF,011_HES_FM0300CPF.pdf,Signature Section B,Text Input,False,Signature Section B: Participating Organization must sign this form after completion of the HEA .
+300CPF,011_HES_FM0300CPF.pdf,Signature Section B: Participating Organization must sign this form after completion of the HEA .,Signature,False,"Signature Section B: Participating Organization must sign this form after completion of the HEA . Participating Organization Name and Signature By signing below, Participating Organization (i)"
+300CPF,011_HES_FM0300CPF.pdf,Signature Section C,Text Input,False,Signature Section C: If a third -party Home Assessor is requesting funding for this home energy
+300CPF,011_HES_FM0300CPF.pdf,Signature Section C: If a third -party Home Assessor is requesting funding for this home energy,Signature,False,"Participating Organization Home Energy Assessment Date Signature Section C: If a third -party Home Assessor is requesting funding for this home energy assessment (HEA), please sign below . Home"
+300CPF,011_HES_FM0300CPF.pdf,Signature Section D,Text Input,False,Signature Section D: Customer must sign below after completion of the HEA.
+300CPF,011_HES_FM0300CPF.pdf,Signature Section D: Customer must sign below after completion of the HEA.,Signature,False,"Signature Section D: Customer must sign below after completion of the HEA. Customer Name and Signature By signing below, Customer acknowledges that the HEA was completed at the sit"
+300CPF,012_HES_FM0300CPF_es.pdf,Sí No Plagas,Text Input,False,Sí No Plagas: ¿Los plagas o los daños causados por plagas impiden la
+300CPF,011_HES_FM0300CPF.pdf,TAX LIABILITY,Text Input,False,TAX LIABILITY: Energy Trust is not responsible for any tax liability
+300CPF,012_HES_FM0300CPF_es.pdf,VERIFICACIÓN DE CALIDAD DEL TRABAJO,Text Input,False,VERIFICACIÓN DE CALIDAD DEL TRABAJO: antes de
+300CPF,011_HES_FM0300CPF.pdf,Yes No Pests,Text Input,False,Yes No Pests: Do pests or pest damage prevent any measure installation?
+300CPF,011_HES_FM0300CPF.pdf,"Yes, Contractor to c omplete Signature Section B upon completion of upgrade(s)",Signature,False,"Insulation/Windows Water Heating 2. Will a Contractor be requesting funding for any home energy upgrades? Yes, Contractor to c omplete Signature Section B upon completion of upgrade(s) No"
+300CPF,011_HES_FM0300CPF.pdf,a. Central AC,Text Input,False,a. Central AC: Yes No Amount of Room AC Units (Window and/or Portable):
+300CPF,011_HES_FM0300CPF.pdf,a. Electric Provider,Text Input,False,a. Electric Provider: Pacific Power PGE Other :
+300CPF,011_HES_FM0300CPF.pdf,a. Fuel Type,Text Input,False,"a. Fuel Type: Electric Gas Location of water heater (garage, utility room, basement, etc):"
+300CPF,012_HES_FM0300CPF_es.pdf,a. Proveedor de electricidad,Text Input,False,a. Proveedor de electricidad: Pacific Power PGE ________________________________ Otro:
+300CPF,011_HES_FM0300CPF.pdf,b. Gas Provider,Text Input,False,b. Gas Provider: NW Natural Avista Cascade Natural Gas Other :
+300CPF,012_HES_FM0300CPF_es.pdf,b. Proveedor de gas,Text Input,False,b. Proveedor de gas: NW Natural Avista Cascade Natural Gas Otro:
+300CPF,012_HES_FM0300CPF_es.pdf,c. Año de construcción,Text Input,False,c. Año de construcción: d. Pies cuadrados: e. N.º de pisos:
+300CPF,011_HES_FM0300CPF.pdf,c. Year Built,Text Input,False,c. Year Built : d. Sq. Ft. : e. # Stories :
+300CPF,012_HES_FM0300CPF_es.pdf,f. Cimientos/sótano,Text Input,False,f. Cimientos/sótano: Combinación de garaje/sótano Sótano de poca altura
+300CPF,011_HES_FM0300CPF.pdf,f. Foundation/Basement,Text Input,False,f. Foundation/Basement: Garage/basement combo Crawlspace Crawlspace w/ vapor barrier
+300CPF,012_HES_FM0300CPF_es.pdf,"organization, CBO, por siglas en inglés)",Text Input,False,"organization, CBO, por siglas en inglés): sugiera si otra organización ayudará con"
+300HPQ,016_HES_FM0300HPQ.pdf,Household’s gross annual income,Text Input,False,Household’s gross annual income: OR Household’s gross monthly income:
+300HPQ,016_HES_FM0300HPQ.pdf,Name,Text Input,False,Name: Date:
+300HPQ,016_HES_FM0300HPQ.pdf,Organization Name,Text Input,False,Organization Name: Offer (s) Recommended :
+300HPQ,016_HES_FM0300HPQ.pdf,Other,Text Input,False,Other: $ / per month OR per year
+300HPQ,016_HES_FM0300HPQ.pdf,Staff Member Name Signature Date:,Signature,False,"To Be Completed by Organization Staff Member By signing this Agreement, I certify that the information presented is true and accurate to the best of my knowledge. Staff Member Name Signature"
+300HPQ-,017_HES_FM0300HPQ-es.pdf,Ingreso bruto anual del hogar,Text Input,False,Ingreso bruto anual del hogar: O Ingreso bruto mensual del hogar:
+300HPQ-,017_HES_FM0300HPQ-es.pdf,Nombre,Text Input,False,Nombre: Fecha:
+300HPQ-,017_HES_FM0300HPQ-es.pdf,Nombre de la Organización,Text Input,False,Nombre de la Organización: Oferta: No-Cost DHP -or - No-Cost HP
+300HPQ-,017_HES_FM0300HPQ-es.pdf,Otro,Text Input,False,Otro: $ / por mes O por año
+320CPF,014_HES_FM0320CPF_ES.pdf,ACCESO Y EVALUACIÓN,Text Input,False,ACCESO Y EVALUACIÓN: Energy Trust y/o sus representantes
+320CPF,013_HES_FM0320CPF.pdf,ACCESS AND EVALUATION,Text Input,False,ACCESS AND EVALUATION: Energy Trust and/or its
+320CPF,013_HES_FM0320CPF.pdf,AHRI Certificate Number,Text Input,False,AHRI Certificate Number: Installed Cost $:
+320CPF,013_HES_FM0320CPF.pdf,APPLICATION,Text Input,False,APPLICATION: This application and any required additional
+320CPF,014_HES_FM0320CPF_ES.pdf,AUTORIZACIÓN,Text Input,False,"AUTORIZACIÓN: Esta autorización se debe llenar por completo,"
+320CPF,013_HES_FM0320CPF.pdf,CUSTOMER,Text Input,False,CUSTOMER: The person signing this form is signing on behalf of
+320CPF,013_HES_FM0320CPF.pdf,CUSTOMER NOTIFICATION,Text Input,False,CUSTOMER NOTIFICATION: Participating Organization will
+320CPF,013_HES_FM0320CPF.pdf,Contractor Name and Signature,Signature,False,"Participating Organization company name Install date Contractor Name and Signature By signing below, Contractor certifies that this application and all accompanying documentation is complet"
+320CPF,013_HES_FM0320CPF.pdf,Contractor after,Text Input,False,Contractor after: (i) completion and or installation of the energy
+320CPF,013_HES_FM0320CPF.pdf,Contractor signature Full name (please print) Date,Signature,False,must comply with the Residential Specifications Manual and all other Energy Trust program requirements. Contractor signature Full name (please print) Date
+320CPF,013_HES_FM0320CPF.pdf,Contractor signatures,Signature,False,• Customer signature • Participating Organization or Contractor signatures • Invoices billing the customer for purchase and installation marked
+320CPF,013_HES_FM0320CPF.pdf,Customer Name and Signature,Signature,False,upgrades that meet Energy Trust requirements to the Participating Organization or Contractor named below. Energy Trust may deny funding for any energy upgrades that do not meet Energy Trust requir
+320CPF,013_HES_FM0320CPF.pdf,Customer signature Full name (please print and use same name as on invoice) Date,Signature,False,for all Energy Trust funding that is available for the energy -saving upgrades indicated on this application . Customer signature Full name (please print and use same name as on in
+320CPF,013_HES_FM0320CPF.pdf,DISCLAIMER / NO LIABILITY,Text Input,False,"DISCLAIMER / NO LIABILITY: Customer understands that,"
+320CPF,013_HES_FM0320CPF.pdf,ECM? Yes No AFUE,Text Input,False,ECM? Yes No AFUE: % Installed Cost: $
+320CPF,014_HES_FM0320CPF_ES.pdf,ELEGIBILIDAD,Text Input,False,ELEGIBILIDAD: Los fondos están disponibles para los clientes
+320CPF,013_HES_FM0320CPF.pdf,ELIGIBILITY,Text Input,False,ELIGIBILITY: Funding is available to detached single-family
+320CPF,013_HES_FM0320CPF.pdf,ENERGY INFORMATION RELEASE,Text Input,False,ENERGY INFORMATION RELEASE : Customer authorizes
+320CPF,014_HES_FM0320CPF_ES.pdf,EXENCIÓN DE RESPONSABILIDAD,Text Input,False,EXENCIÓN DE RESPONSABILIDAD: El cliente entiende que
+320CPF,013_HES_FM0320CPF.pdf,Electric utility,Text Input,False,Electric utility: PGE Pacific Power Other
+320CPF,013_HES_FM0320CPF.pdf,FUNDING AMOUNT,Text Input,False,FUNDING AMOUNT: Funding amount cannot exceed total cost
+320CPF,013_HES_FM0320CPF.pdf,Gas utility,Text Input,False,Gas utility: NW Natural Cascade Natural Gas Avista Other
+320CPF,013_HES_FM0320CPF.pdf,HSPF2,Text Input,False,HSPF2: EER2: SEER2:
+320CPF,013_HES_FM0320CPF.pdf,INFORMATION RELEASE,Text Input,False,INFORMATION RELEASE: Customer agrees that Energy Trust
+320CPF,013_HES_FM0320CPF.pdf,Instructions for Signatures,Signature,False,PCEF: ODOE: OHCS: Other: No additional funding Instructions for Signatures Customer Customer is required to sign this form. Participating
+320CPF,013_HES_FM0320CPF.pdf,Lockout temperature,Text Input,False,Lockout temperature: º F Installed Cost $
+320CPF,014_HES_FM0320CPF_ES.pdf,MONTO DE LOS FONDOS,Text Input,False,MONTO DE LOS FONDOS: El monto de los fondos no puede ser
+320CPF,013_HES_FM0320CPF.pdf,Manufacturer,Text Input,False,Manufacturer: Model Number: Serial #:
+320CPF,013_HES_FM0320CPF.pdf,Model Name,Text Input,False,Model Name: Model #:
+320CPF,014_HES_FM0320CPF_ES.pdf,NOTIFICACIÓN A CLIENTES,Text Input,False,NOTIFICACIÓN A CLIENTES : La organización participante
+320CPF,014_HES_FM0320CPF_ES.pdf,Organización participante,Text Input,False,Organización participante: Financiación de socios comunitarios
+320CPF,014_HES_FM0320CPF_ES.pdf,Organización participante después de,Text Input,False,Organización participante después de: (i) completar y/o instalar
+320CPF,013_HES_FM0320CPF.pdf,PAYMENT,Text Input,False,"PAYMENT : Subject to funding availability, funding for eligible"
+320CPF,013_HES_FM0320CPF.pdf,PCEF,Text Input,False,PCEF: ODOE: OHCS: Other: No additional funding
+320CPF,013_HES_FM0320CPF.pdf,Participating Organization,Text Input,False,Participating Organization: Community Partner Funding
+320CPF,013_HES_FM0320CPF.pdf,Participating Organization Name and Signature,Signature,False,"Customer signature Full name (please print and use same name as on invoice) Date Participating Organization Name and Signature By signing below, Participating Organization certifies that this"
+320CPF,013_HES_FM0320CPF.pdf,Participating Organization signature Full name (please print) Date,Signature,False,"incentives, all work must comply with the Residential Specifications Manual and all other Energy Trust program requirements. Participating Organization signature Full name (pleas"
+320CPF,013_HES_FM0320CPF.pdf,Project Completed by,Text Input,False,Project Completed by : Referral Received from :
+320CPF,013_HES_FM0320CPF.pdf,Qty of indoor units,Text Input,False,Qty of indoor units: Primary Living Space Room Type:
+320CPF,013_HES_FM0320CPF.pdf,Qty of outdoor units,Text Input,False,Qty of outdoor units: Total capacity (BTUs): HSPF2:
+320CPF,014_HES_FM0320CPF_ES.pdf,RESPONSABILIDAD FISCAL,Text Input,False,RESPONSABILIDAD FISCAL: Energy Trust no es responsable
+320CPF,013_HES_FM0320CPF.pdf,Referral Section,Text Input,False,Referral Section: Indicate project -completing organization and referring organization .
+320CPF,013_HES_FM0320CPF.pdf,Serial number,Text Input,False,Serial number: UEF: Installed cost:
+320CPF,013_HES_FM0320CPF.pdf,TAX LIABILITY,Text Input,False,TAX LIABILITY: Energy Trust is not responsible for any tax
+320CPF,013_HES_FM0320CPF.pdf,Value,Text Input,False,Value: Attach copies of the NFRC stickers for all windows installed OR
+320CPF,013_HES_FM0320CPF.pdf,WORK QUALITY VERIFICATION,Text Input,False,"WORK QUALITY VERIFICATION: Prior to any funding payment,"
+320CPF,013_HES_FM0320CPF.pdf,amount,Text Input,False,amount : $
+320CPF,001_Program Information sheet_ PI0320CPF.pdf,available to residences serviced by PGE or Pacific Power. Indoor Configuration,Text Input,False,available to residences serviced by PGE or Pacific Power. Indoor Configuration: Eligible systems
+320CPF,014_HES_FM0320CPF_ES.pdf,exclusivo de Energy Trust . CLIENTE,Text Input,False,exclusivo de Energy Trust . CLIENTE: La persona que firma este formulario es el cliente. Con
+320CPF,014_HES_FM0320CPF_ES.pdf,multifamiliares (solo en WA) que son,Text Input,False,multifamiliares (solo en WA) que son: (i) habitantes de Oregón y
+320CPF,013_HES_FM0320CPF.pdf,proof of size,Text Input,False,proof of size: Attach an itemized invoice showing window dimensions and U -
+320CPF,014_HES_FM0320CPF_ES.pdf,signatures,Signature,False,•Customer signature •Participating Organization or Contractor signatures •Invoices billing the customer for purchas e and i
+320CPF,013_HES_FM0320CPF.pdf,• Customer signature,Signature,False,"2 Complete application information, including: • Customer signature • Participating Organization or Contractor signatures"
+320CPF,014_HES_FM0320CPF_ES.pdf,•Customer signature,Signature,False,"ifying residence. 2 Complete application information, including: •Customer signature •Participating Organization or Contractor signatures"
+320I,001_Residential Program Incentive guide – PI 320I (PDF).pdf,Power. Indoor Configuration,Text Input,False,Power. Indoor Configuration: Eligible systems configurations must include a central ducted system
+320I-HP,003_PI 320I-HP (PDF).pdf,setting recommended by unit manufacturer when available. Indoor Configuration,Text Input,False,setting recommended by unit manufacturer when available. Indoor Configuration: Eligible
+371CPF,005_HES_FM0371CPF.pdf,Authorized Signature,Signature,False,"suspension or termination. In particular but without limitation, Energy Trust will immediately terminate this Agreement if Participating Organization is found to have falsified paperwork. Participa"
+371CPF,005_HES_FM0371CPF.pdf,Avista,Checkbox,False,☐ Avista
+371CPF,005_HES_FM0371CPF.pdf,Cascade Natural Gas,Checkbox,False,☐ Cascade Natural Gas
+371CPF,005_HES_FM0371CPF.pdf,DEQ,Checkbox,False,Department of Environmental Quality (State or Federal) Grants ☐ DEQ
+371CPF,005_HES_FM0371CPF.pdf,NW Natural,Checkbox,False,Oregon Low Income Energy Efficiency (OLIEE) ☐ NW Natural
+371CPF,005_HES_FM0371CPF.pdf,Name Signature Date,Signature,False,Optional: Participating Organization meets alternative insurance requirements as determin ed by Energy Trust Legal Energy Trust Approval Name Signature Date
+371CPF,005_HES_FM0371CPF.pdf,Other Utility,Checkbox,False,☐ Other Utility
+371CPF,005_HES_FM0371CPF.pdf,PGE,Checkbox,False,Energy Conservation Helping Oregonians (ECHO) ☐ PGE ☐ Pacific Power
+371CPF,005_HES_FM0371CPF.pdf,Participating Organization,Text Input,False,Participating Organization : Community Partner Funding
+371CPF,005_HES_FM0371CPF.pdf,Signature Date,Signature,False,Authorized representative Signature Date (printed name) Representative’s title Organization name
+371CPF,005_HES_FM0371CPF.pdf,US EPA,Checkbox,False,Environmental Protection Agency Grants ☐ US EPA
+371CPF,005_HES_FM0371CPF.pdf,US HUD,Checkbox,False,Home Investment Partnerships Program Funding (HOME) ☐ US HUD
+371CPF,005_HES_FM0371CPF.pdf,USDA,Checkbox,False,Housing Preservation Grants ☐ USDA
+371CPF,005_HES_FM0371CPF.pdf,USDOE,Checkbox,False,Weatherization Assistance Program (WAP) ☐ USDOE
+371CPF,005_HES_FM0371CPF.pdf,USHHS,Checkbox,False,Low Income Home Energy Assistance Program (LIHEAP) ☐ USHHS
+371CPF,005_HES_FM0371CPF.pdf,USHUD,Checkbox,False,Community Development Block Grants ☐ USHUD
+371CPF-A,006_BEM_FM0371CPF-A.pdf,Authorized Signature,Signature,False,"5. All other terms and conditions of the Form 3 71CPF Agreement remain in full force and effect. Authorized Signature By signing below, I represent to Energy Trust that (i) I am duly authorize"
+371CPF-A,006_BEM_FM0371CPF-A.pdf,Name Signature Date,Signature,False,Organization email Organization phone Energy Trust Approval Name Signature Date
+371CPF-A,006_BEM_FM0371CPF-A.pdf,Signature Date,Signature,False,Authorized representative Signature Date (printed name) Representative’s title Organization name
+523-C,020_CPF-Incentive-Grid-Spanish-_INFOGR_0523-Customizable.pdf,Bomba de calor sin ductos,Text Input,False,Bomba de calor sin ductos: para propietarios que califican con base en sus ingresos
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,(ejemplo,Text Input,False,"(ejemplo: placa de yeso),"
+Unknown,005_2025 Specifications manual (PDF).pdf,(example,Text Input,False,(example: gypsum board)
+Unknown,004_CPF-Overview-Document_For-Contractors.pdf,- 300 CPF,Text Input,False,- 300 CPF: Customer Authorization Form :
+Unknown,004_CPF-Overview-Document_For-Contractors.pdf,1) 300 CPF,Text Input,False,1) 300 CPF: C ustomer Authorization form
+Unknown,004_CPF-Overview-Document_For-Contractors.pdf,1. Customer Identification,Text Input,False,1. Customer Identification: The CP will identify the participant and coordinate the install
+Unknown,009_No-Cost-Heat-Pump-Reference-Guide.pdf,1. No-Cost Eligibility,Text Input,False,1. No-Cost Eligibility : Customers should be asked to complete the Heat Pump Questionnaire
+Unknown,008_CPF_Onboarding_Checklist.pdf,1.5 hours ☐ Step 2,Text Input,False,1.5 hours ☐ Step 2: Formal Outreach Meeting
+Unknown,008_CPF_Onboarding_Checklist.pdf,1.5 hours ☐ Step 3,Text Input,False,1.5 hours ☐ Step 3: Home Energy Assessment (HEA)
+Unknown,007_2025 Quality Management Policy (PDF).pdf,14APPENDIX A,Text Input,False,14APPENDIX A: CORRECTIVE ACTIONS DEFINED
+Unknown,005_2025 Specifications manual (PDF).pdf,14PART 1,Text Input,False,14PART 1: WEATHERIZATION
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,14PARTE 1,Text Input,False,14PARTE 1: MEJORAS DE EFICIENCIA
+Unknown,007_CPF-Onboarding-PPT.pdf,15•Customer and CP signatures are required,Signature,True,300 CPF: Page 2 Instructions 15•Customer and CP signatures are required for the initial home energy assessment. •A contractor only needs to sign if they are receiving Energy Trust incentives direct
+Unknown,005_2025 Specifications manual (PDF).pdf,16AT 1.2—Passive Attic Ventilation,Text Input,False,16AT 1.2—Passive Attic Ventilation: Sizing and Distribution
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,16AT 1.2—Ventilación Pasiva del Ático,Text Input,False,16AT 1.2—Ventilación Pasiva del Ático: Tamaño y Distribución
+Unknown,008_CPF_Onboarding_Checklist.pdf,2. Blue Rows,Text Input,False,2. Blue Rows: These are actions to be completed by the organization.
+Unknown,004_CPF-Overview-Document_For-Contractors.pdf,2. Project Bid,Text Input,False,2. Project Bid : The CP will coordi nate a site -visit from a referred contractor to provide a
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,23AT—AISLAMIENTO DE ÁTICO,Text Input,False,23AT—AISLAMIENTO DE ÁTICO: INSTALACIÓN
+Unknown,005_2025 Specifications manual (PDF).pdf,23AT—ATTIC INSULATION,Text Input,False,23AT—ATTIC INSULATION: INSTALLATION
+Unknown,005_2025 Specifications manual (PDF).pdf,27MA—MANUFACTURED HOMES,Text Input,False,27MA—MANUFACTURED HOMES: GENERAL
+Unknown,004_CPF-Overview-Document_For-Contractors.pdf,3. Project Installation,Text Input,False,3. Project Installation: The r eferred contractor will complete the work and ensure
+Unknown,005_2025 Specifications manual (PDF).pdf,36UN—UNDERFLOOR INSULATION,Text Input,False,36UN—UNDERFLOOR INSULATION: OVERVIEW
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,37UN—AISLAMIENTO DEL SUELO,Text Input,False,37UN—AISLAMIENTO DEL SUELO: VISIÓN GENERAL
+Unknown,004_CPF-Overview-Document_For-Contractors.pdf,4. Incentive Process,Text Input,False,"4. Incentive Process: To simpl ify and encourage customer participation , either the CP or"
+Unknown,004_CPF-Overview-Document_For-Contractors.pdf,5. Project Documentation,Text Input,False,5. Project Documentation: CP or sub- contractor submits three documents for each
+Unknown,005_2025 Specifications manual (PDF).pdf,56PART 2,Text Input,False,56PART 2: MECHANICAL SYSTEMS
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,58PARTE 2,Text Input,False,58PARTE 2: SISTEMAS MECÁNICOS
+Unknown,005_2025 Specifications manual (PDF).pdf,60ILLUSTRATION DP 1.1A,Text Input,False,60ILLUSTRATION DP 1.1A: DHP-APPROVED LOCATION EXAMPLE AND MANUFACTURER
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,62ILUSTRACIÓN DP 1.1A,Text Input,False,62ILUSTRACIÓN DP 1.1A: UBICACIÓN APROBADA PARA BOMBA DE CALEFACCIÓN SIN DUCTOS
+Unknown,005_2025 Specifications manual (PDF).pdf,74APPENDIX A,Text Input,False,74APPENDIX A: WEIGHTED ATTIC R-VALUE TABLES
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,76APÉNDICE A,Text Input,False,76APÉNDICE A: TABLAS DE PROMEDIO DE VALOR-R DEL ÁTICO
+Unknown,005_2025 Specifications manual (PDF).pdf,78APPENDIX B,Text Input,False,78APPENDIX B: QUICK REFERENCE GUIDE
+Unknown,005_2025 Specifications manual (PDF).pdf,80APPENDIX C,Text Input,False,80APPENDIX C: GLOSSARY
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,80APÉNDICE B,Text Input,False,80APÉNDICE B: GUÍA DE REFERENCIA RÁPIDA
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,82APÉNDICE C,Text Input,False,82APÉNDICE C: GLOSARIO
+Unknown,005_2025 Specifications manual (PDF).pdf,84APPENDIX D,Text Input,False,84APPENDIX D: BEST PRACTICE GUIDELINES
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,87APÉNDICE D,Text Input,False,87APÉNDICE D: DIRECTRICES DE MEJORES PRÁCTICAS
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,90Regla general,Text Input,False,90Regla general: la mitad del tamaño de la abertura = NFA
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,91MEJORES PRÁCTICAS,Text Input,False,91MEJORES PRÁCTICAS: HORNOS DE CALEFACCIÓN DE GAS
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,APÉNDICE A,Text Input,False,APÉNDICE A: TABLAS DE PROMEDIO DE VALOR-R DEL ÁTICO .................................. 76
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,APÉNDICE D,Text Input,False,APÉNDICE D: DIRECTRICES DE MEJORES PRÁCTICAS ............................................... 87
+Unknown,005_2025 Specifications manual (PDF).pdf,AT—ATTIC INSULATION,Text Input,False,AT—ATTIC INSULATION: OVERVIEW
+Unknown,005_2025 Specifications manual (PDF).pdf,BEST PRACTICE,Text Input,False,BEST PRACTICE: AIR SEALING
+Unknown,008_CPF_Onboarding_Checklist.pdf,BPI Building Science Principles Certification,Checkbox,False,☐ BPI Building Science Principles Certification
+Unknown,005_2025 Specifications manual (PDF).pdf,Band joist,Text Input,False,Band joist: ¨ Between floors ¨ Penetrations
+Unknown,008_CPF_Onboarding_Checklist.pdf,CPF Onboarding Presentation,Checkbox,False,☐ CPF Onboarding Presentation
+Unknown,008_CPF_Onboarding_Checklist.pdf,CPF Overview Document,Checkbox,False,collaboration opportunities ☐ CPF Overview Document
+Unknown,008_CPF_Onboarding_Checklist.pdf,CPF Overview Document (for contractors),Checkbox,False,energy upgrades and requesting incentives ☐ CPF Overview Document (for contractors)
+Unknown,007_CPF-Onboarding-PPT.pdf,Contractor Invoice Preparation,Text Input,False,Contractor Invoice Preparation: Scenario 1
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,Donde N es un factor de correlación,Text Input,False,Donde N es un factor de correlación: N = C x H x S
+Unknown,008_CPF_Onboarding_Checklist.pdf,Earth Advantage Online Training,Checkbox,False,☐ Earth Advantage Online Training
+Unknown,007_2025 Quality Management Policy (PDF).pdf,Efficient work,Text Input,False,Efficient work: Work that ensures a customer’s investment will yield an expected return.
+Unknown,008_CPF_Onboarding_Checklist.pdf,Enrolled Community Partner Organization Completes Energy Upgrade Installs,Checkbox,False,N/A ☐ Enrolled Community Partner Organization Completes Energy Upgrade Installs
+Unknown,008_CPF_Onboarding_Checklist.pdf,Enrolled Community Partner Organization Completes Home Energy Assessments,Checkbox,False,N/A ☐ Enrolled Community Partner Organization Completes Home Energy Assessments
+Unknown,007_CPF-Onboarding-PPT.pdf,Example,Text Input,False,Example: Co -hosted webinar or
+Unknown,005_2025 Specifications manual (PDF).pdf,Exterior walls,Text Input,False,Exterior walls: ¨ Penetrations ¨ Baseboards ¨ Sill plates
+Unknown,005_2025 Specifications manual (PDF).pdf,Fiberglass loose fill 2.3 Colors,Text Input,False,Fiberglass loose fill 2.3 Colors: pink/white/yellow
+Unknown,005_2025 Specifications manual (PDF).pdf,For example,Text Input,False,"For example: 14.5"" x 3"" vent with a 1/8 "" mesh = 0.24 sq. ft. NFA"
+Unknown,007_CPF-Onboarding-PPT.pdf,FormOptional,Text Input,False,FormOptional: DHP
+Unknown,008_CPF_Onboarding_Checklist.pdf,HEA Training Presentation (as needed),Checkbox,False,☐ HEA Training Presentation (as needed)
+Unknown,007_CPF-Onboarding-PPT.pdf,HEAs,Text Input,False,HEAs: Required Paperwork Overview
+Unknown,007_CPF-Onboarding-PPT.pdf,Homes must be serviced by,Text Input,False,"Homes must be serviced by: Pacific Power, PGE, Cascade"
+Unknown,005_2025 Specifications manual (PDF).pdf,ILLUSTRATION DP 1.1B,Text Input,False,ILLUSTRATION DP 1.1B: DHP-APPROVED LOCATION IN A MULTI-STORY HOME
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,ILUSTRACIÓN DP 1.1B,Text Input,False,ILUSTRACIÓN DP 1.1B: EJEMPLO DE UBICACIÓN APROBADA PARA BOMBA DE CALOR
+Unknown,008_CPF_Onboarding_Checklist.pdf,Intended Audience,Text Input,False,Intended Audience: Organizations enrolling in Community Partner Funding
+Unknown,005_2025 Specifications manual (PDF).pdf,Knee walls,Text Input,False,Knee walls: ¨ Joist cavities ¨ Built-ins ¨ Access doors/hatches
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,MA—CASAS PREFABRICADAS,Text Input,False,MA—CASAS PREFABRICADAS: ESPECIFICACIONES GENERALES ............................. 27
+Unknown,005_2025 Specifications manual (PDF).pdf,MA—MANUFACTURED HOMES,Text Input,False,MA—MANUFACTURED HOMES: COMBUSTION SAFETY PROTOCOLS .................................. 32
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,MEJORES PRÁCTICAS,Text Input,False,MEJORES PRÁCTICAS: SELLADO DEL AIRE
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,Muretes,Text Input,False,Muretes: ¨ Cavidades de viguetas ¨ Empotrados ¨ Puertas de acceso/ escotillas
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,Nombre,Text Input,False,Nombre: Firma: Fecha:
+Unknown,008_CPF_Onboarding_Checklist.pdf,Onboarding ☐ 300 CPF,Text Input,False,Onboarding ☐ 300 CPF: Customer Authorization
+Unknown,008_CPF_Onboarding_Checklist.pdf,Organization Completes Program Enrollment,Checkbox,False,N/A ☐ Organization Completes Program Enrollment
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,PARTE 1,Text Input,False,PARTE 1: MEJORAS DE EFICIENCIA ENERGÉTICA .............................................. 14
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,Paredes exteriores,Text Input,False,Paredes exteriores: ¨ Penetraciones ¨ Zócalos ¨ Placas de umbral
+Unknown,018_CPF-Home-Energy-Assessment-Flyer-Template.pdf,Paso 1,Text Input,False,Paso 1: Visita [organizationwebsite.com] o llama al [###.###.####] para ver
+Unknown,018_CPF-Home-Energy-Assessment-Flyer-Template.pdf,Paso 2,Text Input,False,Paso 2: Un asesor de energía del hogar de [Participating Organization] visitará tu
+Unknown,018_CPF-Home-Energy-Assessment-Flyer-Template.pdf,Paso 3,Text Input,False,Paso 3: [Participating Organization] puede conectarte con contratistas confiables
+Unknown,018_CPF-Home-Energy-Assessment-Flyer-Template.pdf,Paso 4,Text Input,False,Paso 4: [Participating Organization] obtendrá acceso a los descuentos de
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,Por ejemplo,Text Input,False,"Por ejemplo: 14.5"" x 3"" respiradero con malla de 1/8"" = 0.24 pies cuadrados de NFA"
+Unknown,005_2025 Specifications manual (PDF).pdf,Print Name,Text Input,False,Print Name: Signature: Date:
+Unknown,005_2025 Specifications manual (PDF).pdf,Print Name: Signature: Date:,Signature,False,Print Name: Signature: Date: 27MA—MANUFACTURED HOMES: GENERAL SPECIFICATIONS
+Unknown,008_CPF_Onboarding_Checklist.pdf,Program Partner Contract Discussion (optional),Checkbox,False,☐ Program Partner Contract Discussion (optional)
+Unknown,007_2025 Quality Management Policy (PDF).pdf,Quality,Text Input,False,Quality: Doing work to agreed-upon standards and requirements.
+Unknown,007_CPF-Onboarding-PPT.pdf,QuestionnaireTip,Text Input,False,QuestionnaireTip: Use the Adobe
+Unknown,007_CPF-Onboarding-PPT.pdf,Quick Review,Text Input,False,Quick Review: Typical CPF Project
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,Relleno suelto de fibra de vidrio 2.3 Colores,Text Input,False,Relleno suelto de fibra de vidrio 2.3 Colores: rosa/blanco/amarillo
+Unknown,007_CPF-Onboarding-PPT.pdf,Reminder,Text Input,False,Reminder: Project costs cannot exceed the following
+Unknown,005_2025 Specifications manual (PDF).pdf,Rule of thumb,Text Input,False,Rule of thumb: half of the opening size = NFA
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,SI NO,Text Input,False,SI NO: Añada tapajuntas en
+Unknown,009_No-Cost-Heat-Pump-Reference-Guide.pdf,Table 1,Text Input,False,Table 1: No-Cost Income Guidelines – 2023 Oregon 60% State Median Income
+Unknown,009_No-Cost-Heat-Pump-Reference-Guide.pdf,Table 2,Text Input,False,Table 2: No -Cost HP Incentives
+Unknown,009_No-Cost-Heat-Pump-Reference-Guide.pdf,Target Audience,Text Input,False,Target Audience: Pacific Power and Portland General Electric customers who :
+Unknown,015_HES_FM_WindowsAddendum.pdf,Trade Ally/Contractor Representative Signature Date,Signature,False,"be subject to disciplinary policies and procedures. To receive incentives, all work must comply with the Home Retrofit Specifications Manual and program incentive guides found on Energy Trust’s we"
+Unknown,015_HES_FM_WindowsAddendum.pdf,Trade Ally/Contractor Signature,Signature,False,"Non-Standard Shape Window Information Quantity Manufacturer Series/Model Shape Measurements U-value Trade Ally/Contractor Signature By signing below, Trade Ally/Contractor certifies that this a"
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,UN 1.0d,Text Input,False,"UN 1.0d: Un voladizo (o cobertura). Solo se requiere el área ""a"" para cumplir con la Sección UN."
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,UN—AISLAMIENTO EN EL SUBSUELO,Text Input,False,UN—AISLAMIENTO EN EL SUBSUELO: INSTALACIÓN ................................................... 41
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,Ventanas y Puertas,Text Input,False,Ventanas y Puertas: ¨ Moldura de ventana ¨ Burletes ¨ Burletes de puertas
+Unknown,007_2025 Quality Management Policy (PDF).pdf,Ventilation,Text Input,False,Ventilation: Sizing
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,Vigueta de banda,Text Input,False,Vigueta de banda: ¨ Entre pisos ¨ Penetraciones
+Unknown,005_2025 Specifications manual (PDF).pdf,Where N is a correlation factor,Text Input,False,Where N is a correlation factor: N = C x H x S
+Unknown,005_2025 Specifications manual (PDF).pdf,Windows and doors,Text Input,False,Windows and doors: ¨ Window trim ¨ Weatherstripping ¨ Door sweeps
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,al vapor (ejemplo,Text Input,False,al vapor (ejemplo: placa
+Unknown,004_Enhanced CPF Windows Summary (PDF).pdf,c.Proof of U-value,Text Input,False,c.Proof of U-value: Attach copies of the NFRC stickers for all windows installed OR the window
+Unknown,004_Enhanced CPF Windows Summary (PDF).pdf,d.Proof of size,Text Input,False,d.Proof of size: Attach an itemized invoice showing window dimensions and U-Value from
+Unknown,007_CPF-Onboarding-PPT.pdf,"form with customer signatures.7. Client Follow- UpCP assesses satisfaction,",Signature,False,"CP submits project paperwork to Energy Trust for approval and reimbursement of incentives. Example: CP submits 320CPF form with customer signatures.7. Client Follow- UpCP assesses satisfaction, prom"
+Unknown,008_CPF_Onboarding_Checklist.pdf,hours ☐ Step 4,Text Input,False,hours ☐ Step 4: CPF Energy Upgrades Onboarding
+Unknown,008_CPF_Onboarding_Checklist.pdf,"information, customer and organization signatures",Signature,False,"Onboarding ☐ 300 CPF: Customer Authorization - Required for each CPF project, collects home energy information, customer and organization signatures ☐ HEA Training Presentation (as needed)"
+Unknown,006_Manual de Especificaciones 2025 (PDF).pdf,inverso de Valor-R,Text Input,False,inverso de Valor-R: (U = 1 / R).
+Unknown,008_CPF_Onboarding_Checklist.pdf,minutes ☐ Step 1,Text Input,False,minutes ☐ Step 1: Initial Outreach Meeting
+Unknown,002_Residential Ductless and Ducted Heat Pump Program Incentive guide.pdf,setting recommended by unit manufacturer when available. Indoor Configuration,Text Input,False,setting recommended by unit manufacturer when available. Indoor Configuration: Eligible
+Unknown,005_2025 Specifications manual (PDF).pdf,setting. (Please note,Text Input,False,setting. (Please note: the operation mode is different from the fan speed.)
+Unknown,007_CPF-Onboarding-PPT.pdf,signature may be omitted if a Home Energy Assessment was completed.,Signature,False,"•The Participating Organization OR the Contractor must also sign •If a Contractor is completing this form, the Participation Organization signature may be omitted if a Home Energy Assessment was comp"
+Unknown,007_2025 Quality Management Policy (PDF).pdf,• Building Durability,Text Input,False,• Building Durability: Missing or improperly installed baffles on eave vents (attic insulation).
+Unknown,005_2025 Specifications manual (PDF).pdf,• Environmental Protection Agency (EPA),Text Input,False,• Environmental Protection Agency (EPA): https:/ /www.epa.gov/ guidance
+Unknown,007_2025 Quality Management Policy (PDF).pdf,• Health and Safety,Text Input,False,• Health and Safety: Missing carbon monoxide monitor (when measure eligibility criteria apply).
+Unknown,005_2025 Specifications manual (PDF).pdf,• Oregon Department of Environmental Quality (DEQ),Text Input,False,• Oregon Department of Environmental Quality (DEQ): https:/ /www.oregon.gov/DEQ
+Unknown,007_2025 Quality Management Policy (PDF).pdf,• See also,Text Input,False,• See also: Work Quality Verification
+Unknown,007_CPF-Onboarding-PPT.pdf,•300 CPF,Text Input,False,•300 CPF: Customer Authorization Form and Home
+Unknown,007_CPF-Onboarding-PPT.pdf,•300CPF,Text Input,False,•300CPF: Customer Authorization & Home Energy Assessment Form
+Unknown,007_CPF-Onboarding-PPT.pdf,•320 CPF,Text Input,False,•320 CPF: CPF Project Details Form
+Unknown,007_CPF-Onboarding-PPT.pdf,•320CPF,Text Input,False,•320CPF: CPF Project Details Form
+Unknown,007_CPF-Onboarding-PPT.pdf,•Email Subject Line,Text Input,False,•Email Subject Line: Include CP name and site address
+Unknown,007_CPF-Onboarding-PPT.pdf,•Note,Text Input,False,•Note: The ‘Funding Agency Job ID’ only needs to be completed by
+Unknown,007_CPF-Onboarding-PPT.pdf,•“CPF Project,Text Input,False,•“CPF Project: ‘Participating Organization Name’: 100 SW
+Unknown,008_CPF_Onboarding_Checklist.pdf,☐ 320 C PF,Text Input,False,☐ 320 C PF: Project Details Form
+Unknown,008_CPF_Onboarding_Checklist.pdf,☐ PI 320,Text Input,False,☐ PI 320: CPF Program Information Sheet
