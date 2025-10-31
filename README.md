@@ -6,24 +6,7 @@
 
 ---
 
-## ⚠️ Important Disclaimer
-
-**This is an unofficial, independent resource** created by Community Consulting Partners LLC. It is:
-
-- ❌ **NOT affiliated with, endorsed by, or representative of** Energy Trust of Oregon or any utility company
-- ✅ **Based on publicly available information** from Energy Trust's website and program materials
-- ❗ **For informational and educational purposes only**
-
-**To participate in Energy Trust programs:**
-- You **must** go through official Energy Trust of Oregon channels
-- Contact Energy Trust directly at: **1.866.311.1822** or visit [energytrust.org](https://www.energytrust.org)
-- Work with approved Trade Ally contractors or community partners
-- Follow official application processes and requirements
-
-**This resource does not:**
-- Replace official Energy Trust communications or requirements
-- Guarantee program eligibility or incentive amounts
-- Provide official program enrollment or application processing
+A comprehensive resource for Energy Trust of Oregon's Community Partner Funding (CPF) program and standard residential incentives. Includes interactive assessment tools, program documentation, form databases, and eligibility calculators.
 
 ---
 
@@ -305,6 +288,27 @@ See `DATA_DICTIONARY.md` for:
 **Project Lead:**
 - Community Consulting Partners LLC
 - Isaiah Kamrar
+
+---
+
+## ⚠️ Important Disclaimer
+
+**This is an unofficial, independent resource** created by Community Consulting Partners LLC. It is:
+
+- ❌ **NOT affiliated with, endorsed by, or representative of** Energy Trust of Oregon or any utility company
+- ✅ **Based on publicly available information** from Energy Trust's website and program materials
+- ❗ **For informational and educational purposes only**
+
+**To participate in Energy Trust programs:**
+- You **must** go through official Energy Trust of Oregon channels
+- Contact Energy Trust directly at: **1.866.311.1822** or visit [energytrust.org](https://www.energytrust.org)
+- Work with approved Trade Ally contractors or community partners
+- Follow official application processes and requirements
+
+**This resource does not:**
+- Replace official Energy Trust communications or requirements
+- Guarantee program eligibility or incentive amounts
+- Provide official program enrollment or application processing
 
 ---
 
