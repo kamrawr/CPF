@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Trust CPF Resource Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004a99;
+            --accent: #00a651;
+            --gray-50: #f8f9fa;
+            --gray-100: #f3f4f6;
+            --gray-200: #dee2e6;
+            --gray-600: #6c757d;
+            --gray-900: #212529;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--gray-50);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header .org {
+            font-size: 0.875rem;
+            opacity: 0.85;
+            margin-top: 0.75rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Intro Section */
+        .intro {
+            background: white;
+            margin: -1.5rem auto 2.5rem;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            max-width: 1100px;
+        }
+
+        .intro h2 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .intro p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Section */
+        section {
+            margin: 2.5rem auto;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--gray-900);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            transition: all 0.2s ease;
+            border: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+            line-height: 1.3;
+        }
+
+        .card p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.625rem 1.125rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.2s;
+            align-self: flex-start;
+        }
+
+        .card-link:hover {
+            background: var(--primary-dark);
+        }
+
+        .card-link.secondary {
+            background: white;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+        }
+
+        .card-link.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .card-links {
+            display: flex;
+            gap: 0.625rem;
+            flex-wrap: wrap;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.625rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge.tool {
+            background: #f59e0b;
+        }
+
+        .badge.resource {
+            background: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0.375rem 0;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .intro, section {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚡ Energy Trust CPF Resource Hub</h1>
+        <p>Complete toolkit for Community Partner Funding program management, energy assessments, and income eligibility verification</p>
+        <p class="org">Community Consulting Partners LLC</p>
+    </div>
+
+    <div class="container">
+        <div class="intro">
+            <h2>💡 About This Resource Hub</h2>
+            <p>This hub brings together essential resources for managing Energy Trust of Oregon's Community Partner Funding (CPF) program. Access comprehensive documentation, interactive program guides, and practical assessment tools—all designed to streamline workflows for community-based organizations, contractors, and program staff serving low- and moderate-income households.</p>
+        </div>
+
+        <!-- CPF Program Resources -->
+        <section>
+            <h2>📚 CPF Program Resources & Staff Tools</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📖</div>
+                    <span class="badge resource">Resource</span>
+                    <h3>Document Library</h3>
+                    <p>Browse 70+ CPF and residential program documents including application forms, program guides, marketing materials, and equipment specifications. Bilingual English/Spanish support.</p>
+                    <a href="index.html" class="card-link">Browse Library →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📋</div>
+                    <span class="badge resource">Resource</span>
+                    <h3>CPF Program Guide</h3>
+                    <p>Interactive guide to the Community Partner Fund program with comprehensive information on eligibility, application processes, incentive structures, and equipment specifications.</p>
+                    <a href="cpf-program-guide.html" class="card-link">View Guide →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🛠️</div>
+                    <span class="badge resource">Resource</span>
+                    <h3>Staff Portal</h3>
+                    <p>Quick reference portal for CPF staff and partners with easy access to forms, program information, onboarding materials, and frequently used resources.</p>
+                    <a href="cpf-staff-portal.html" class="card-link">Open Portal →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <span class="badge resource">Resource</span>
+                    <h3>Contractor Opportunities</h3>
+                    <p>Information for contractors interested in partnering with CPF programs. Learn about enhanced incentives, partnership requirements, and how to get started.</p>
+                    <a href="contractor_cpf_opportunity.html" class="card-link">Learn More →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏘️</div>
+                    <span class="badge resource">Resource</span>
+                    <h3>Oregon Housing Analysis</h3>
+                    <p>Comprehensive analysis of housing, income, and affordability across Oregon's 36 counties. Interactive visualizations, county comparisons, and HUD AMI data for program targeting.</p>
+                    <div class="card-links">
+                        <a href="https://kamrawr.github.io/oregon-housing-analysis/" class="card-link" target="_blank">View Analysis →</a>
+                        <a href="https://github.com/kamrawr/oregon-housing-analysis" class="card-link secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <span class="badge resource">Resource</span>
+                    <h3>Research Synthesis Lab</h3>
+                    <p>Interactive exploration of 12 literature reviews on energy equity, workforce development, community resilience, and housing infrastructure. Evidence-based insights for program design.</p>
+                    <div class="card-links">
+                        <a href="https://kamrawr.github.io/research-synthesis-lab/" class="card-link" target="_blank">Explore Research →</a>
+                        <a href="https://github.com/kamrawr/research-synthesis-lab" class="card-link secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment & Eligibility Tools -->
+        <section>
+            <h2>🔧 Assessment & Eligibility Tools</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🏠</div>
+                    <span class="badge tool">Tool</span>
+                    <h3>Oregon Comprehensive Energy Assessment</h3>
+                    <p>Professional-grade assessment tool with detailed sizing calculations, dynamic forms, precise Energy Trust incentive calculations, HVAC load analysis, and comprehensive reporting capabilities.</p>
+                    <div class="card-links">
+                        <a href="https://kamrawr.github.io/oregon-comprehensive-energy-app/" class="card-link" target="_blank">Open Tool →</a>
+                        <a href="https://github.com/kamrawr/oregon-comprehensive-energy-app" class="card-link secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <span class="badge tool">Tool</span>
+                    <h3>Energy Assessment (Simple)</h3>
+                    <p>Lightweight, offline-capable assessment tool for quick home energy evaluations. Zero dependencies, works without internet, generates personalized recommendations instantly.</p>
+                    <div class="card-links">
+                        <a href="https://kamrawr.github.io/dynamic-energy-assessment-tool/standalone_assessment.html" class="card-link" target="_blank">Open Tool →</a>
+                        <a href="https://github.com/kamrawr/dynamic-energy-assessment-tool" class="card-link secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <span class="badge tool">Tool</span>
+                    <h3>Income Eligibility Calculator</h3>
+                    <p>Calculate income eligibility for Oregon programs and Energy Trust assistance benefits. 2025 HUD rates, multiple income frequencies, visual charts with real-time updates.</p>
+                    <div class="card-links">
+                        <a href="https://kamrawr.github.io/oregon-income-calculator/" class="card-link" target="_blank">Open Calculator →</a>
+                        <a href="https://github.com/kamrawr/oregon-income-calculator" class="card-link secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p><strong>Community Consulting Partners LLC</strong></p>
+        <p>Isaiah Kamrar • <a href="https://github.com/kamrawr">GitHub</a></p>
+        <p style="margin-top: 0.75rem; font-size: 0.875rem; opacity: 0.8;">Supporting energy efficiency programs through accessible tools and resources</p>
+    </footer>
+</body>
+</html>

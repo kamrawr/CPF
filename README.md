@@ -6,14 +6,24 @@
 
 ---
 
-## 🌐 Interactive Web Pages
+## 🌐 Resource Hub
+
+**[⚡ Energy Trust CPF Resource Hub](https://kamrawr.github.io/CPF/hub.html)** - Your central access point for all CPF resources, assessment tools, and eligibility calculators
+
+### Interactive Pages
 
 Explore the CPF program resources through these interactive pages:
 
+**CPF Program Resources:**
 - **[📚 Document Library](https://kamrawr.github.io/CPF/)** - Browse all 70+ CPF and residential program documents
 - **[📖 CPF Program Guide](https://kamrawr.github.io/CPF/cpf-program-guide.html)** - Complete guide to the Community Partner Funding program
 - **[🛠️ CPF Staff Portal](https://kamrawr.github.io/CPF/cpf-staff-portal.html)** - Quick reference portal for staff and partners
 - **[🤝 Contractor Opportunities](https://kamrawr.github.io/CPF/contractor_cpf_opportunity.html)** - Partnership opportunities for contractors
+
+**Assessment & Eligibility Tools:**
+- **[🏠 Oregon Comprehensive Energy Assessment](https://kamrawr.github.io/oregon-comprehensive-energy-app/)** - Professional-grade tool with sizing & incentive calculations
+- **[⚡ Energy Assessment (Simple)](https://kamrawr.github.io/dynamic-energy-assessment-tool/standalone_assessment.html)** - Lightweight offline-capable assessment
+- **[💰 Income Eligibility Calculator](https://kamrawr.github.io/oregon-income-calculator/)** - 2025 HUD rates for Oregon programs
 
 ---
 
