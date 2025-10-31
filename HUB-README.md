@@ -60,28 +60,23 @@ Pages within this repository and external staff resources:
    - Link: [Explore Research](https://kamrawr.github.io/research-synthesis-lab/)
    - Repository: [GitHub](https://github.com/kamrawr/research-synthesis-lab)
 
-### Assessment & Eligibility Tools (3 External Tools)
+### Assessment & Eligibility Tools (2 Tools)
 
-1. **Oregon Comprehensive Energy Assessment**
-   - Professional-grade assessment tool
-   - Detailed sizing calculations
-   - Dynamic form fields
-   - Precise Energy Trust incentive calculations
-   - HVAC load analysis
-   - Comprehensive reporting capabilities
-   - Link: [Open Tool](https://kamrawr.github.io/oregon-comprehensive-energy-app/)
-   - Repository: [GitHub](https://github.com/kamrawr/oregon-comprehensive-energy-app)
+1. **CPF Assessment Tool** (`cpf-assessment-tool.html`)
+   - Complete 5-step assessment workflow
+   - Property intake and site information
+   - Eligibility check with 2025 HUD income limits
+   - Home energy assessment (heating, cooling, insulation, windows)
+   - Personalized equipment recommendations
+   - Financial summary with incentive calculations
+   - 4 incentive tiers: Standard, CPF Enhanced, CERTA Premium, No-Cost
+   - Sample data loader for quick testing
+   - PII-protected (all processing in browser)
+   - Print-friendly reports
+   - Link: [Open Tool](https://kamrawr.github.io/CPF/cpf-assessment-tool.html)
+   - Repository: [GitHub](https://github.com/kamrawr/CPF)
 
-2. **Energy Assessment (Simple)**
-   - Lightweight, offline-capable
-   - Zero dependencies (works without internet)
-   - Quick home energy evaluations
-   - Instant recommendations
-   - ~28KB single-file HTML
-   - Link: [Open Tool](https://kamrawr.github.io/dynamic-energy-assessment-tool/standalone_assessment.html)
-   - Repository: [GitHub](https://github.com/kamrawr/dynamic-energy-assessment-tool)
-
-3. **Income Eligibility Calculator**
+2. **Income Eligibility Calculator**
    - 2025 HUD rates for Oregon
    - Multiple income frequencies (annual, monthly, weekly, hourly)
    - Tax status options
