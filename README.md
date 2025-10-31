@@ -63,12 +63,12 @@ CPF/
 │   ├── README_FORM_EXTRACTION.md        # Technical details
 │   ├── extract_form_fields.py           # Extraction script
 │   └── enhance_form_fields.py           # Enhancement script
-├── cpf-docs/                    # CPF program (303 fields)
+├── program-docs/                    # CPF program (303 fields)
 │   ├── [40 PDFs]                # CPF forms & materials
 │   ├── form_fields_enhanced.csv # ⭐ CPF-specific database
 │   ├── form_fields_comprehensive.csv
 │   └── README_CPF.md            # CPF documentation
-└── residential-docs/            # Standard program (242 fields)
+└── program-docs/            # Standard program (242 fields)
     ├── [46 PDFs]                # Residential forms & materials
     ├── form_fields_enhanced.csv # ⭐ Residential-specific database
     ├── form_fields_comprehensive.csv
@@ -79,7 +79,7 @@ CPF/
 
 ## What's What
 
-### `/cpf-docs/` - Community Partner Funding Documents
+### `/program-docs/` - Community Partner Funding Documents
 
 **Purpose:** CPF-specific program materials for community-based organizations
 
@@ -109,7 +109,7 @@ CPF/
 
 ---
 
-### `/residential-docs/` - Standard Residential Program Documents
+### `/program-docs/` - Standard Residential Program Documents
 
 **Purpose:** Standard Energy Trust residential program forms and materials
 
