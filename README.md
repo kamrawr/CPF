@@ -10,10 +10,10 @@
 
 Explore the CPF program resources through these interactive pages:
 
-- **[📚 Document Library](https://isaiahkamrar.github.io/CPF/)** - Browse all 70+ CPF and residential program documents
-- **[📖 CPF Program Guide](https://isaiahkamrar.github.io/CPF/cpf-program-guide.html)** - Complete guide to the Community Partner Funding program
-- **[🛠️ CPF Staff Portal](https://isaiahkamrar.github.io/CPF/cpf-staff-portal.html)** - Quick reference portal for staff and partners
-- **[🤝 Contractor Opportunities](https://isaiahkamrar.github.io/CPF/contractor_cpf_opportunity.html)** - Partnership opportunities for contractors
+- **[📚 Document Library](https://kamrawr.github.io/CPF/)** - Browse all 70+ CPF and residential program documents
+- **[📖 CPF Program Guide](https://kamrawr.github.io/CPF/cpf-program-guide.html)** - Complete guide to the Community Partner Funding program
+- **[🛠️ CPF Staff Portal](https://kamrawr.github.io/CPF/cpf-staff-portal.html)** - Quick reference portal for staff and partners
+- **[🤝 Contractor Opportunities](https://kamrawr.github.io/CPF/contractor_cpf_opportunity.html)** - Partnership opportunities for contractors
 
 ---
 
