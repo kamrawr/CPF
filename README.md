@@ -2,7 +2,7 @@
 
 **Organization:** Community Consulting Partners LLC  
 **Project Owner:** Isaiah Kamrar  
-**Last Updated:** October 30, 2025
+**Last Updated:** October 31, 2025
 
 ---
 
@@ -44,6 +44,7 @@ Explore the CPF program resources through these interactive pages:
 - **[🤝 Contractor Opportunities](https://kamrawr.github.io/CPF/contractor_cpf_opportunity.html)** - Partnership opportunities for contractors
 
 **Assessment & Eligibility Tools:**
+- **[🏠 CPF Assessment Tool](https://kamrawr.github.io/CPF/cpf-assessment-tool.html)** - NEW! Comprehensive intake, eligibility, assessment & incentive calculator with Standard/CPF/CERTA/No-Cost tiers
 - **[🏠 Oregon Comprehensive Energy Assessment](https://kamrawr.github.io/oregon-comprehensive-energy-app/)** - Professional-grade tool with sizing & incentive calculations
 - **[⚡ Energy Assessment (Simple)](https://kamrawr.github.io/dynamic-energy-assessment-tool/standalone_assessment.html)** - Lightweight offline-capable assessment
 - **[💰 Income Eligibility Calculator](https://kamrawr.github.io/oregon-income-calculator/)** - 2025 HUD rates for Oregon programs
@@ -55,6 +56,12 @@ Explore the CPF program resources through these interactive pages:
 ```
 CPF/
 ├── README.md (this file)
+├── cpf-assessment-tool.html     # NEW! Interactive assessment tool
+├── hub.html                     # Resource hub landing page
+├── index.html                   # Document library browser
+├── cpf-program-guide.html       # Program guide
+├── cpf-staff-portal.html        # Staff reference portal
+├── contractor_cpf_opportunity.html  # Contractor resources
 ├── analysis/                    # Combined analysis (all programs)
 │   ├── form_fields_comprehensive.csv    # All 543 fields (raw)
 │   ├── form_fields_enhanced.csv         # All 543 fields (enhanced)
@@ -63,15 +70,11 @@ CPF/
 │   ├── README_FORM_EXTRACTION.md        # Technical details
 │   ├── extract_form_fields.py           # Extraction script
 │   └── enhance_form_fields.py           # Enhancement script
-├── program-docs/                    # CPF program (303 fields)
-│   ├── [40 PDFs]                # CPF forms & materials
-│   ├── form_fields_enhanced.csv # ⭐ CPF-specific database
-│   ├── form_fields_comprehensive.csv
-│   └── README_CPF.md            # CPF documentation
-└── program-docs/            # Standard program (242 fields)
-    ├── [46 PDFs]                # Residential forms & materials
-    ├── form_fields_enhanced.csv # ⭐ Residential-specific database
+└── program-docs/                # All program documents (CPF + Standard)
+    ├── [86 PDFs]                # All forms & materials consolidated
+    ├── form_fields_enhanced.csv # Combined database
     ├── form_fields_comprehensive.csv
+    ├── README_CPF.md            # CPF documentation
     └── README_RESIDENTIAL.md    # Residential documentation
 ```
 
@@ -79,9 +82,9 @@ CPF/
 
 ## What's What
 
-### `/program-docs/` - Community Partner Funding Documents
+### `/program-docs/` - All Program Documents (Consolidated)
 
-**Purpose:** CPF-specific program materials for community-based organizations
+**Purpose:** Unified directory containing both CPF and Standard residential program materials
 
 **Key Documents:**
 - `001_Program Information sheet_ PI0320CPF.pdf` - Main CPF program guide (Oregon)
@@ -105,13 +108,13 @@ CPF/
 - No-cost program guides
 - Spanish language versions
 
-**File Count:** 40 PDFs
+**CPF Documents:** 40 PDFs  
+**Standard/Residential Documents:** 46 PDFs  
+**Total:** 86 PDFs + analysis files
 
 ---
 
-### `/program-docs/` - Standard Residential Program Documents
-
-**Purpose:** Standard Energy Trust residential program forms and materials
+### Program Document Details
 
 **Key Documents:**
 
@@ -141,7 +144,6 @@ CPF/
 - `029_CBO-Low-Cost-No-Cost-Biligual-Flyer_CLEAN.pdf`
 - `032_DHP-Engagement-Guide-English_CLEAN.pdf`
 
-**File Count:** 46 PDFs + 6 analysis files
 
 ---
 
@@ -204,6 +206,33 @@ CPF/
 - Trade Ally network
 - Instant incentives available
 - Self-serve online applications
+
+---
+
+## CPF Assessment Tool Features
+
+**[🏠 Try the Assessment Tool](https://kamrawr.github.io/CPF/cpf-assessment-tool.html)**
+
+### What It Does:
+- ✅ **PII-Protected** - All data stays in your browser, nothing transmitted
+- ✅ **5-Step Workflow** - Property Info → Eligibility → Assessment → Recommendations → Summary
+- ✅ **4 Incentive Tiers** - Standard, CPF Enhanced, CERTA Premium, No-Cost
+- ✅ **Smart Eligibility** - 2025 HUD income limits, automatic program matching
+- ✅ **Comprehensive Recommendations** - Heat pumps, insulation, water heaters, windows
+- ✅ **Financial Breakdown** - Cost estimates, incentives, out-of-pocket, payback periods
+- ✅ **Sample Data Loader** - Quick testing with pre-filled scenarios
+- ✅ **Print-Friendly** - Save or print complete assessment reports
+
+### Incentive Tiers:
+
+| Equipment | Standard | CPF | CERTA | No-Cost |
+|-----------|----------|-----|-------|--------|
+| Ductless HP (SF) | $800 | $1,800 | $2,500 | Full |
+| Ductless HP (MH) | $800 | $3,500 | $4,200 | Full |
+| Ducted HP | $1,000 | $4,000 | $5,500 | Full |
+| Gas Furnace | $1,600 | $2,900 | $3,500 | - |
+| HP Water Heater | $75 | $240 | $400 | Full |
+| Attic Insulation | $0.40/sqft | $1.00/sqft | $1.50/sqft | - |
 
 ---
 
@@ -285,5 +314,7 @@ See `DATA_DICTIONARY.md` for:
 - All residential files downloaded: Oct 30, 2025 @ 16:22-16:23
 - Form field extraction completed: Oct 30, 2025 @ 16:36
 - Directory reorganization: Oct 30, 2025 @ 16:43
+- Folders consolidated to program-docs: Oct 31, 2025 @ 03:09
+- CPF Assessment Tool added: Oct 31, 2025 @ 02:13
 
 **File Naming Convention:** `###_Document-Title.pdf` where ### indicates download order
