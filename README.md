@@ -6,9 +6,19 @@
 
 ---
 
-## 🌐 Resource Hub
+## 🌐 Resource Hubs
 
-**[⚡ Energy Trust CPF Resource Hub](https://kamrawr.github.io/CPF/hub.html)** - Your central access point for all CPF resources, assessment tools, and eligibility calculators
+Choose your preferred interface:
+
+### 🎯 [Quick Access Hub](https://kamrawr.github.io/CPF/hub.html)
+**Best for:** Quick lookups, contractors, field staff  
+**Features:** Simple navigation, fast loading, essential links only, mobile-optimized
+
+### 📊 [Program Management Center](https://kamrawr.github.io/CPF/program-management-center.html)
+**Best for:** Program managers, administrators, comprehensive overview  
+**Features:** Detailed project cards, filtering by category, complete descriptions, research integration
+
+---
 
 ### Interactive Pages
 

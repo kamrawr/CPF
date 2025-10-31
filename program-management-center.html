@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program Management Center | Community Consulting Partners</title>
+    <title>Energy Trust CPF Resources | Community Consulting Partners</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --secondary: #8b5cf6;
+            --primary: #0066cc;
+            --primary-dark: #004a99;
             --accent: #00a651;
-            --gray-50: #f9fafb;
+            --gray-50: #f8f9fa;
             --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-900: #111827;
+            --gray-200: #dee2e6;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --gray-900: #212529;
         }
 
         * {
@@ -143,14 +142,14 @@
         /* Project Grid */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .project-card {
             background: white;
-            border-radius: 12px;
-            padding: 32px;
+            border-radius: 10px;
+            padding: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             border: 2px solid transparent;
@@ -168,12 +167,12 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 16px;
-            gap: 12px;
+            margin-bottom: 12px;
+            gap: 8px;
         }
 
         .project-icon {
-            font-size: 2.5em;
+            font-size: 2em;
         }
 
         .project-type {
@@ -207,30 +206,31 @@
         }
 
         .project-card h3 {
-            font-size: 1.5em;
-            margin-bottom: 12px;
+            font-size: 1.25em;
+            margin-bottom: 10px;
             color: var(--primary);
             line-height: 1.3;
         }
 
         .project-card p {
             color: var(--gray-600);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             flex-grow: 1;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 0.95em;
         }
 
         .project-meta {
             display: flex;
-            gap: 16px;
-            padding: 16px 0;
+            gap: 12px;
+            padding: 12px 0;
             border-top: 1px solid var(--gray-200);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
 
         .project-meta span {
-            font-size: 0.85em;
+            font-size: 0.8em;
             color: var(--gray-600);
         }
 
@@ -241,12 +241,13 @@
 
         .project-link {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 10px 20px;
             background: var(--primary);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 500;
+            font-size: 0.9em;
             transition: all 0.2s;
             text-align: center;
         }
@@ -258,7 +259,7 @@
 
         .project-links {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
@@ -298,18 +299,52 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+            
             .hero h1 {
-                font-size: 2em;
+                font-size: 1.75em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1em;
             }
             
             .project-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .project-card {
+                padding: 16px;
+            }
+            
+            .project-card h3 {
+                font-size: 1.15em;
+            }
+            
+            .project-icon {
+                font-size: 1.75em;
             }
 
             .filter-tabs {
                 overflow-x: auto;
                 flex-wrap: nowrap;
                 padding-bottom: 8px;
+            }
+            
+            .stats-bar {
+                gap: 1rem;
+                margin: -30px auto 40px;
+            }
+            
+            .stat-card {
+                padding: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2em;
             }
         }
     </style>
@@ -379,16 +414,16 @@
                     <div class="project-icon">🏠</div>
                     <span class="project-type tools">Tool</span>
                 </div>
-                <h3>Oregon Energy Assessment (Advanced)</h3>
-                <p>Advanced home energy assessment tool with detailed sizing calculations, dynamic form fields, and precise Energy Trust of Oregon incentive calculations. Includes HVAC load calculations and professional reports.</p>
+                <h3>Oregon Comprehensive Energy App</h3>
+                <p>Comprehensive home energy assessment and management tool with detailed sizing calculations, dynamic form fields, and precise Energy Trust of Oregon incentive calculations. Includes HVAC load calculations and professional reports.</p>
                 <div class="project-meta">
                     <span><strong>Sizing</strong> Calculations</span>
                     <span><strong>Real-time</strong> Incentives</span>
                     <span><strong>Mobile</strong> Responsive</span>
                 </div>
                 <div class="project-links">
-                    <a href="https://kamrawr.github.io/oregon-energy-assessment-advanced/standalone_assessment.html" class="project-link" target="_blank">Open Tool →</a>
-                    <a href="https://github.com/kamrawr/oregon-energy-assessment-advanced" class="project-link secondary" target="_blank">GitHub</a>
+                    <a href="https://kamrawr.github.io/oregon-comprehensive-energy-app/" class="project-link" target="_blank">Open Tool →</a>
+                    <a href="https://github.com/kamrawr/oregon-comprehensive-energy-app" class="project-link secondary" target="_blank">GitHub</a>
                 </div>
             </div>
 
