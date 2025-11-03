@@ -1106,6 +1106,7 @@
                 standard: 0.40,
                 cpf: 1.00,
                 certa: 1.50,
+                certaMax: 2000, // CERTA cap for weatherization
                 noCost: null,
                 unit: 'per sq ft',
                 specs: 'R-38 or greater'
@@ -1115,6 +1116,7 @@
                 standard: 0.60,
                 cpf: 1.50,
                 certa: 2.25,
+                certaMax: 2000, // CERTA cap for weatherization
                 noCost: null,
                 unit: 'per sq ft',
                 specs: 'R-30 or greater'
@@ -1124,6 +1126,7 @@
                 standard: 0.50,
                 cpf: 1.25,
                 certa: 1.75,
+                certaMax: 2000, // CERTA cap for weatherization
                 noCost: null,
                 unit: 'per sq ft',
                 specs: 'R-11 or greater'
@@ -1133,6 +1136,7 @@
                 standard: 1.00,
                 cpf: 2.50,
                 certa: 4.00,
+                certaMax: 2000, // CERTA cap for weatherization
                 noCost: null,
                 unit: 'per sq ft',
                 specs: 'U-Value ≤0.27',
@@ -1614,7 +1618,7 @@
                     totalSavings += rec.annualSavings;
                     outOfPocket += yourCost;
 
-                    // Categorize and track by program type
+                    // Categorize and track by program type with proper CERTA cap handling
                     let category = 'other';
                     if (rec.category === 'weatherization') category = 'weatherization';
                     else if (['heating', 'cooling', 'water-heating'].includes(rec.category)) category = 'hvac';
@@ -1622,12 +1626,25 @@
                     categoryTotals[category].cost += adjustedCost;
                     
                     if (canBeNoCost) {
+                        // No-cost program covers everything
                         categoryTotals[category].noCost += incentiveValue;
+                    } else if (eligibility.certa && rec.category === 'weatherization' && rec.certaMax) {
+                        // CERTA has $2k cap for weatherization - remainder goes to CPF
+                        const certaPortion = Math.min(incentiveValue, rec.certaMax);
+                        const cpfPortion = Math.max(0, incentiveValue - certaPortion);
+                        
+                        categoryTotals[category].certa += certaPortion;
+                        if (cpfPortion > 0) {
+                            categoryTotals[category].cpf += cpfPortion;
+                        }
                     } else if (eligibility.certa) {
+                        // CERTA for non-weatherization (no cap)
                         categoryTotals[category].certa += incentiveValue;
                     } else if (eligibility.cpf) {
+                        // CPF only
                         categoryTotals[category].cpf += incentiveValue;
                     } else {
+                        // Standard program
                         categoryTotals[category].standard += incentiveValue;
                     }
 
