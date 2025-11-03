@@ -703,7 +703,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Are you currently enrolled in any of these programs?</label>
+                    <label>No-Cost Program Eligibility (Check all that apply)</label>
                     <div class="checkbox-group">
                         <div class="checkbox-item">
                             <input type="checkbox" id="billDiscount" value="billDiscount">
@@ -721,7 +721,12 @@
                             <input type="checkbox" id="medicaid" value="medicaid">
                             <label for="medicaid">Oregon Health Plan / Medicaid</label>
                         </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="energyBurdened" value="energyBurdened">
+                            <label for="energyBurdened">Energy Burdened (6%+ of income on energy bills)</label>
+                        </div>
                     </div>
+                    <small>If you qualify for any of these, you may be eligible for no-cost heat pump and water heater installations</small>
                 </div>
 
                 <div class="form-group">
@@ -1200,6 +1205,7 @@
                     snap: document.getElementById('snap').checked,
                     liheap: document.getElementById('liheap').checked,
                     medicaid: document.getElementById('medicaid').checked,
+                    energyBurdened: document.getElementById('energyBurdened').checked,
                     ownership: document.querySelector('input[name="ownership"]:checked')?.value,
                     communityPartner: document.querySelector('input[name="communityPartner"]:checked')?.value
                 },
@@ -1244,13 +1250,20 @@
             
             if (income && householdSize && hudIncomeLimits[householdSize]) {
                 const limits = hudIncomeLimits[householdSize] || hudIncomeLimits[8];
+                const ami80 = limits.low * 0.8; // 80% AMI threshold for no-cost
                 
                 if (income <= limits.extremelyLow) {
                     eligibility.incomeLevel = 'extremely-low';
                     eligibility.noCost = true;
+                    eligibility.cpf = true;
                 } else if (income <= limits.veryLow) {
                     eligibility.incomeLevel = 'very-low';
                     eligibility.noCost = true;
+                    eligibility.cpf = true;
+                } else if (income <= ami80) {
+                    eligibility.incomeLevel = '80-ami';
+                    eligibility.noCost = true; // Auto-qualify for no-cost at <80% AMI
+                    eligibility.cpf = true;
                 } else if (income <= limits.low) {
                     eligibility.incomeLevel = 'low';
                     eligibility.cpf = true;
@@ -1259,10 +1272,11 @@
                 }
             } else if (assessmentData.eligibility.billDiscount || 
                        assessmentData.eligibility.snap || 
-                       assessmentData.eligibility.liheap) {
+                       assessmentData.eligibility.liheap ||
+                       assessmentData.eligibility.energyBurdened) {
                 eligibility.incomeLevel = 'presumed-eligible';
                 eligibility.cpf = true;
-                eligibility.noCost = true;
+                eligibility.noCost = true; // Presumptive eligibility for no-cost
             }
             
             // CPF eligibility (with or without income verification)
