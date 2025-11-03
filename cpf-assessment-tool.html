@@ -566,7 +566,15 @@
         <div class="privacy-banner">
             <h3>🔒 Privacy Protected</h3>
             <p><strong>Your data never leaves your device.</strong> This tool runs entirely in your browser. No personal information is transmitted, stored, or shared. You can save or print your results at any time.</p>
-            <button class="btn btn-secondary" onclick="loadSampleData()" style="margin-top: 10px;">📋 Load Sample Data (for testing)</button>
+            <div style="margin-top: 15px;">
+                <p style="margin-bottom: 10px; font-weight: 600;">📋 Try Demo Profiles:</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" onclick="loadProfile('income-qualified')" style="flex: 1; min-width: 200px;">Income-Qualified Household</button>
+                    <button class="btn btn-secondary" onclick="loadProfile('certa-eligible')" style="flex: 1; min-width: 200px;">CERTA Rural Community</button>
+                    <button class="btn btn-secondary" onclick="loadProfile('standard-customer')" style="flex: 1; min-width: 200px;">Standard Customer</button>
+                </div>
+                <small style="display: block; margin-top: 8px;">Demo profiles show different program eligibility scenarios</small>
+            </div>
         </div>
 
         <div class="progress-bar">
@@ -1833,40 +1841,116 @@
             });
         }
 
-        // Load Sample Data for Testing
-        function loadSampleData() {
-            // Property Information
-            document.getElementById('propertyType').value = 'single-family';
-            document.getElementById('stateOR').checked = true;
-            document.getElementById('yearBuilt').value = '1985';
-            document.getElementById('sqft').value = '1500';
-            document.getElementById('stories').value = '1';
-            document.getElementById('foundation').value = 'crawlspace';
-            document.getElementById('electricProvider').value = 'PGE';
-            document.getElementById('gasProvider').value = 'NW Natural';
-            
-            // Eligibility
-            document.getElementById('householdSize').value = '3';
-            document.getElementById('annualIncome').value = '45000';
+        // Load Demo Profiles
+        function loadProfile(profileType) {
+            // Reset all checkboxes first
             document.getElementById('billDiscount').checked = false;
-            document.getElementById('ownerOccupied').checked = true;
-            document.getElementById('cpYes').checked = true;
+            document.getElementById('snap').checked = false;
+            document.getElementById('liheap').checked = false;
+            document.getElementById('medicaid').checked = false;
+            document.getElementById('energyBurdened').checked = false;
+            document.getElementById('certaEligible').checked = false;
+            document.getElementById('noCostOverride').checked = false;
             
-            // Home Energy Assessment
-            document.getElementById('heatingSystem').value = 'electric-resistance';
-            document.getElementById('heatingAge').value = '20+';
-            document.getElementById('heatingCondition').value = 'poor';
-            document.getElementById('ductNo').checked = true;
-            document.getElementById('noCooling').checked = true;
-            document.getElementById('waterHeater').value = 'electric-tank';
-            document.getElementById('waterHeaterAge').value = '15+';
-            document.getElementById('atticInsulation').value = 'low';
-            document.getElementById('floorInsulation').value = 'low';
-            document.getElementById('wallInsulation').value = 'some';
-            document.getElementById('windows').value = 'single-pane';
-            document.getElementById('windowCondition').value = 'poor';
+            // Common property information
+            document.getElementById('stateOR').checked = true;
+            document.getElementById('electricProvider').value = 'PGE';
             
-            alert('Sample data loaded! Click "Next" to proceed through the assessment.');
+            if (profileType === 'income-qualified') {
+                // Income-Qualified Household: Low-income family, qualifies for no-cost programs
+                document.getElementById('propertyType').value = 'single-family';
+                document.getElementById('yearBuilt').value = '1978';
+                document.getElementById('sqft').value = '1200';
+                document.getElementById('stories').value = '1';
+                document.getElementById('foundation').value = 'crawlspace';
+                document.getElementById('gasProvider').value = 'None';
+                
+                // Eligibility - Low income household qualifies for no-cost
+                document.getElementById('householdSize').value = '4';
+                document.getElementById('annualIncome').value = '42000'; // <80% AMI for family of 4
+                document.getElementById('snap').checked = true; // Also on SNAP
+                document.getElementById('ownerOccupied').checked = true;
+                document.getElementById('cpYes').checked = true;
+                
+                // Assessment - Old inefficient systems
+                document.getElementById('heatingSystem').value = 'electric-resistance';
+                document.getElementById('heatingAge').value = '20+';
+                document.getElementById('heatingCondition').value = 'poor';
+                document.getElementById('ductNo').checked = true;
+                document.getElementById('noCooling').checked = true;
+                document.getElementById('waterHeater').value = 'electric-tank';
+                document.getElementById('waterHeaterAge').value = '15+';
+                document.getElementById('atticInsulation').value = 'low';
+                document.getElementById('floorInsulation').value = 'low';
+                document.getElementById('wallInsulation').value = 'some';
+                document.getElementById('windows').value = 'single-pane';
+                document.getElementById('windowCondition').value = 'poor';
+                
+                alert('🏠 Income-Qualified Household Profile Loaded\n\n• Family of 4, $42k income\n• Qualifies for NO-COST programs\n• Old electric resistance heating\n• Poor insulation throughout\n\nClick "Next" to see no-cost incentives!');
+                
+            } else if (profileType === 'certa-eligible') {
+                // CERTA-Eligible: Rural manufactured home, higher incentives
+                document.getElementById('propertyType').value = 'manufactured';
+                document.getElementById('yearBuilt').value = '1995';
+                document.getElementById('sqft').value = '1000';
+                document.getElementById('stories').value = '1';
+                document.getElementById('foundation').value = 'crawlspace';
+                document.getElementById('gasProvider').value = 'Cascade';
+                
+                // Eligibility - CPF eligible, manually enable CERTA
+                document.getElementById('householdSize').value = '2';
+                document.getElementById('annualIncome').value = '52000'; // CPF but not no-cost
+                document.getElementById('ownerOccupied').checked = true;
+                document.getElementById('cpYes').checked = true;
+                document.getElementById('certaEligible').checked = true; // CERTA premium tier
+                
+                // Assessment - Manufactured home with gas furnace
+                document.getElementById('heatingSystem').value = 'gas-furnace';
+                document.getElementById('heatingAge').value = '20+';
+                document.getElementById('heatingCondition').value = 'poor';
+                document.getElementById('ductYes').checked = true;
+                document.getElementById('noCooling').checked = true;
+                document.getElementById('waterHeater').value = 'gas-tank';
+                document.getElementById('waterHeaterAge').value = '15+';
+                document.getElementById('atticInsulation').value = 'low';
+                document.getElementById('floorInsulation').value = 'none';
+                document.getElementById('wallInsulation').value = 'none';
+                document.getElementById('windows').value = 'single-pane';
+                document.getElementById('windowCondition').value = 'fair';
+                
+                alert('🏞️ CERTA Rural Community Profile Loaded\n\n• Manufactured home, rural area\n• CERTA Premium incentives ($2k cap + CPF)\n• Old gas furnace + poor insulation\n• Higher manufactured home incentives\n\nClick "Next" to see CERTA premium rates!');
+                
+            } else if (profileType === 'standard-customer') {
+                // Standard Customer: Middle income, standard incentives
+                document.getElementById('propertyType').value = 'single-family';
+                document.getElementById('yearBuilt').value = '2005';
+                document.getElementById('sqft').value = '1800';
+                document.getElementById('stories').value = '2';
+                document.getElementById('foundation').value = 'crawlspace';
+                document.getElementById('gasProvider').value = 'NW Natural';
+                
+                // Eligibility - Above income limits, standard program only
+                document.getElementById('householdSize').value = '3';
+                document.getElementById('annualIncome').value = '85000'; // Above CPF limits
+                document.getElementById('ownerOccupied').checked = true;
+                document.getElementById('cpNo').checked = true;
+                
+                // Assessment - Moderate condition, some upgrades needed
+                document.getElementById('heatingSystem').value = 'gas-furnace';
+                document.getElementById('heatingAge').value = '16-20';
+                document.getElementById('heatingCondition').value = 'fair';
+                document.getElementById('ductYes').checked = true;
+                document.getElementById('centralAC').checked = true;
+                document.getElementById('waterHeater').value = 'gas-tank';
+                document.getElementById('waterHeaterAge').value = '11-15';
+                document.getElementById('atticInsulation').value = 'moderate';
+                document.getElementById('floorInsulation').value = 'moderate';
+                document.getElementById('wallInsulation').value = 'good';
+                document.getElementById('windows').value = 'double-pane-old';
+                document.getElementById('windowCondition').value = 'good';
+                
+                alert('🏡 Standard Customer Profile Loaded\n\n• Modern home, middle income\n• Standard Energy Trust incentives\n• Aging gas furnace (16-20 years)\n• Moderate insulation, older windows\n\nClick "Next" to see standard incentive rates!');
+            }
         }
 
         // Window option toggles
