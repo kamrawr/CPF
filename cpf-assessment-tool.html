@@ -1625,21 +1625,25 @@
                     
                     categoryTotals[category].cost += adjustedCost;
                     
+                    // Determine which funding bucket based on actual eligibility and costs
                     if (canBeNoCost) {
-                        // No-cost program covers everything
+                        // No-cost program explicitly enabled and covers this item
                         categoryTotals[category].noCost += incentiveValue;
-                    } else if (eligibility.certa && rec.category === 'weatherization' && rec.certaMax) {
-                        // CERTA has $2k cap for weatherization - remainder goes to CPF
-                        const certaPortion = Math.min(incentiveValue, rec.certaMax);
-                        const cpfPortion = Math.max(0, incentiveValue - certaPortion);
-                        
-                        categoryTotals[category].certa += certaPortion;
-                        if (cpfPortion > 0) {
-                            categoryTotals[category].cpf += cpfPortion;
-                        }
                     } else if (eligibility.certa) {
-                        // CERTA for non-weatherization (no cap)
-                        categoryTotals[category].certa += incentiveValue;
+                        // CERTA eligible - check for weatherization cap
+                        if (rec.category === 'weatherization' && rec.certaMax) {
+                            // CERTA has $2k cap for weatherization - remainder goes to CPF
+                            const certaPortion = Math.min(incentiveValue, rec.certaMax);
+                            const cpfPortion = Math.max(0, incentiveValue - certaPortion);
+                            
+                            categoryTotals[category].certa += certaPortion;
+                            if (cpfPortion > 0) {
+                                categoryTotals[category].cpf += cpfPortion;
+                            }
+                        } else {
+                            // CERTA for HVAC/non-weatherization (no cap)
+                            categoryTotals[category].certa += incentiveValue;
+                        }
                     } else if (eligibility.cpf) {
                         // CPF only
                         categoryTotals[category].cpf += incentiveValue;
