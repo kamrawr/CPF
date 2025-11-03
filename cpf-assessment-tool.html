@@ -955,8 +955,11 @@
 
                 <div class="btn-group">
                     <button class="btn btn-secondary" onclick="prevSection()">← Back</button>
-                    <button class="btn btn-primary" onclick="nextSection()">View Summary →</button>
+                    <button class="btn btn-primary" onclick="calculateRecommendations()">Get Recommendations →</button>
                 </div>
+            </div>
+
+            <!-- Section 4: Recommendations -->
             <div class="section" data-section="4">
                 <h2>Your Personalized Recommendations</h2>
                 <div id="eligibilityResults"></div>
@@ -964,9 +967,11 @@
 
                 <div class="btn-group">
                     <button class="btn btn-secondary" onclick="prevSection()">← Back</button>
-                    <button class="btn btn-primary" onclick="completeSection()">View Summary →</button>
+                    <button class="btn btn-primary" onclick="nextSection()">View Summary →</button>
                 </div>
-                            <!-- Section 5: Financial Summary -->
+            </div>
+
+            <!-- Section 5: Financial Summary -->
             <div class="section" data-section="5">
                 <h2>Financial Summary & Next Steps</h2>
                 <div id="summaryContainer"></div>
@@ -1016,6 +1021,10 @@
         let currentSection = 1;
         let assessmentData = {};
         let recommendations = [];
+        let windowOptions = {
+            noCost: false,
+            enhanced: false
+        };
         let eligibility = {
             standard: false,
             cpf: false,
@@ -1126,7 +1135,8 @@
                 certa: 4.00,
                 noCost: null,
                 unit: 'per sq ft',
-                specs: 'U-Value ≤0.27'
+                specs: 'U-Value ≤0.27',
+                enhanced: false  // Toggle for enhanced windows on summary
             }
         };
 
@@ -1390,6 +1400,8 @@
                 });
             }
 
+            // Navigate to recommendations section and display
+            nextSection();
             displayRecommendations();
         }
 
@@ -1436,11 +1448,13 @@
             eligibilityDiv.innerHTML = eligibilityHTML;
 
             // Display recommendations
-            let recsHTML = '<h3>Recommended Upgrades</h3>';
+            let recsHTML = '';
             
             if (recommendations.length === 0) {
-                recsHTML += '<div class="alert alert-info">Your home appears to be well-equipped! No major upgrades recommended at this time.</div>';
+                recsHTML += '<div class="card"><h3>Recommended Upgrades</h3>';
+                recsHTML += '<div class="alert alert-info">Your home appears to be well-equipped! No major upgrades recommended at this time.</div></div>';
             } else {
+                recsHTML += '<h3 style="margin-bottom: 20px;">Recommended Upgrades</h3>';
                 const priorityOrder = { high: 1, medium: 2, low: 3 };
                 recommendations.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
 
@@ -1503,7 +1517,7 @@
             }
 
             recommendationsDiv.innerHTML = recsHTML;
-            nextSection();
+            console.log('Recommendations displayed:', recommendations.length, 'items');
         }
 
         function displaySummary() {
@@ -1513,8 +1527,47 @@
             let totalIncentive = 0;
             let totalSavings = 0;
             let outOfPocket = 0;
+            
+            // Check if windows were recommended
+            const hasWindowRec = recommendations.some(r => r.name === 'Window Replacement');
 
-            let summaryHTML = '<div class="card">';
+            // Category tracking
+            const categoryTotals = {
+                weatherization: { cost: 0, standard: 0, cpf: 0, certa: 0, noCost: 0 },
+                hvac: { cost: 0, standard: 0, cpf: 0, certa: 0, noCost: 0 },
+                other: { cost: 0, standard: 0, cpf: 0, certa: 0, noCost: 0 }
+            };
+
+            let summaryHTML = '';
+            
+            // Window options controls (if windows recommended)
+            if (hasWindowRec && eligibility.cpf) {
+                summaryHTML += '<div class="card">';
+                summaryHTML += '<h3>⚙️ Window Options</h3>';
+                summaryHTML += '<p>Adjust window incentive settings below. Changes will update the financial summary automatically.</p>';
+                
+                if (eligibility.noCost) {
+                    summaryHTML += '<div class="checkbox-group">';
+                    summaryHTML += '<div class="checkbox-item">';
+                    summaryHTML += '<input type="checkbox" id="windowNoCost" onchange="toggleWindowOption(\'noCost\')">';
+                    summaryHTML += '<label for="windowNoCost"><strong>Apply No-Cost Window Program</strong> (Income-qualified customers)</label>';
+                    summaryHTML += '</div>';
+                    summaryHTML += '<small style="margin-left: 32px; color: #6c757d;">✓ Covers 100% of eligible window replacement costs</small>';
+                    summaryHTML += '</div>';
+                }
+                
+                summaryHTML += '<div class="checkbox-group" style="margin-top: 15px;">';
+                summaryHTML += '<div class="checkbox-item">';
+                summaryHTML += '<input type="checkbox" id="windowEnhanced" onchange="toggleWindowOption(\'enhanced\')">'; 
+                summaryHTML += '<label for="windowEnhanced"><strong>Upgrade to Enhanced Windows</strong> (Higher performance, U-Value ≤0.22)</label>';
+                summaryHTML += '</div>';
+                summaryHTML += '<small style="margin-left: 32px; color: #6c757d;">Enhanced windows provide better insulation but may require additional customer contribution beyond standard incentive coverage.</small>';
+                summaryHTML += '</div>';
+                
+                summaryHTML += '</div>';
+            }
+            
+            summaryHTML += '<div class="card">';
             summaryHTML += '<h3>Financial Summary</h3>';
             
             if (recommendations.length > 0) {
@@ -1527,23 +1580,60 @@
                 summaryHTML += '</tr></thead><tbody>';
 
                 recommendations.forEach(rec => {
-                    const canBeNoCost = eligibility.noCost && rec.noCost;
-                    const incentiveAmount = canBeNoCost ? rec.estimatedCost : 
+                    // Special handling for windows
+                    let canBeNoCost = eligibility.noCost && rec.noCost;
+                    let adjustedCost = rec.estimatedCost;
+                    let supplementalNote = '';
+                    
+                    if (rec.name === 'Window Replacement') {
+                        // Apply no-cost toggle
+                        if (windowOptions.noCost && eligibility.noCost) {
+                            canBeNoCost = true;
+                        } else {
+                            canBeNoCost = false;
+                        }
+                        
+                        // Apply enhanced window option (increases cost by ~25%)
+                        if (windowOptions.enhanced) {
+                            adjustedCost = rec.estimatedCost * 1.25;
+                            const extraCost = adjustedCost - rec.estimatedCost;
+                            supplementalNote = ` (+$${Math.round(extraCost).toLocaleString()} enhanced upgrade)`;
+                        }
+                    }
+                    
+                    const incentiveAmount = canBeNoCost ? adjustedCost : 
                                           (eligibility.certa ? (typeof rec.certa === 'number' && rec.estimatedArea ? rec.certa * rec.estimatedArea : rec.certa) :
                                           (eligibility.cpf ? (typeof rec.cpf === 'number' && rec.estimatedArea ? rec.cpf * rec.estimatedArea : rec.cpf) : 
                                            (typeof rec.standard === 'number' && rec.estimatedArea ? rec.standard * rec.estimatedArea : rec.standard)));
                     
                     const incentiveValue = typeof incentiveAmount === 'number' ? incentiveAmount : 0;
-                    const yourCost = Math.max(0, rec.estimatedCost - incentiveValue);
+                    const yourCost = Math.max(0, adjustedCost - incentiveValue);
 
-                    totalCost += rec.estimatedCost;
+                    totalCost += adjustedCost;
                     totalIncentive += incentiveValue;
                     totalSavings += rec.annualSavings;
                     outOfPocket += yourCost;
 
+                    // Categorize and track by program type
+                    let category = 'other';
+                    if (rec.category === 'weatherization') category = 'weatherization';
+                    else if (['heating', 'cooling', 'water-heating'].includes(rec.category)) category = 'hvac';
+                    
+                    categoryTotals[category].cost += adjustedCost;
+                    
+                    if (canBeNoCost) {
+                        categoryTotals[category].noCost += incentiveValue;
+                    } else if (eligibility.certa) {
+                        categoryTotals[category].certa += incentiveValue;
+                    } else if (eligibility.cpf) {
+                        categoryTotals[category].cpf += incentiveValue;
+                    } else {
+                        categoryTotals[category].standard += incentiveValue;
+                    }
+
                     summaryHTML += `<tr>
-                        <td>${rec.name}</td>
-                        <td style="text-align: right;">$${rec.estimatedCost.toLocaleString()}</td>
+                        <td>${rec.name}${supplementalNote}</td>
+                        <td style="text-align: right;">$${adjustedCost.toLocaleString()}</td>
                         <td style="text-align: right; color: var(--success);">
                             ${canBeNoCost ? 'Full Coverage' : `$${incentiveValue.toLocaleString()}`}
                         </td>
@@ -1561,6 +1651,83 @@
                         <td style="text-align: right;"><strong>$${totalSavings.toLocaleString()}/yr</strong></td>
                     </tr>
                 `;
+
+                summaryHTML += '</tbody></table></div>';
+
+                // Funding Source Rollup by Category
+                summaryHTML += '<div class="card">';
+                summaryHTML += '<h3>Funding Source Rollup by Category</h3>';
+                summaryHTML += '<table class="summary-table"><thead><tr>';
+                summaryHTML += '<th>Category</th>';
+                summaryHTML += '<th style="text-align: right;">Total Cost</th>';
+                summaryHTML += '<th style="text-align: right;">Standard</th>';
+                summaryHTML += '<th style="text-align: right;">CPF Enhanced</th>';
+                summaryHTML += '<th style="text-align: right;">CERTA Premium</th>';
+                summaryHTML += '<th style="text-align: right;">No-Cost</th>';
+                summaryHTML += '<th style="text-align: right;">Total Incentives</th>';
+                summaryHTML += '</tr></thead><tbody>';
+
+                // Weatherization
+                if (categoryTotals.weatherization.cost > 0) {
+                    const wzTotal = categoryTotals.weatherization.standard + categoryTotals.weatherization.cpf + 
+                                    categoryTotals.weatherization.certa + categoryTotals.weatherization.noCost;
+                    summaryHTML += `<tr>
+                        <td><strong>Weatherization</strong></td>
+                        <td style="text-align: right;">$${categoryTotals.weatherization.cost.toLocaleString()}</td>
+                        <td style="text-align: right;">${categoryTotals.weatherization.standard > 0 ? '$' + categoryTotals.weatherization.standard.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.weatherization.cpf > 0 ? '$' + categoryTotals.weatherization.cpf.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.weatherization.certa > 0 ? '$' + categoryTotals.weatherization.certa.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.weatherization.noCost > 0 ? '$' + categoryTotals.weatherization.noCost.toLocaleString() : '—'}</td>
+                        <td style="text-align: right; font-weight: 600; color: var(--success);">$${wzTotal.toLocaleString()}</td>
+                    </tr>`;
+                }
+
+                // HVAC
+                if (categoryTotals.hvac.cost > 0) {
+                    const hvacTotal = categoryTotals.hvac.standard + categoryTotals.hvac.cpf + 
+                                     categoryTotals.hvac.certa + categoryTotals.hvac.noCost;
+                    summaryHTML += `<tr>
+                        <td><strong>HVAC (Heating, Cooling, Water Heating)</strong></td>
+                        <td style="text-align: right;">$${categoryTotals.hvac.cost.toLocaleString()}</td>
+                        <td style="text-align: right;">${categoryTotals.hvac.standard > 0 ? '$' + categoryTotals.hvac.standard.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.hvac.cpf > 0 ? '$' + categoryTotals.hvac.cpf.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.hvac.certa > 0 ? '$' + categoryTotals.hvac.certa.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.hvac.noCost > 0 ? '$' + categoryTotals.hvac.noCost.toLocaleString() : '—'}</td>
+                        <td style="text-align: right; font-weight: 600; color: var(--success);">$${hvacTotal.toLocaleString()}</td>
+                    </tr>`;
+                }
+
+                // Other
+                if (categoryTotals.other.cost > 0) {
+                    const otherTotal = categoryTotals.other.standard + categoryTotals.other.cpf + 
+                                      categoryTotals.other.certa + categoryTotals.other.noCost;
+                    summaryHTML += `<tr>
+                        <td><strong>Other (Controls & Misc.)</strong></td>
+                        <td style="text-align: right;">$${categoryTotals.other.cost.toLocaleString()}</td>
+                        <td style="text-align: right;">${categoryTotals.other.standard > 0 ? '$' + categoryTotals.other.standard.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.other.cpf > 0 ? '$' + categoryTotals.other.cpf.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.other.certa > 0 ? '$' + categoryTotals.other.certa.toLocaleString() : '—'}</td>
+                        <td style="text-align: right;">${categoryTotals.other.noCost > 0 ? '$' + categoryTotals.other.noCost.toLocaleString() : '—'}</td>
+                        <td style="text-align: right; font-weight: 600; color: var(--success);">$${otherTotal.toLocaleString()}</td>
+                    </tr>`;
+                }
+
+                // Grand Total Row
+                const grandStandard = categoryTotals.weatherization.standard + categoryTotals.hvac.standard + categoryTotals.other.standard;
+                const grandCPF = categoryTotals.weatherization.cpf + categoryTotals.hvac.cpf + categoryTotals.other.cpf;
+                const grandCERTA = categoryTotals.weatherization.certa + categoryTotals.hvac.certa + categoryTotals.other.certa;
+                const grandNoCost = categoryTotals.weatherization.noCost + categoryTotals.hvac.noCost + categoryTotals.other.noCost;
+                const grandTotal = grandStandard + grandCPF + grandCERTA + grandNoCost;
+
+                summaryHTML += `<tr class="total-row">
+                    <td><strong>GRAND TOTAL</strong></td>
+                    <td style="text-align: right;"><strong>$${totalCost.toLocaleString()}</strong></td>
+                    <td style="text-align: right;"><strong>${grandStandard > 0 ? '$' + grandStandard.toLocaleString() : '—'}</strong></td>
+                    <td style="text-align: right;"><strong>${grandCPF > 0 ? '$' + grandCPF.toLocaleString() : '—'}</strong></td>
+                    <td style="text-align: right;"><strong>${grandCERTA > 0 ? '$' + grandCERTA.toLocaleString() : '—'}</strong></td>
+                    <td style="text-align: right;"><strong>${grandNoCost > 0 ? '$' + grandNoCost.toLocaleString() : '—'}</strong></td>
+                    <td style="text-align: right;"><strong style="color: var(--success);">$${grandTotal.toLocaleString()}</strong></td>
+                </tr>`;
 
                 summaryHTML += '</tbody></table></div>';
 
@@ -1616,9 +1783,19 @@
 
         // Dynamic incentive display update
         function updateIncentiveDisplay() {
-            if (recommendations.length > 0) {
+            // Recalculate eligibility whenever toggles change
+            determineEligibility();
+            
+            // If we're already on the recommendations page, refresh display
+            if (recommendations.length > 0 && currentSection === 4) {
                 displayRecommendations();
             }
+            
+            console.log('Eligibility updated:', {
+                certa: eligibility.certa,
+                noCost: eligibility.noCost,
+                cpf: eligibility.cpf
+            });
         }
 
         // Load Sample Data for Testing
@@ -1657,6 +1834,17 @@
             alert('Sample data loaded! Click "Next" to proceed through the assessment.');
         }
 
+        // Window option toggles
+        function toggleWindowOption(option) {
+            if (option === 'noCost') {
+                windowOptions.noCost = document.getElementById('windowNoCost').checked;
+            } else if (option === 'enhanced') {
+                windowOptions.enhanced = document.getElementById('windowEnhanced').checked;
+            }
+            // Refresh summary display
+            displaySummary();
+        }
+        
         // Initialize
         console.log('CPF Assessment Tool Loaded - All data processed locally in browser');
     </script>
