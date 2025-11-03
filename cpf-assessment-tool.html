@@ -1566,6 +1566,28 @@
 
             let summaryHTML = '';
             
+            // Program tier toggles (always show if CPF eligible)
+            if (eligibility.cpf || eligibility.certa || eligibility.noCost) {
+                summaryHTML += '<div class="card">';
+                summaryHTML += '<h3>⚙️ Program Tier Options</h3>';
+                summaryHTML += '<p>Toggle different program tiers to see how incentive amounts change. Changes update the summary automatically.</p>';
+                summaryHTML += '<div class="checkbox-group">';
+                
+                summaryHTML += '<div class="checkbox-item">';
+                summaryHTML += `<input type="checkbox" id="summaryNoCost" ${eligibility.noCost ? 'checked' : ''} onchange="toggleProgramTier('noCost')">`;               
+                summaryHTML += '<label for="summaryNoCost"><strong>Apply No-Cost Program</strong> (Income-qualified: <80% AMI or energy burdened)</label>';
+                summaryHTML += '</div>';
+                
+                summaryHTML += '<div class="checkbox-item">';
+                summaryHTML += `<input type="checkbox" id="summaryCerta" ${eligibility.certa ? 'checked' : ''} onchange="toggleProgramTier('certa')">`;               
+                summaryHTML += '<label for="summaryCerta"><strong>Apply CERTA Premium Tier</strong> (Communities of Color, Rural, Tribal)</label>';
+                summaryHTML += '</div>';
+                
+                summaryHTML += '</div>';
+                summaryHTML += '<small style="color: #6c757d;">Note: CERTA includes CPF Enhanced benefits. No-Cost covers eligible heat pumps and water heaters only.</small>';
+                summaryHTML += '</div>';
+            }
+            
             // Window options controls (if windows recommended)
             if (hasWindowRec && eligibility.cpf) {
                 summaryHTML += '<div class="card">';
@@ -1953,15 +1975,36 @@
             }
         }
 
-        // Window option toggles
-        function toggleWindowOption(option) {
-            if (option === 'noCost') {
-                windowOptions.noCost = document.getElementById('windowNoCost').checked;
-            } else if (option === 'enhanced') {
-                windowOptions.enhanced = document.getElementById('windowEnhanced').checked;
+        // Program tier toggles
+        function toggleProgramTier(tier) {
+            if (tier === 'noCost') {
+                eligibility.noCost = document.getElementById('summaryNoCost')?.checked || false;
+                // No-cost requires CPF
+                if (eligibility.noCost) {
+                    eligibility.cpf = true;
+                }
+            } else if (tier === 'certa') {
+                eligibility.certa = document.getElementById('summaryCerta')?.checked || false;
+                // CERTA includes CPF
+                if (eligibility.certa) {
+                    eligibility.cpf = true;
+                }
             }
             // Refresh summary display
             displaySummary();
+            console.log('Program tier toggled:', tier, eligibility);
+        }
+        
+        // Window option toggles
+        function toggleWindowOption(option) {
+            if (option === 'noCost') {
+                windowOptions.noCost = document.getElementById('windowNoCost')?.checked || false;
+            } else if (option === 'enhanced') {
+                windowOptions.enhanced = document.getElementById('windowEnhanced')?.checked || false;
+            }
+            // Refresh summary display
+            displaySummary();
+            console.log('Window option toggled:', option, windowOptions);
         }
         
         // Initialize
