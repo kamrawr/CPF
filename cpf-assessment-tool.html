@@ -1635,11 +1635,12 @@
                     let isEnhancedWindow = false;
                     
                     if (rec.name === 'Window Replacement') {
-                        // Apply enhanced window option (treated as no-cost, no cost increase)
+                        // Apply enhanced window option (NOT treated as no-cost, use CERTA/CPF rates)
                         if (windowOptions.enhanced) {
-                            canBeNoCost = true;
                             isEnhancedWindow = true;
                             supplementalNote = ' (Enhanced U-Value ≤0.22)';
+                            // Enhanced windows use regular CERTA/CPF incentives, not no-cost
+                            canBeNoCost = false;
                         } else if (windowOptions.noCost && eligibility.noCost) {
                             // Standard no-cost window
                             canBeNoCost = true;
