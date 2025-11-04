@@ -1038,6 +1038,9 @@
             noCost: false,
             enhanced: false
         };
+        
+        // CBO Co-Funding tracking (per recommendation index)
+        let cboCoFunding = {};
         let eligibility = {
             standard: false,
             cpf: false,
@@ -1602,7 +1605,7 @@
                     
                     summaryHTML += '<div class="checkbox-item">';
                     summaryHTML += `<input type="checkbox" id="windowEnhanced" ${windowOptions.enhanced ? 'checked' : ''} onchange="toggleWindowOption('enhanced')">`;
-                    summaryHTML += '<label for="windowEnhanced"><strong>Upgrade to Enhanced Windows</strong> (Higher performance, U-Value ≤0.22) — 25% cost increase for better insulation</label>';
+                    summaryHTML += '<label for="windowEnhanced"><strong>Upgrade to Enhanced Windows</strong> (Higher performance, U-Value ≤0.22) — Full coverage with CBO co-funding</label>';
                     summaryHTML += '</div>';
                 }
                 
@@ -1619,29 +1622,29 @@
                 summaryHTML += '<th>Upgrade</th>';
                 summaryHTML += '<th style="text-align: right;">Est. Cost</th>';
                 summaryHTML += '<th style="text-align: right;">Incentive</th>';
-                summaryHTML += '<th style="text-align: right;">Your Cost</th>';
+                summaryHTML += '<th style="text-align: right;">CBO Co-Funding</th>';
+                summaryHTML += '<th style="text-align: right;">Customer Cost</th>';
                 summaryHTML += '<th style="text-align: right;">Annual Savings</th>';
                 summaryHTML += '</tr></thead><tbody>';
 
-                recommendations.forEach(rec => {
+                recommendations.forEach((rec, recIndex) => {
                     // Special handling for windows
                     let canBeNoCost = eligibility.noCost && rec.noCost;
                     let adjustedCost = rec.estimatedCost;
                     let supplementalNote = '';
+                    let isEnhancedWindow = false;
                     
                     if (rec.name === 'Window Replacement') {
-                        // Apply no-cost toggle
-                        if (windowOptions.noCost && eligibility.noCost) {
+                        // Apply enhanced window option (treated as no-cost, no cost increase)
+                        if (windowOptions.enhanced) {
+                            canBeNoCost = true;
+                            isEnhancedWindow = true;
+                            supplementalNote = ' (Enhanced U-Value ≤0.22)';
+                        } else if (windowOptions.noCost && eligibility.noCost) {
+                            // Standard no-cost window
                             canBeNoCost = true;
                         } else {
                             canBeNoCost = false;
-                        }
-                        
-                        // Apply enhanced window option (increases cost by ~25%)
-                        if (windowOptions.enhanced) {
-                            adjustedCost = rec.estimatedCost * 1.25;
-                            const extraCost = adjustedCost - rec.estimatedCost;
-                            supplementalNote = ` (+$${Math.round(extraCost).toLocaleString()} enhanced upgrade)`;
                         }
                     }
                     
@@ -1651,12 +1654,22 @@
                                            (typeof rec.standard === 'number' && rec.estimatedArea ? rec.standard * rec.estimatedArea : rec.standard)));
                     
                     const incentiveValue = typeof incentiveAmount === 'number' ? incentiveAmount : 0;
-                    const yourCost = Math.max(0, adjustedCost - incentiveValue);
+                    
+                    // CBO Co-Funding calculation
+                    let cboAmount = cboCoFunding[recIndex] || 0;
+                    
+                    // Auto-populate CBO co-funding for enhanced windows
+                    if (isEnhancedWindow && !cboCoFunding[recIndex]) {
+                        cboAmount = Math.max(0, adjustedCost - incentiveValue);
+                        cboCoFunding[recIndex] = cboAmount;
+                    }
+                    
+                    const customerCost = Math.max(0, adjustedCost - incentiveValue - cboAmount);
 
                     totalCost += adjustedCost;
                     totalIncentive += incentiveValue;
                     totalSavings += rec.annualSavings;
-                    outOfPocket += yourCost;
+                    outOfPocket += customerCost;
 
                     // Categorize and track by program type with proper CERTA cap handling
                     let category = 'other';
@@ -1698,17 +1711,30 @@
                         <td style="text-align: right; color: var(--success);">
                             ${canBeNoCost ? 'Full Coverage' : `$${incentiveValue.toLocaleString()}`}
                         </td>
-                        <td style="text-align: right;">$${yourCost.toLocaleString()}</td>
+                        <td style="text-align: right;">
+                            <input type="number" 
+                                   id="cbo_${recIndex}" 
+                                   value="${cboAmount}" 
+                                   min="0" 
+                                   max="${adjustedCost}" 
+                                   onchange="updateCBOFunding(${recIndex}, this.value)"
+                                   style="width: 80px; padding: 4px; text-align: right; border: 1px solid var(--border); border-radius: 4px;">
+                        </td>
+                        <td style="text-align: right; font-weight: 600;">$${customerCost.toLocaleString()}</td>
                         <td style="text-align: right;">$${rec.annualSavings.toLocaleString()}</td>
                     </tr>`;
                 });
 
+                // Calculate total CBO co-funding
+                let totalCBO = Object.values(cboCoFunding).reduce((sum, val) => sum + (parseFloat(val) || 0), 0);
+                
                 summaryHTML += `
                     <tr class="total-row">
                         <td><strong>TOTAL</strong></td>
                         <td style="text-align: right;"><strong>$${totalCost.toLocaleString()}</strong></td>
                         <td style="text-align: right; color: var(--success);"><strong>$${totalIncentive.toLocaleString()}</strong></td>
-                        <td style="text-align: right;"><strong>$${outOfPocket.toLocaleString()}</strong></td>
+                        <td style="text-align: right; color: var(--primary);"><strong>$${totalCBO.toLocaleString()}</strong></td>
+                        <td style="text-align: right; color: var(--danger);"><strong>$${outOfPocket.toLocaleString()}</strong></td>
                         <td style="text-align: right;"><strong>$${totalSavings.toLocaleString()}/yr</strong></td>
                     </tr>
                 `;
@@ -1999,10 +2025,22 @@
                 windowOptions.noCost = document.getElementById('windowNoCost')?.checked || false;
             } else if (option === 'enhanced') {
                 windowOptions.enhanced = document.getElementById('windowEnhanced')?.checked || false;
+                // Reset CBO co-funding for windows when toggling enhanced
+                const windowIndex = recommendations.findIndex(r => r.name === 'Window Replacement');
+                if (windowIndex >= 0) {
+                    cboCoFunding[windowIndex] = 0;
+                }
             }
             // Refresh summary display
             displaySummary();
             console.log('Window option toggled:', option, windowOptions);
+        }
+        
+        // Update CBO co-funding amount
+        function updateCBOFunding(recIndex, value) {
+            cboCoFunding[recIndex] = parseFloat(value) || 0;
+            displaySummary();
+            console.log('CBO funding updated for item', recIndex, ':', cboCoFunding[recIndex]);
         }
         
         // Initialize
