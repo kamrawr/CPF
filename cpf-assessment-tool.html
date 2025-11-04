@@ -1595,13 +1595,13 @@
                 if (hasWindowRec && eligibility.cpf) {
                     if (eligibility.noCost) {
                         summaryHTML += '<div class="checkbox-item">';
-                        summaryHTML += '<input type="checkbox" id="windowNoCost" onchange="toggleWindowOption(\'noCost\')">';
+                        summaryHTML += `<input type="checkbox" id="windowNoCost" ${windowOptions.noCost ? 'checked' : ''} onchange="toggleWindowOption('noCost')">`;
                         summaryHTML += '<label for="windowNoCost"><strong>Apply No-Cost Window Program</strong> (Income-qualified) — 100% coverage for window replacement</label>';
                         summaryHTML += '</div>';
                     }
                     
                     summaryHTML += '<div class="checkbox-item">';
-                    summaryHTML += '<input type="checkbox" id="windowEnhanced" onchange="toggleWindowOption(\'enhanced\')">'; 
+                    summaryHTML += `<input type="checkbox" id="windowEnhanced" ${windowOptions.enhanced ? 'checked' : ''} onchange="toggleWindowOption('enhanced')">`;
                     summaryHTML += '<label for="windowEnhanced"><strong>Upgrade to Enhanced Windows</strong> (Higher performance, U-Value ≤0.22) — 25% cost increase for better insulation</label>';
                     summaryHTML += '</div>';
                 }
