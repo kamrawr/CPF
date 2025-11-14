@@ -27,10 +27,8 @@ Explore the CPF program resources through these interactive pages:
 - **[🤝 Contractor Opportunities](https://kamrawr.github.io/CPF/contractor_cpf_opportunity.html)** - Partnership opportunities for contractors
 
 **Assessment & Eligibility Tools:**
-- **[🏠 CPF Assessment Tool](https://kamrawr.github.io/CPF/cpf-assessment-tool.html)** - NEW! Comprehensive intake, eligibility, assessment & incentive calculator with Standard/CPF/CERTA/No-Cost tiers
-- **[🏠 Oregon Comprehensive Energy Assessment](https://kamrawr.github.io/oregon-comprehensive-energy-app/)** - Professional-grade tool with sizing & incentive calculations
-- **[⚡ Energy Assessment (Simple)](https://kamrawr.github.io/dynamic-energy-assessment-tool/standalone_assessment.html)** - Lightweight offline-capable assessment
-- **[💰 Income Eligibility Calculator](https://kamrawr.github.io/oregon-income-calculator/)** - 2025 HUD rates for Oregon programs
+- **[🏠 CPF Assessment Tool](https://kamrawr.github.io/CPF/cpf-assessment-tool.html)** - Comprehensive intake, eligibility, assessment & incentive calculator with Standard/CPF/CERTA/No-Cost tiers (PII-protected, runs entirely in browser)
+- **[💰 Income Eligibility Calculator](https://kamrawr.github.io/oregon-income-calculator/)** - 2025 HUD income limits calculator for Oregon programs
 
 ---
 
