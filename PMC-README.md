@@ -37,30 +37,21 @@ Research-backed framework connecting workforce development, housing infrastructu
 
 ### ⚡ Assessment Tools
 
-#### 3. **Oregon Energy Assessment (Advanced)**
-Advanced home energy assessment tool with:
-- Detailed sizing calculations (sq ft inputs)
-- Dynamic form fields based on responses
-- Precise Energy Trust of Oregon incentive calculations
-- HVAC load calculations
-- Professional downloadable reports
-- Mobile responsive design
+#### 3. **CPF Assessment Tool**
+Comprehensive home energy assessment and incentive calculator:
+- Complete 5-step assessment workflow
+- Property intake and eligibility check (2025 HUD income limits)
+- Home energy assessment (heating, cooling, insulation, windows)
+- Personalized equipment recommendations
+- Financial summary with incentive calculations
+- 4 incentive tiers: Standard, CPF Enhanced, CERTA Premium, No-Cost
+- PII-protected (all processing in browser)
+- Print-friendly reports
 
-**Features:** Sizing calculations • Real-time incentives • Offline capable  
-**Links:** [Open Tool](https://kamrawr.github.io/oregon-energy-assessment-advanced/standalone_assessment.html) | [GitHub](https://github.com/kamrawr/oregon-energy-assessment-advanced)
+**Features:** 5-step workflow • 4 incentive tiers • PII-protected  
+**Links:** [Open Tool](https://kamrawr.github.io/CPF/cpf-assessment-tool.html) | [GitHub](https://github.com/kamrawr/CPF)
 
-#### 4. **Home Energy Assessment (Simple)**
-Lightweight, standalone assessment tool:
-- Zero setup required
-- Works completely offline
-- No dependencies (vanilla JS)
-- Quick assessment workflow
-- Smart recommendations engine
-
-**Features:** 28KB file size • Offline capable • Zero dependencies  
-**Links:** [Open Tool](https://kamrawr.github.io/dynamic-energy-assessment-tool/standalone_assessment.html) | [GitHub](https://github.com/kamrawr/dynamic-energy-assessment-tool)
-
-#### 5. **Oregon Income Eligibility Calculator**
+#### 4. **Oregon Income Eligibility Calculator**
 Calculate income eligibility for Oregon programs:
 - 2025 HUD rates
 - Multiple income frequencies (annual, monthly, weekly, hourly)
@@ -248,8 +239,6 @@ CPF/
 
 These projects are hosted in separate repositories:
 - [research-synthesis-lab](https://github.com/kamrawr/research-synthesis-lab)
-- [oregon-energy-assessment-advanced](https://github.com/kamrawr/oregon-energy-assessment-advanced)
-- [dynamic-energy-assessment-tool](https://github.com/kamrawr/dynamic-energy-assessment-tool)
 - [oregon-housing-analysis](https://github.com/kamrawr/oregon-housing-analysis)
 - [oregon-income-calculator](https://github.com/kamrawr/oregon-income-calculator)
 

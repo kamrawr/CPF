@@ -325,7 +325,7 @@ https://kamrawr.github.io/CPF/hub.html
 - **Improved**: Card size, layout, mobile responsiveness
 - **Enhanced**: Contextual intro section, badge system
 - **Refined**: Typography, spacing, color scheme
-- **Updated**: Oregon Comprehensive Energy App as primary assessment tool
+- **Updated**: CPF Assessment Tool as primary assessment tool
 
 ---
 
