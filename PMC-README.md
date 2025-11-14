@@ -115,8 +115,7 @@ Program Management Center
 │   ├── Research Synthesis Lab (12 projects)
 │   └── Community Resilience Initiative
 ├── Assessment Tools
-│   ├── Oregon Energy Assessment (Advanced)
-│   ├── Home Energy Assessment (Simple)
+│   ├── CPF Assessment Tool
 │   └── Oregon Income Eligibility Calculator
 ├── Data & Analytics
 │   └── Oregon Housing Analysis
@@ -181,7 +180,7 @@ Then access at: `https://[username].github.io/CPF/program-management-center.html
 - Responsive grid layout
 
 ### Stats Dashboard
-- 8 active projects
+- 6 active projects
 - 12 research syntheses
 - 70+ documents
 - 36 Oregon counties covered
